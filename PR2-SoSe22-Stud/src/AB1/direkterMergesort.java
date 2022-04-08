@@ -18,6 +18,7 @@ public class direkterMergesort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		sort("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
+		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 
 	}
 	
@@ -58,11 +59,7 @@ public class direkterMergesort {
 					continue;
 					}
 			l++;
-					
-				
-			
-			
-			
+		
 		}
 		
 		closeInputFile(tape0);
@@ -74,9 +71,33 @@ public class direkterMergesort {
 		String tape_0 = path;
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
+		if (!isFilePresent(tape_0)) {
+			println(tape_0 + " existiert nicht ");
+			return;
+		}
 		Object tape0 = openOutputFile(tape_0);
 		Object tape1 = openInputFile(tape_1);
 		Object tape2 = openInputFile(tape_2);
+		int in1 = readInt(tape1);
+		int in2 = readInt(tape2);
+		
+		while (!isEndOfInputFile(tape1) || !isEndOfInputFile(tape2)){
+			
+			try {
+				in1 = readInt(tape1);
+				in2 = readInt(tape2);
+			}catch(Exception e) {}
+			
+			if(in1 >in2) {
+				print(tape0,in2+" ");
+				print(tape0,in1 +" ");
+			}else {
+				print(tape0,in1+" ");
+				print(tape0,in2 +" ");
+			}
+				
+		}
+		
 		
 		
 		
