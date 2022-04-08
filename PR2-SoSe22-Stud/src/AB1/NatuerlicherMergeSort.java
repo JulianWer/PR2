@@ -15,22 +15,22 @@ import static pr.MakeItSimple.*;
 public class NatuerlicherMergeSort {
 
 	public static void main(String[] args) {
-		//solange das Zielband mehr als einen Lauf hat: 
-		
-		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
-		merge();
-		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
-		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge();
-		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
-		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge();
-		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
-		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge();
-		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
+	
+		natuerlicherMergeSort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt", "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+
 		
 		
+	}
+	
+	public static void natuerlicherMergeSort(String srcFile, String newFile) {
+		//first run
+		split(srcFile);
+		merge();
+		do {
+			split(newFile);
+			merge();
+			
+		}while(checkIfFileHasMoreThanOneRun(newFile));
 	}
 	
 	public static void split(String path) {
@@ -67,6 +67,9 @@ public class NatuerlicherMergeSort {
 				currentNumber = readInt(tape0);
 			}catch (Exception e) {
 				// TODO: handle exception
+				closeInputFile(tape0);
+				closeOutputFile(tape1);
+				closeOutputFile(tape2);
 				return;
 			}
 			
@@ -158,9 +161,12 @@ public class NatuerlicherMergeSort {
 		while(!isEndOfInputFile(tape0)) {
 			try {
 				int currentElement = readInt(tape0);
-				if(lastElement > currentElement)
+				if(lastElement > currentElement) {
+					closeInputFile(tape0);
 					return true;
-			}catch(PR1Exception e) {
+				}
+			}catch(Exception e) {
+				closeInputFile(tape0);
 				return false;
 			}
 		}
