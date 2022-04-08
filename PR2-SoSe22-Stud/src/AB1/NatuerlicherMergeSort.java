@@ -19,6 +19,17 @@ public class NatuerlicherMergeSort {
 		
 		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
 		merge();
+		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
+		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge();
+		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
+		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge();
+		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
+		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge();
+		System.out.println(checkIfFileHasMoreThanOneRun("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest"));
+		
 		
 	}
 	
@@ -40,18 +51,25 @@ public class NatuerlicherMergeSort {
 		
 		boolean writeToTape1 = true;
 		int lastInputNumber = 0;
+		int currentNumber = 0;
 		int cnt = 0;
 		
 		while(!isEndOfInputFile(tape0)) {
 			if(cnt == 0) {
-				int currentNumber = readInt(tape0);	//Initialisierung
+				currentNumber = readInt(tape0);	//Initialisierung
 				print(tape1, currentNumber + " ");
 				lastInputNumber = currentNumber;
 				cnt++;
 				continue;
 			}
 			
-			int currentNumber = readInt(tape0);
+			try {
+				currentNumber = readInt(tape0);
+			}catch (Exception e) {
+				// TODO: handle exception
+				return;
+			}
+			
 			if(currentNumber < lastInputNumber)
 				writeToTape1 = !writeToTape1;
 			
@@ -134,7 +152,18 @@ public class NatuerlicherMergeSort {
 		closeOutputFile(sortedTape);
 	}
 	
-	public boolean checkIfFileHasMoreThanOneRun(String path) {
+	public static boolean checkIfFileHasMoreThanOneRun(String path) {
 		Object tape0 = openInputFile(path);
+		int lastElement = readInt(tape0);
+		while(!isEndOfInputFile(tape0)) {
+			try {
+				int currentElement = readInt(tape0);
+				if(lastElement > currentElement)
+					return true;
+			}catch(PR1Exception e) {
+				return false;
+			}
+		}
+		return false;
 	}
 }
