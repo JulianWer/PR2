@@ -16,6 +16,7 @@ public class NatuerlicherMergeSort {
 
 	public static void main(String[] args) {
 		split();
+		merge();
 		
 
 	}
@@ -59,6 +60,10 @@ public class NatuerlicherMergeSort {
 			cnt++;
 			
 		}
+		
+		closeInputFile(tape0);
+		closeOutputFile(tape1);
+		closeOutputFile(tape2);
 	}
 	
 	public static void merge() {
@@ -69,19 +74,52 @@ public class NatuerlicherMergeSort {
 		String tape_0 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
+		String sorted_tape = "mergeMethodTest";
 
 		if (!isFilePresent(tape_0)) {
 			println(tape_0 + " existiert nicht ");
 			return;
 		}
 		
-		Object tape0 = openInputFile(tape_0);
-		Object tape1 = openOutputFile(tape_1);
-		Object tape2 = openOutputFile(tape_2);
+		Object tape1 = openInputFile(tape_1);
+		Object tape2 = openInputFile(tape_2);
+		Object sortedTape = openOutputFile(sorted_tape);
 		
-		while(!isEndOfInputFile(tape1) && !isEndOfInputFile(tape2)) {
+		//Initialwerte
+		int currentElementTape1 = readInt(tape1);
+		int currentElementTape2 = readInt(tape2);
+		
+		boolean tape1ContainsRuns = true;
+		boolean tape2ContainsRuns = true;
+		
+		while(tape1ContainsRuns || tape2ContainsRuns) {
+			//append smaller element
+			if((currentElementTape1 <= currentElementTape2 && tape1ContainsRuns) || (tape1ContainsRuns && !tape2ContainsRuns)) {
+				print(sortedTape, currentElementTape1 + " ");
+				
+				
+				if(!isEndOfInputFile(tape1)) {
+					currentElementTape1 = readInt(tape1);
+				}else {
+					tape1ContainsRuns = false;
+				}
+				
+				
+			}else if(tape2ContainsRuns) {
+				//currentelement from tape2 is smaller
+				print(sortedTape, currentElementTape2 + " ");
+				
+				if(!isEndOfInputFile(tape2)) {
+					currentElementTape2 = readInt(tape2);
+				}else {
+					tape2ContainsRuns = false;
+				}
+				
+			}
 			
 		}
+		
+		
 	}
 
 }
