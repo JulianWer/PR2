@@ -95,25 +95,31 @@ public class NatuerlicherMergeSort {
 		boolean tape1ContainsRuns = true;
 		boolean tape2ContainsRuns = true;
 		
-		while(tape1ContainsRuns || tape2ContainsRuns) {
+		while(tape1ContainsRuns || tape2ContainsRuns) {	//solange die Runs noch nicht abgearbeitet sind
 			//append smaller element
-			if((currentElementTape1 <= currentElementTape2 && tape1ContainsRuns) || (tape1ContainsRuns && !tape2ContainsRuns)) {
+			if(((currentElementTape1 <= currentElementTape2) && tape1ContainsRuns) || (tape1ContainsRuns && !tape2ContainsRuns)) {
 				print(sortedTape, currentElementTape1 + " ");
 				
 				
 				if(!isEndOfInputFile(tape1)) {
-					currentElementTape1 = readInt(tape1);
+					try {
+						currentElementTape1 = readInt(tape1);
+					}catch(Exception e) { tape1ContainsRuns = false; }
+					
 				}else {
 					tape1ContainsRuns = false;
 				}
 				
 				
-			}else if(tape2ContainsRuns) {
+			}
+			if((currentElementTape2 < currentElementTape1 && tape2ContainsRuns) || (!tape1ContainsRuns && tape2ContainsRuns)) {
 				//currentelement from tape2 is smaller
 				print(sortedTape, currentElementTape2 + " ");
 				
 				if(!isEndOfInputFile(tape2)) {
-					currentElementTape2 = readInt(tape2);
+					try {
+						currentElementTape2 = readInt(tape2);
+					}catch(Exception e) {tape2ContainsRuns = false;}
 				}else {
 					tape2ContainsRuns = false;
 				}
@@ -122,7 +128,9 @@ public class NatuerlicherMergeSort {
 			
 		}
 		
-		
+		closeInputFile(tape1);
+		closeInputFile(tape2);
+		closeOutputFile(sortedTape);
 	}
 
 }
