@@ -9,6 +9,7 @@ import static gdi.MakeItSimple.isEndOfInputFile;
 import static gdi.MakeItSimple.isFilePresent;
 import static gdi.MakeItSimple.print;
 import static gdi.MakeItSimple.println;
+import static gdi.MakeItSimple.*;
 import static pr.MakeItSimple.*;
 
 public class direkterMergesort {
@@ -16,6 +17,7 @@ public class direkterMergesort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		sort("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
 
 	}
 	
@@ -35,16 +37,29 @@ public class direkterMergesort {
 		Object tape1 = openOutputFile(tape_1);
 		Object tape2 = openOutputFile(tape_2);
 		boolean tb = true;
+		int d = durch;
 		int l = 1;
 		while (!isEndOfInputFile(tape0)){
-			int in = readInt(tape_0);
-			if(tb)
-				print(tape1, in);
-				if(l == druch) {
-					
+			int in = readInt(tape0);
+			if(tb) {
+				print(tape1, in + " ");
+				if(l == d) {
+					tb = !tb;
+					l=1;
+					continue;
 				}
+				
+			}
 			else
-				print(tape2,in);
+				print(tape2,in+ " ");
+				if(l == d) {
+					tb = !tb;
+					l = 1;
+					continue;
+					}
+			l++;
+					
+				
 			
 			
 			
