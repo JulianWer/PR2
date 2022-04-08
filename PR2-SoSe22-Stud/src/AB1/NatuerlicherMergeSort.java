@@ -43,8 +43,11 @@ public class NatuerlicherMergeSort {
 		
 		while(!isEndOfInputFile(tape0)) {
 			if(cnt == 0) {
-				lastInputNumber = readInt(tape0);	//Initialisierung
-				print(tape1, lastInputNumber + " ");
+				int currentNumber = readInt(tape0);	//Initialisierung
+				print(tape1, currentNumber + " ");
+				lastInputNumber = currentNumber;
+				cnt++;
+				continue;
 			}
 			
 			int currentNumber = readInt(tape0);
