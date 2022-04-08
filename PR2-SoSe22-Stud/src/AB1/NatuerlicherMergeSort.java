@@ -15,16 +15,17 @@ import static pr.MakeItSimple.*;
 public class NatuerlicherMergeSort {
 
 	public static void main(String[] args) {
-		split();
+		//solange das Zielband mehr als einen Lauf hat: 
+		
+		split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
 		merge();
 		
-
 	}
 	
-	public static void split() {
+	public static void split(String path) {
 		//runs mit maximaler Lauflänge erstellen
 		//Tape0 aufteilen
-		String tape_0 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";
+		String tape_0 = path;
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
 
@@ -132,5 +133,8 @@ public class NatuerlicherMergeSort {
 		closeInputFile(tape2);
 		closeOutputFile(sortedTape);
 	}
-
+	
+	public boolean checkIfFileHasMoreThanOneRun(String path) {
+		Object tape0 = openInputFile(path);
+	}
 }
