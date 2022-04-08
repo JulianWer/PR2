@@ -11,4 +11,8 @@ public class MergeSort1stTests {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void natuerlicherMergeSortTest() {
+		
+	}
 }

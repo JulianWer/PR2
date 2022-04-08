@@ -17,7 +17,7 @@ public class NatuerlicherMergeSort {
 	public static void main(String[] args) {
 	
 		natuerlicherMergeSort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt", "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-
+		
 		
 		
 	}
