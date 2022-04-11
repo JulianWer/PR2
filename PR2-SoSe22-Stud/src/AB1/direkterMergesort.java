@@ -17,14 +17,54 @@ public class direkterMergesort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
+		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt");
 		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		//merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
+		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 		
+		//direktMerge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt","C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
 
+	}
+	
+	public static void direktMerge(String src ,String path) {
+		split(src);
+		merge(path);
+		while(checkRun(path)) {
+			split(path);
+			merge(path);
+		}
+	}
+	
+	public static boolean checkRun(String path) {
+		int array[] = new int[100];
+		int in =0;
+		boolean check = true;
+		Object tape0 = openInputFile(path);
+		while (!isEndOfInputFile(tape0)) {
+			try {
+				for(int i = 0 ; i<array.length/2 ;i++)
+					array[i] = readInt(tape0);
+				
+			}catch(Exception e) {
+				closeInputFile(tape0);
+				println("fehler");
+				return false;
+			}
+			
+			for(int i :array) {
+				if (array[i]> array[i-1]) {
+					check = false;
+				}
+				else { 
+					return true;
+				}
+			}
+		}
+		return check;
 	}
 
 	public static void split(String path) {
@@ -42,7 +82,10 @@ public class direkterMergesort {
 		Object tape1 = openOutputFile(tape_1);
 		Object tape2 = openOutputFile(tape_2);
 		boolean tb = true;
+		if(durchL%2 != 0 && durchL !=1)
+			durchL+=1;
 		int d = durchL;
+		
 		
 		int l = 1;
 		int in = 0;
@@ -62,11 +105,11 @@ public class direkterMergesort {
 				tb = !tb;
 			}
 			if (tb) {
-				print(tape1, in + " ");
+				print(tape1, " " +in);
 				
 
 			} else {
-				print(tape2, in + " ");
+				print(tape2, " " +in);
 				
 			}
 			l++;
@@ -125,11 +168,11 @@ public class direkterMergesort {
 				}
 			}
 			for(int i : array) {
-				print(tape0,i+" ");
+				print(tape0," " +i);
 			}
 			
 			
-			
+			  
 
 		}
 		closeInputFile(tape1);
