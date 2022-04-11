@@ -16,23 +16,28 @@ public class NatuerlicherMergeSort {
 
 	public static void main(String[] args) {
 
+		//natuerlicherMergeSort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt",
+		//		"C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
 		natuerlicherMergeSort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt",
 				"C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-
 	}
+	
+	
 
 	public static void natuerlicherMergeSort(String srcFile, String newFile) {
 		// first run
-		split(srcFile);
-		merge();
-		do {
-			split(newFile);
-			merge();
-
-		} while (checkIfFileHasMoreThanOneRun(newFile));
+		int output[] = split(srcFile);
+		merge(newFile);
+		
+		while(output[0] != 1) {
+			output = split(newFile);
+			merge(newFile);
+		}
+		
 	}
 
-	public static void split(String path) {
+
+	public static int[] split(String path) {
 		// runs mit maximaler Lauflänge erstellen
 		// Tape0 aufteilen
 		String tape_0 = path;
@@ -41,7 +46,7 @@ public class NatuerlicherMergeSort {
 
 		if (!isFilePresent(tape_0)) {
 			println(tape_0 + " existiert nicht ");
-			return;
+			return new int[] {-1, -1, -1};
 		}
 
 		Object tape0 = openInputFile(tape_0);
@@ -52,121 +57,126 @@ public class NatuerlicherMergeSort {
 		int lastInputNumber = 0;
 		int currentNumber = 0;
 		int cnt = 0;
+		int cnt2 = 0;
+		int runs = 0;
 
 		while (!isEndOfInputFile(tape0)) {
 			if (cnt == 0) {
 				currentNumber = readInt(tape0); // Initialisierung
-				print(tape1, currentNumber + " ");
+				print(tape1, currentNumber);
 				lastInputNumber = currentNumber;
 				cnt++;
+				runs++;
 				continue;
 			}
 
-			try {
-				currentNumber = readInt(tape0);
-			} catch (Exception e) {
-				// TODO: handle exception
-				closeInputFile(tape0);
-				closeOutputFile(tape1);
-				closeOutputFile(tape2);
-				return;
-			}
+			
+			currentNumber = readInt(tape0);	//Nächste Zahl einlesen
+			
 
-			if (currentNumber < lastInputNumber)
+			if (currentNumber < lastInputNumber) {
 				writeToTape1 = !writeToTape1;
+				runs++;
+			}
 
 			if (writeToTape1) {
-				print(tape1, currentNumber + " ");
+				print(tape1, " " + currentNumber);
+				cnt++;
 			} else {
-				print(tape2, currentNumber + " ");
+				if(cnt2 == 0) {
+					print(tape2, currentNumber);
+					cnt2++;
+					
+				}else {
+					print(tape2, " " + currentNumber);
+					cnt2++;
+				}
 			}
 			lastInputNumber = currentNumber;
-			cnt++;
+			
 
 		}
 
 		closeInputFile(tape0);
 		closeOutputFile(tape1);
 		closeOutputFile(tape2);
+		
+		return new int[]{runs, cnt, cnt2};	//runs Anzahl der Runs insgesamt, cnt Anzahl der Element in tape1, cnt2 Anzahl der Elemente in tape2
 	}
-
-	public static void merge() {
-		// tape0 überschreiben
-		// solange tape1 & tape2 einen Lauf enthalten
-		// => Füge das kleinere Anfangselement an tape0 hinzu
-
-		String tape_0 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";
+	
+	public static void merge(String path) {
+		String targetpath = path;
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
-		String sorted_tape = "mergeMethodTest";
 
-		if (!isFilePresent(tape_0)) {
-			println(tape_0 + " existiert nicht ");
-			return;
+		if (!isFilePresent(targetpath)) {
+			println(targetpath + " existiert nicht ");
 		}
 
+		Object target = openOutputFile(targetpath);
 		Object tape1 = openInputFile(tape_1);
 		Object tape2 = openInputFile(tape_2);
-		Object sortedTape = openOutputFile(sorted_tape);
-
-		boolean tape1ContainsRuns = true;
-		boolean tape2ContainsRuns = true;
-
-		// Initialwerte
-		int currentElementTape1 = 0, currentElementTape2 = 0;
-		try {
-			currentElementTape1 = readInt(tape1);
-		} catch (Exception e) {
-			tape1ContainsRuns = false;
-		}
-		try {
-			currentElementTape2 = readInt(tape2);
-		} catch (Exception e) {
-			tape2ContainsRuns = false;
-		}
-
-		while (tape1ContainsRuns || tape2ContainsRuns) { // solange die Runs noch nicht abgearbeitet sind
-			// append smaller element
-			if (((currentElementTape1 <= currentElementTape2) && tape1ContainsRuns)
-					|| (tape1ContainsRuns && !tape2ContainsRuns)) {
-				print(sortedTape, currentElementTape1 + " ");
-
-				if (!isEndOfInputFile(tape1)) {
-					try {
-						currentElementTape1 = readInt(tape1);
-					} catch (Exception e) {
-						tape1ContainsRuns = false;
-					}
-
-				} else {
-					tape1ContainsRuns = false;
-				}
-
+		int numberTape1 = 0, numberTape2 = 0;
+		
+		boolean firstRun = true;
+		boolean tape1ContainsNumbers = true;
+		boolean tape2ContainsNumbers = true;
+	
+		if(firstRun) {
+			//Startwerte initialisieren
+			if(!isEndOfInputFile(tape1)) {
+				numberTape1 = readInt(tape1);
+			}else {
+				tape1ContainsNumbers = false;
 			}
-			if ((currentElementTape2 < currentElementTape1 && tape2ContainsRuns)
-					|| (!tape1ContainsRuns && tape2ContainsRuns)) {
-				// currentelement from tape2 is smaller
-				print(sortedTape, currentElementTape2 + " ");
-
-				if (!isEndOfInputFile(tape2)) {
-					try {
-						currentElementTape2 = readInt(tape2);
-					} catch (Exception e) {
-						tape2ContainsRuns = false;
-					}
-				} else {
-					tape2ContainsRuns = false;
-				}
-
+			
+			if(!isEndOfInputFile(tape2)) {
+				numberTape2 = readInt(tape2);
+			}else {
+				tape2ContainsNumbers = false;
 			}
-
 		}
-
-		closeInputFile(tape1);
-		closeInputFile(tape2);
-		closeOutputFile(sortedTape);
+		
+	while(tape1ContainsNumbers || tape2ContainsNumbers) {
+		if((numberTape1 <= numberTape2 && tape1ContainsNumbers) || !tape2ContainsNumbers) {
+			//add number from tape1 to target
+			if(firstRun) {
+				print(target, numberTape1);
+				firstRun = false;
+			}else {
+				print(target, " " + numberTape1);
+			}
+			if(!isEndOfInputFile(tape1)) {
+				numberTape1 = readInt(tape1);
+				System.out.println(numberTape1);
+			}else {
+				tape1ContainsNumbers = false;
+			}
+			continue;
+		}
+		
+		if((numberTape2 < numberTape1 && tape2ContainsNumbers) || !tape1ContainsNumbers) {
+			if(firstRun) {
+				print(target, numberTape2);
+				firstRun = false;
+			}else {
+				print(target, " " + numberTape2);
+			}
+			if(!isEndOfInputFile(tape2)) {
+				numberTape2 = readInt(tape2);
+				System.out.println(numberTape2);
+			}else {
+				tape2ContainsNumbers = false;
+			}
+			continue;
+		}
+		
 	}
-
+	
+	closeInputFile(tape1);
+	closeOutputFile(target);
+	closeInputFile(tape2);
+	}
 	public static boolean checkIfFileHasMoreThanOneRun(String path) {
 		Object tape0 = openInputFile(path);
 		int lastElement = readInt(tape0);
