@@ -191,7 +191,7 @@ public class direkterMergesort {
 		boolean firstRun = true;
 		
 		
-		while(cntElementsReadTape1 != 2 && cntElementsReadTape2 != 2){
+		while(cntElementsReadTape1 != runlength && cntElementsReadTape2 != runlength){
 			if(firstRun) {
 				currentElementTape1 = readInt(tape1);
 				currentElementTape2 = readInt(tape1);
