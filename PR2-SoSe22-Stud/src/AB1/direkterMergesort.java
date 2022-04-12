@@ -12,31 +12,39 @@ import static gdi.MakeItSimple.readInt;
 
 import java.util.ArrayList;
 
+
+
+
+
 public class direkterMergesort {
 	public static int durchL = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt");
-		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		split("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
+		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
+		merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+		merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+	//merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+		//split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
+		//merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
 		
-		//direktMerge("C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt","C:\\Users\\julia\\git\\Team-03o\\PR2-SoSe22-Stud\\mergeMethodTest");
+		//direktMerge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt","C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
 
 	}
 	
 	public static void direktMerge(String src ,String path) {
 		split(src);
 		merge(path);
-		while(checkRun(path)) {
+		do {
 			split(path);
 			merge(path);
-		}
+		}while(checkRun(path));
+		split(path);
+		merge(path);
+		split(path);
+		merge(path);
 	}
 	
 	public static boolean checkRun(String path) {
@@ -46,7 +54,7 @@ public class direkterMergesort {
 		Object tape0 = openInputFile(path);
 		while (!isEndOfInputFile(tape0)) {
 			try {
-				for(int i = 0 ; i<array.length/2 ;i++)
+				for(int i = 0 ; i<array.length ;i++)
 					array[i] = readInt(tape0);
 				
 			}catch(Exception e) {
@@ -64,6 +72,7 @@ public class direkterMergesort {
 				}
 			}
 		}
+		closeInputFile(tape0);
 		return check;
 	}
 
