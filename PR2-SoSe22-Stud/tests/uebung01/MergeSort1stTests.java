@@ -16,6 +16,7 @@ import static pr.MakeItSimple.*;
 import org.junit.Test;
 
 import AB1.NatuerlicherMergeSort;
+import AB1.direkterMergesort;
 
 public class MergeSort1stTests {
 
@@ -25,6 +26,7 @@ public class MergeSort1stTests {
 
 	@Test
 	public void natuerlicherMergeSortTest() {
+		MergeSort m = new MergeSort();
 		//Testfaelle für die inputFiles
 		String path1 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";
 		String path2 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt";
@@ -33,7 +35,7 @@ public class MergeSort1stTests {
 		String paths[] = {path1, path2, path3};
 		
 		for (String path : paths) {
-			NatuerlicherMergeSort.natuerlicherMergeSort(path, pathForTestFile);
+			m.naturalMergeSort(path, pathForTestFile);
 			
 			Object file = openInputFile("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
 			int lastElement = readInt(file);
@@ -49,11 +51,37 @@ public class MergeSort1stTests {
 			}
 			assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);	//wird erst ausgeführt, wenn alle Element an der korrekten Position stehen
 			//checkIfCorrectSorted
-		}
-		
-		
-		
-		
-		
+		}	
 	}
+	
+	@Test
+	public void straighMergeSortTest() {
+		//Testfaelle für die inputFiles
+		MergeSort m = new MergeSort();
+		String path1 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";
+		String path2 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt";
+		String path3 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt";
+		String pathForTestFile = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest";
+		String paths[] = {path1, path2, path3};
+		
+		for (String path : paths) {
+			m.straightMergeSort(path, pathForTestFile);
+			
+			Object file = openInputFile("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+			int lastElement = readInt(file);
+			try {
+				while(!isEndOfInputFile(file)) {
+					int currentElement = readInt(file);
+					if(lastElement > currentElement)
+						fail("Falsche Reihenfolge => Algorithmus ist fehlerhaft");
+					lastElement = currentElement;
+				}
+			}catch (Exception e) {
+				assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);
+			}
+			assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);	//wird erst ausgeführt, wenn alle Element an der korrekten Position stehen
+			//checkIfCorrectSorted
+		}	
+	}
+	
 }
