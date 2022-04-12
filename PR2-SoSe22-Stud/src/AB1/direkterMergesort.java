@@ -170,6 +170,74 @@ public class direkterMergesort {
 		closeOutputFile(tape0);
 
 	}
+	
+	public void merge(int runlength, String path){
+		String tape_0 = path;
+		String tape_1 = "tape_1";
+		String tape_2 = "tape_2";
+		if (!isFilePresent(tape_0)) {
+			println(tape_0 + " existiert nicht ");
+			return;
+		}
+		Object target = openOutputFile(tape_0);
+		Object tape1 = openInputFile(tape_1);
+		Object tape2 = openInputFile(tape_2);
+		
+		//decide which run is smaller
+		int cntElementsReadTape1 = 0;
+		int cntElementsReadTape2 = 0;
+		int currentElementTape1 = 0;
+		int currentElementTape2 = 0;
+		boolean firstRun = true;
+		
+		
+		while(cntElementsReadTape1 != 2 && cntElementsReadTape2 != 2){
+			if(firstRun) {
+				currentElementTape1 = readInt(tape1);
+				currentElementTape2 = readInt(tape1);
+				cntElementsReadTape1++;
+				cntElementsReadTape2++;
+				firstRun = false;
+				
+				if(currentElementTape1 <= currentElementTape2) {
+					print(target, currentElementTape1);
+					currentElementTape1 = readInt(tape1);
+					cntElementsReadTape1++;
+					continue;
+				}else {
+					print(target, currentElementTape2);
+					currentElementTape2 = readInt(tape2);
+					cntElementsReadTape2++;
+					continue;
+				}
+				
+			
+			}
+			
+		if((currentElementTape1 <= currentElementTape2 && cntElementsReadTape1 < runlength) || (cntElementsReadTape2 == runlength && cntElementsReadTape1 < runlength)) {
+			//print current element from tape1
+			print(target, " " + currentElementTape1);
+			currentElementTape1 = readInt(tape1);
+			cntElementsReadTape1++;
+			continue;
+		}
+		if((currentElementTape2 < currentElementTape1 && cntElementsReadTape2 < runlength) || (cntElementsReadTape1 == runlength && cntElementsReadTape2 < runlength)) {
+			//print current element from tape1
+			print(target, " " + currentElementTape2);
+			currentElementTape2 = readInt(tape2);
+			cntElementsReadTape2++;
+			continue;
+		}
+			
+		}
+		
+		
+		//compare both elements
+		
+		
+		//solange wiederholen bis beide Tapes keine Elemente mehr beeinhalten.
+		
+	}
 
 //	public void merge(int runlength){
 //		//decide which run is smaller
