@@ -19,22 +19,9 @@ import java.util.ArrayList;
 public class direkterMergesort {
 	public static int durchL = 0;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt");
-		merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-	//merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		//split("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		//merge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-		
-		//direktMerge("C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt","C:\\Users\\julia\\git\\Team-032\\PR2-SoSe22-Stud\\mergeMethodTest");
-
-	}
 	
-	public static void direktMerge(String src ,String path) {
+	
+	public  void direktMerge(String src ,String path) {
 		split(src);
 		merge(path);
 		do {
@@ -47,7 +34,7 @@ public class direkterMergesort {
 		merge(path);
 	}
 	
-	public static boolean checkRun(String path) {
+	public  boolean checkRun(String path) {
 		int array[] = new int[100];
 		int in =0;
 		boolean check = true;
@@ -76,7 +63,7 @@ public class direkterMergesort {
 		return check;
 	}
 
-	public static void split(String path) {
+	public  void split(String path) {
 		durchL++; // zählvariable für insgesamt durchläufe
 		String tape_0 = path;
 		String tape_1 = "tape_1";
@@ -130,7 +117,7 @@ public class direkterMergesort {
 		closeOutputFile(tape2);
 	}
 
-	public static void merge(String path) {
+	public void merge(String path) {
 		String tape_0 = path;
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
@@ -144,45 +131,39 @@ public class direkterMergesort {
 		int dl = durchL;
 		int in1 = 0;
 		int in2 = 0;
+		int res = 0;
 		boolean lb = true;
 		
 		
 		
 
 		while (!isEndOfInputFile(tape1) || !isEndOfInputFile(tape2)) {
-			int[] array = new int[dl*2];
-
-			try {
-				for(int i = 0 ; i<array.length/2 ;i++)
-					array[i] = readInt(tape1);
-				for(int j = array.length/2; j<array.length; j++)
-					array[j] = readInt(tape2);
-				
-			} catch (Exception e) {
-				closeInputFile(tape1);
-				closeInputFile(tape2);
-				closeOutputFile(tape0);
-				return;
-			}
 			
-			for(int i = 0 ; i<array.length ;i++) {
-				for(int j = 0; j<array.length ; j++) {
-					if(array[i] <array[j]) {
-						int zwisch = array[j];
-						array[j] = array[i];
-						array[i] = zwisch;
-					}
+				for(int i = 0; i< dl*2;i++) {
+						in1 = readInt(tape1);
+						in2 = readInt(tape2);
+						
+						if(in1< in2 && in1<res) {
+							println(tape0,in1);
+							res = in2;
+						}
+						else if(in2 < in1 && in2<res) {
+							println(tape0,in2);
+							res = in1;
+						}
+				}
+					
 					
 						
-				}
-			}
-			for(int i : array) {
-				print(tape0," " +i);
-			}
+					
+					
+					
+				
 			
 			
-			  
-
+		
+			
+			
 		}
 		closeInputFile(tape1);
 		closeInputFile(tape2);
