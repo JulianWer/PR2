@@ -171,4 +171,31 @@ public class direkterMergesort {
 
 	}
 
+//	public void merge(int runlength){
+//		//decide which run is smaller
+//		
+//		while( ...bis beide Tapes keine Elemente mehr beeinhalten)
+//		currentElementTape1 = readInt(tape1);
+//		currentElementTape2 = readInt(tape2);
+//		
+//		if(currentElementTape1 <= currentElementTape2){
+//			//add run from tape1 to traget tape
+//			print(target, currentElementTape1);
+//			for(int i = 0; i < (runlength - 1); i++){	//(runlength - 1) because first element is already printed to the target	
+//				currentElementTape1 = readInt(tape1);
+//				print(target, " " + currentElementTape1);
+//			}
+//		}else{
+//			//add run from tape1 to traget tape
+//			print(target, currentElementTape2);
+//			for(int i = 0; i < (runlength - 1); i++){
+//				currentElementTape2 = readInt(tape2);
+//				print(target, " " + currentElementTape2);
+//			}
+//			
+//		}
+//		
+//		//solange wiederholen bis beide Tapes keine Elemente mehr beeinhalten.
+//		
+//	}
 }
