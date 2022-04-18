@@ -1,6 +1,7 @@
 package uebung01;
 
 import AB1.NatuerlicherMergeSort;
+import AB1.StraightMergeSort;
 import AB1.direkterMergesort;
 
 public class MergeSort {
@@ -10,7 +11,8 @@ public class MergeSort {
 	}
 	
 	public void straightMergeSort(String inputfile, String outputfile) {
-		direkterMergesort.direktMerge(inputfile, outputfile);
+		//direkterMergesort.direktMerge(inputfile, outputfile);
+		new StraightMergeSort().sort(inputfile, outputfile);
 	}
 
 }

@@ -55,7 +55,7 @@ public class MergeSort1stTests {
 	}
 	
 	@Test
-	public void straighMergeSortTest() {
+	public void straightMergeSortTest() {
 		//Testfaelle für die inputFiles
 		MergeSort m = new MergeSort();
 		String path1 = "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt";

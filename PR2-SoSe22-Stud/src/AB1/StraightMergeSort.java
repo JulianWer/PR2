@@ -17,18 +17,25 @@ public class StraightMergeSort {
 		StraightMergeSort m = new StraightMergeSort();
 		//m.split("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt", 2);
 		//m.merge(2, "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
-		m.sort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers01.txt", "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+		m.sort("C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers02.txt", "C:\\Users\\Johannes\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
 	}
 	
 	public void sort(String srcFile, String newFile) {
 		int runlength = 1;
-		int numbers = split(srcFile, runlength);
-		
-		while(runlength < numbers) {
-			merge(runlength, newFile);
+		int numbers = 0;
+		boolean firstRun = true;
+		do {
+			if(firstRun) {
+				numbers = split(srcFile, runlength);
+				merge(runlength, newFile);
+				firstRun = false;
+			}else {
+				split(newFile, runlength);
+				merge(runlength, newFile);
+			}
 			runlength = runlength * 2;
-			split(newFile, runlength);
-		}
+			
+		}while(runlength < numbers);
 		
 	}
 	
@@ -133,7 +140,8 @@ public class StraightMergeSort {
 			}
 			
 			
-			if((currentElementTape1 <= currentElementTape2 && tape1HasElements && cntElementsTape1 < runlength) || cntElementsTape2 == runlength) {
+			
+			if((currentElementTape1 <= currentElementTape2 && tape1HasElements && cntElementsTape1 < runlength) || ((cntElementsTape2 == runlength || !tape2HasElements) && tape1HasElements)) {
 				if(firstRun) {
 					print(target, currentElementTape1);
 					firstRun = false;
@@ -151,7 +159,7 @@ public class StraightMergeSort {
 		
 			
 			
-			if((currentElementTape2 < currentElementTape1 && tape2HasElements && cntElementsTape2 < runlength) || cntElementsTape1 == runlength) {
+			if((currentElementTape2 < currentElementTape1 && tape2HasElements && cntElementsTape2 < runlength) || ((cntElementsTape1 == runlength || !tape1HasElements) && tape2HasElements)) {
 				if(firstRun) {
 					print(target, currentElementTape2);
 					firstRun = false;
