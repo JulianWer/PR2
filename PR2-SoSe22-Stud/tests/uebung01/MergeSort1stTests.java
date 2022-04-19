@@ -49,7 +49,7 @@ public class MergeSort1stTests {
 			}catch (Exception e) {
 				assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);
 			}
-			assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);	//wird erst ausgeführt, wenn alle Element an der korrekten Position stehen
+			assumeTrue("Algorithmus korrekt, alle Elemente in der richtigen Reihenfolge", true);	//will be executed if all elements are in the correct order
 			//checkIfCorrectSorted
 		}	
 	}
