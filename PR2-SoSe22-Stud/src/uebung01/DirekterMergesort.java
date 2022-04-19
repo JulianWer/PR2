@@ -27,9 +27,10 @@ public class DirekterMergesort {
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
 		boolean check  = checkIfPresent(source,tape_1 , tape_2, tape0change); // check if the files are present
-		for (int runlength = 1; cntElements >= runlength && check; runlength *= 2) {
-			cntElements = split(tape_0,tape_1,tape_2, runlength);
-			tape_0 = tape0change;
+		for (int runlength = 1; cntElements >= runlength && check; runlength *= 2) { // loops as long as the run length is smaller/ equal than cntElements and check is true;
+			// the run length goes up by the power of two
+			cntElements = split(tape_0,tape_1,tape_2, runlength); // cntElements gets the value of the Element from split(...) 
+			tape_0 = tape0change; // changes the tape0 to the target file
 			merge(runlength,tape_0 );
 			
 		}
@@ -84,7 +85,10 @@ public class DirekterMergesort {
 		int currentElementTape2 = 0;
 		boolean write1 = true; // boolean to check if written
 		boolean write2 = true;
-
+		/*print as long as both files are not done
+		 * it checks the boolean write1 and wirte2 if the read Element of the tape is already printed.
+		 * If one file is done and the other not, it prints as long as the other one is done too
+		 * */
 		while (!isEndOfInputFile(tape1) || !isEndOfInputFile(tape2) || !write1 || !write2) {
 
 			if (!isEndOfInputFile(tape1) && cntElementsWroteTape1 < runlength && write1) {
@@ -100,13 +104,15 @@ public class DirekterMergesort {
 
 				write2 = false;
 			}
+			
 			// check if element 1 is smaller than element 2
 			if (!write1 && (currentElementTape1 <= currentElementTape2 || write2)) {
 				print(target, " " + currentElementTape1); //write element 1
-				write1 = true;// set true to activate the if block to read a new Int 
+				write1 = true;// set true to activate the if block to read a new Integer 
 				cntElementsWroteTape1++; // add one to counter 
 			// check if element 2 is smaller than element 1
-			} else if (!write2 && (currentElementTape2 <= currentElementTape1 || write1)) {
+			} else if (!write2 && (currentElementTape2 <= currentElementTape1 || write1)) { 
+				
 				print(target, " " + currentElementTape2); // write element 2
 				write2 = true;
 				cntElementsWroteTape2++;
@@ -130,6 +136,8 @@ public class DirekterMergesort {
 		String tape_1 = tape1;
 		String tape_2 = tape2;
 		String tape_0 = tape0;
+		
+		/*checks whether all files are present, if one does not exist , the method returns false. Else true*/
 		if (!isFilePresent(path)) {
 			println(path + " existiert nicht ");
 			return false;
