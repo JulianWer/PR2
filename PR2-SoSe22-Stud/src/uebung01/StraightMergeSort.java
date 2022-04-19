@@ -1,4 +1,4 @@
-package AB1;
+package uebung01;
 
 import static gdi.MakeItSimple.closeInputFile;
 import static gdi.MakeItSimple.closeOutputFile;

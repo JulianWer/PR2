@@ -8,7 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="vorlesungsbeispiele"/>
 	<classpathentry excluding="solutions/" kind="src" path="lib"/>
-	<classpathentry kind="src" path="specification"/>
 	<classpathentry kind="src" path="tests"/>
 	<classpathentry exported="true" kind="lib" path="lib/gdi16.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/junit.jar"/>

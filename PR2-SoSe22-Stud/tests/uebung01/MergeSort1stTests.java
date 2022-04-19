@@ -15,8 +15,9 @@ import static pr.MakeItSimple.*;
 
 import org.junit.Test;
 
-import AB1.NatuerlicherMergeSort;
-import AB1.direkterMergesort;
+import uebung01.MergeSort;
+import uebung01.NatuerlicherMergeSort;
+import uebung01.direkterMergesort;
 
 public class MergeSort1stTests {
 

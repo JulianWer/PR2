@@ -1,9 +1,5 @@
 package uebung01;
 
-import AB1.NatuerlicherMergeSort;
-import AB1.StraightMergeSort;
-import AB1.direkterMergesort;
-
 public class MergeSort {
 	
 	public void naturalMergeSort(String inputfile, String outputfile) {
