@@ -6,10 +6,10 @@ public class MergeSort {
 		NatuerlicherMergeSort.natuerlicherMergeSort(inputfile, outputfile);
 	}
 	
-	public void straightMergeSort(String inputfile, String outputfile) {
+	public void straightMergeSort(String inputFile, String outputFile) {
 		//direkterMergesort.direktMerge(inputfile, outputfile);
 		DirekterMergesort dm = new DirekterMergesort();
-		dm.runMergeSort("C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt","C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
+		dm.runMergeSort(inputFile,outputFile);
 	}
 
 }

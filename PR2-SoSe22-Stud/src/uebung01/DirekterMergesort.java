@@ -15,7 +15,7 @@ import static gdi.MakeItSimple.readInt;
 public class DirekterMergesort {
 
 //	public static void main(String[] args) {
-//		runMergeSort("C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt");
+//		runMergeSort("C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt","C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest");
 //	}
 
 	public  void runMergeSort(String source ,String targetFile) {
