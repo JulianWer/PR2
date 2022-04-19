@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import uebung01.MergeSort;
 import uebung01.NatuerlicherMergeSort;
-import uebung01.direkterMergesort;
+import uebung01.DirekterMergesort;
 
 public class MergeSort1stTests {
 

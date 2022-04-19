@@ -12,18 +12,18 @@ import static gdi.MakeItSimple.readInt;
 
 
 
-public class direkterMergesort {
+public class DirekterMergesort {
 
-	public static void main(String[] args) {
-		runMergeSort("C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt");
-	}
+//	public static void main(String[] args) {
+//		runMergeSort("C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\inputFiles\\numbers03.txt");
+//	}
 
-	public static void runMergeSort(String source) {
+	public  void runMergeSort(String source ,String targetFile) {
 
 		int cntElements = 1; //how much Elements are in the file (1 to activate the for loop)
 		// Files 
 		String tape_0 = source;
-		String tape0change = "C:\\Users\\julia\\git\\Team-03\\PR2-SoSe22-Stud\\mergeMethodTest";
+		String tape0change = targetFile;
 		String tape_1 = "tape_1";
 		String tape_2 = "tape_2";
 		boolean check  = checkIfPresent(source,tape_1 , tape_2, tape0change); // check if the files are present
@@ -35,7 +35,7 @@ public class direkterMergesort {
 		}
 	}
 
-	public static int split(String tape_0,String tape_1,String tape_2, int length) {
+	public  int split(String tape_0,String tape_1,String tape_2, int length) {
 
 		// initialize Object streams
 		Object tape0 = openInputFile(tape_0);
@@ -68,7 +68,7 @@ public class direkterMergesort {
 		return cnt; //return number of Elements
 	}
 
-	public static void merge(int runlength, String path) {
+	public  void merge(int runlength, String path) {
 
 		String tape_0 = path;
 		String tape_1 = "tape_1";
@@ -126,7 +126,7 @@ public class direkterMergesort {
 
 	}
 	
-	public static boolean checkIfPresent(String path, String tape1, String tape2, String tape0) {
+	public  boolean checkIfPresent(String path, String tape1, String tape2, String tape0) {
 		String tape_1 = tape1;
 		String tape_2 = tape2;
 		String tape_0 = tape0;
