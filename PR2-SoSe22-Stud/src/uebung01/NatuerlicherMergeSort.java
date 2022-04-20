@@ -131,7 +131,6 @@ public class NatuerlicherMergeSort {
 				}
 				if (!isEndOfInputFile(tape1)) {
 					numberTape1 = readInt(tape1);
-					System.out.println(numberTape1);
 				} else {
 					tape1ContainsNumbers = false;
 				}
@@ -148,7 +147,6 @@ public class NatuerlicherMergeSort {
 				}
 				if (!isEndOfInputFile(tape2)) {
 					numberTape2 = readInt(tape2);
-					System.out.println(numberTape2);
 				} else {
 					tape2ContainsNumbers = false;
 				}
