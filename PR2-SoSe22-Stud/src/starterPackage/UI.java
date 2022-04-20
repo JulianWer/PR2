@@ -1,3 +1,9 @@
+package starterPackage;
+import java.util.Scanner;
+
+import uebung01.NatuerlicherMergeSort;
+import uebung01.StraightMergeSort;
+
 public class UI {
 	
 	
@@ -13,7 +19,7 @@ public class UI {
 		char mode = sc.next().charAt(0);
 		switch(mode) {
 		case('s'):
-			//direkter
+			new StraightMergeSort().sort(inputpath, outputpath);
 			break;
 		case('n'):
 			NatuerlicherMergeSort.natuerlicherMergeSort(inputpath, outputpath);
