@@ -19,7 +19,7 @@ public class UI {
 		char mode = sc.next().charAt(0);
 		switch(mode) {
 		case('s'):
-			new StraightMergeSort().sort(inputpath, outputpath);
+			new DirekterMergesort().runMergeSort(inputpath, outputpath);
 			break;
 		case('n'):
 			NatuerlicherMergeSort.natuerlicherMergeSort(inputpath, outputpath);
