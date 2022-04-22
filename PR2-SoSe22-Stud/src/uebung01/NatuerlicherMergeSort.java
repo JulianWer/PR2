@@ -16,8 +16,9 @@ public class NatuerlicherMergeSort {
 	public static void natuerlicherMergeSort(String srcFile, String newFile) {
 		// start sorting
 		int runs = split(srcFile);
-		merge(newFile);
-		while (runs != 1) {
+		if(runs > 1)
+			merge(newFile);
+		while (runs > 1) {
 			runs = split(newFile);
 			merge(newFile);
 		}
