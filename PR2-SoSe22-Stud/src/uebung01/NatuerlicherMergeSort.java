@@ -94,7 +94,7 @@ public class NatuerlicherMergeSort {
 		String tape_2 = "tape_2";
 
 		if (!isFilePresent(targetpath)) {
-			println(targetpath + " existiert nicht ");
+			println(targetpath + " wird erstellt");
 		}
 
 		Object target = openOutputFile(targetpath);
