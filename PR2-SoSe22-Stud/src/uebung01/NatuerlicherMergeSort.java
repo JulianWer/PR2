@@ -121,7 +121,7 @@ public class NatuerlicherMergeSort {
 			}
 		}
 
-		while (tape1ContainsNumbers || tape2ContainsNumbers) {
+		/*while (tape1ContainsNumbers || tape2ContainsNumbers) {
 			if ((numberTape1 <= numberTape2 && tape1ContainsNumbers) || !tape2ContainsNumbers) {
 				// add number from tape1 to target tape
 				if (firstRun) {
@@ -154,6 +154,59 @@ public class NatuerlicherMergeSort {
 				continue;
 			}
 
+		}*/
+		
+		boolean tape1RunNotEmpty = true;
+		boolean tape2RunNotEmpty = true;
+		
+		while (tape1ContainsNumbers || tape2ContainsNumbers) {
+		if(!tape1RunNotEmpty && !tape2RunNotEmpty) {
+			tape1RunNotEmpty = true;
+			tape2RunNotEmpty = true;
+		}
+			
+			
+		if ((numberTape1 <= numberTape2 && tape1ContainsNumbers && tape1RunNotEmpty) || !tape2ContainsNumbers || (tape1RunNotEmpty && !tape2RunNotEmpty)) {
+			// add number from tape1 to target tape
+			if (firstRun) {
+				print(target, numberTape1);
+				firstRun = false;
+			} else {
+				print(target, " " + numberTape1);
+			}
+			if (!isEndOfInputFile(tape1)) {
+				//numberTape1 = readInt(tape1);
+				int buffer = readInt(tape1);
+				if(buffer < numberTape1)
+					tape1RunNotEmpty = false;
+				numberTape1 = buffer;
+				
+			} else {
+				tape1ContainsNumbers = false;
+				tape1RunNotEmpty = false;
+			}
+			continue;
+		}
+
+		if ((numberTape2 < numberTape1 && tape2ContainsNumbers && tape2RunNotEmpty) || !tape1ContainsNumbers || (!tape1RunNotEmpty && tape2RunNotEmpty)) {
+			// add number from tape 2 to the target tape
+			if (firstRun) {
+				print(target, numberTape2);
+				firstRun = false;
+			} else {
+				print(target, " " + numberTape2);
+			}
+			if (!isEndOfInputFile(tape2)) {
+				int buffer = readInt(tape2);
+				if(buffer < numberTape2)
+					tape2RunNotEmpty = false;
+				numberTape2 = buffer;
+			} else {
+				tape2ContainsNumbers = false;
+				tape2RunNotEmpty = false;
+			}
+			continue;
+		}
 		}
 
 		closeInputFile(tape1);
