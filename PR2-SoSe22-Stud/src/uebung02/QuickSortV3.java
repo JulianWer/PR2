@@ -1,5 +1,5 @@
 package uebung02;
-
+import static gdi.MakeItSimple.*;
 /**
  * @author Johannes
  * @author Julian
@@ -10,9 +10,9 @@ public class QuickSortV3 implements SortInterface{
 	@Override
 	public void sort(int[] F , int u, int o) {
 		// TODO Auto-generated method stub
-		if(o> u) {
+		if(o > u) {
 			int i = split(F,u,o);
-			sort(F,u,i);
+			sort(F,u,i-1);
 			sort(F,i+1,o);
 		}
 		
@@ -26,9 +26,11 @@ public class QuickSortV3 implements SortInterface{
 		int index = u;
 		for (int zeiger = u; zeiger < o-1; zeiger++) {
 			if(F[zeiger] <= F[p]) {
+				println(F[index] +" "+ F[zeiger]);
 				array = swap(F[index],F[zeiger]);
 				F[index] = array[0];	
 				index ++;
+				println(F[index] +" "+ F[zeiger]);
 			}
 		}
 		array = swap(F[index],F[p]);
