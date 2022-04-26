@@ -8,15 +8,34 @@ package uebung02;
 public class QuickSortV3 implements SortInterface{
 
 	@Override
-	public int[] sort() {
+	public void sort(int[] F , int u, int o) {
 		// TODO Auto-generated method stub
-		return null;
+		if(o> u) {
+			int i = split(F,u,o);
+			sort(F,u,i);
+			sort(F,i+1,o);
+		}
+		
 	}
 
 	@Override
 	public int split(int[] F, int u, int o) {
 		// TODO Auto-generated method stub
-		return 0;
+		int[] array;
+		int p = o;
+		int index = u;
+		for (int zeiger = u; zeiger < o-1; zeiger++) {
+			if(F[zeiger] <= F[p]) {
+				array = swap(F[index],F[zeiger]);
+				F[index] = array[0];	
+				index ++;
+			}
+		}
+		array = swap(F[index],F[p]);
+		F[index] = array[0];
+		F[p] = array[1];
+		
+		return index;
 	}
 
 	@Override
