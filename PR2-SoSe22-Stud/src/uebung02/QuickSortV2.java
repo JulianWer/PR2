@@ -1,62 +1,80 @@
 package uebung02;
 
-public class QuickSortV2 {
-	public void quicksort(int[] array, int lowerLimit, int upperLimit) {
-		System.out.println(upperLimit);
-		System.out.println(lowerLimit);
+public class QuickSortV2 implements SortInterface {
+
+	public static void main(String[] args) {
+		int array[] = new int[] {44,6,55,30,94,18};
+		new QuickSortV2New().sort(array, 0,(array.length-1));
 		
-		if(upperLimit > lowerLimit) {
-			System.out.println("upperlimit is higher than lowerlimit");
-			int splitIndex = split(array, lowerLimit, upperLimit);
-			quicksort(array, lowerLimit, splitIndex - 1);
-			quicksort(array, (splitIndex+1), upperLimit);
-		}
+		
+		for(int i = 0; i < array.length; i++)
+			System.out.print(array[i] + " ");
+
 	}
 
-	private int split(int[] array, int lowerLimit, int upperLimit) {
+	@Override
+	public void sort(int[] F, int u, int o) {
+		// TODO Auto-generated method stub
+		if(o > u) {
+			int i = split(F, u, o);
+			sort (F, u, i-1);
+			sort (F, i+1, o);
+		}
+		
+	}
+
+	@Override
+	public void sort(int[] F, StatObject so) {
 		// TODO Auto-generated method stub
 		
-		int l = upperLimit, r = lowerLimit;
-		int pivot = array[upperLimit];
-		while(lowerLimit <= upperLimit) {
-			
-			boolean found = false;
-			for(int i = lowerLimit; (i < (upperLimit + 1) && !found); i++) {
-				if(array[i] > pivot) {
-					found = true;
+	}
+
+	@Override
+	public int split(int[] F, int u, int o) {
+		// TODO Auto-generated method stub
+		int p = o;
+		int piv = F[p];
+		int l = 0, r = 0;
+		while(u <= o) {
+			boolean finish = false;
+			for(int i = u; (i < o && !finish); i++) {
+				if(F[i] > piv) {
 					l = i;
+					finish = true;
 				}
 			}
-			if(!found)
-				l = upperLimit;
-			found = false;
-			for(int i = upperLimit - 1; (i > (lowerLimit - 1) && !found); i--) {
-				if(array[i] <= pivot) {
-					found = true;
+				finish = false;
+			for(int i = (o - 1); (i > u && !finish); i--){
+				if(F[i] <= piv) {
 					r = i;
-				}
+					finish = true;
+				}	
 			}
-			if(!found)
-				r = lowerLimit - 1;
-				
-			if(l < r) {
-				//swap
-				int help = array[r];
-				array[r] = array[l];
-				array[l] = help;
-				lowerLimit = l + 1;
-				upperLimit = r;
-			}else {
-				int help = array[upperLimit];
-				array[upperLimit] = array[l];
-				array[l] = help;
-				return l;
-			}
+		if(l < r) {
+			int i = F[r];
+			F[r] = F[l];
+			F[l] = i;
+			u = l + 1;
+			o = r - 1;
+		}else {
+			int i = F[p];
+			F[p] = F[l];
+			F[l] = i;
+			return l;
 		}
-		int help = array[lowerLimit];
-		array[lowerLimit] = array[upperLimit];
-		array[upperLimit] = help;
-		return lowerLimit;
+			
+		}
+		int i = F[p];
+		F[p] = F[u];
+		F[u] = i;
+		
+		return o;
+	}
+
+	@Override
+	public void swap(int[] F, int i1, int i2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
