@@ -21,33 +21,31 @@ public class QuickSortV3 implements SortInterface{
 	@Override
 	public int split(int[] F, int u, int o) {
 		// TODO Auto-generated method stub
-		int[] array;
+		
 		int p = o;
 		int index = u;
-		for (int zeiger = u; zeiger < o-1; zeiger++) {
+		for (int zeiger = u; zeiger <= o-1; zeiger++) {
 			if(F[zeiger] <= F[p]) {
 				println(F[index] +" "+ F[zeiger]);
-				array = swap(F[index],F[zeiger]);
-				F[index] = array[0];	
+				swap(F, index,zeiger);
 				index ++;
 				println(F[index] +" "+ F[zeiger]);
 			}
 		}
-		array = swap(F[index],F[p]);
-		F[index] = array[0];
-		F[p] = array[1];
+		swap(F,index ,p);
+		
 		
 		return index;
 	}
 
 	@Override
-	public int[] swap(int i1, int i2) {
+	public void swap(int[] F,int i1, int i2) {
 		// TODO Auto-generated method stub
-		int remember =  i1;
-		i1 = i2;
-		i2 = remember;
-		int[] array = {i1,i2};
-		return array;
+		int remember =  F[i1];
+		F[i1] = F[i2];
+		F[i2] = remember;
+		
+		
 	}
 
 }

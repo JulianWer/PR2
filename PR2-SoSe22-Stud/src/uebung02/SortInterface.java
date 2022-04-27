@@ -11,6 +11,6 @@ public interface SortInterface {
 	
 	public void sort(int[] F , int u, int o); 
 	public int split(int[] F , int u, int o); 
-	public int[] swap(int i1 , int i2);
+	public void swap(int[] F ,int i1 , int i2);
 	
 }
