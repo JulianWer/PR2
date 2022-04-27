@@ -15,12 +15,19 @@ import uebung01.UI;
 public class BinaryTree {
 	
 	private TreeNode root;
+	private int size = 0;
 	
 	//for testing
 		public static void main(String[] args) {
 			BinaryTree b = new BinaryTree();
 			boolean a = b.insert(1);
-			System.out.println(a);
+			b.insert(20);
+			b.insert(4);
+			b.insert(7);
+			b.insert(11);
+			System.out.println(b.getMax());
+			System.out.println(b.getMin());
+			System.out.println("Preorder: ");
 			b.printPreorder();
 		}
 	
@@ -76,6 +83,7 @@ public class BinaryTree {
 				parent.setLeft(new TreeNode(i)); // insert left from parent
 			else
 				parent.setRight(new TreeNode(i)); // insert right from parent
+		this.size++;
 		return true; // i successfully inserted
 	}
 	
@@ -112,7 +120,7 @@ public class BinaryTree {
 	
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}
 
 	
