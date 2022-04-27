@@ -1,5 +1,11 @@
 package uebung02;
 
+import static gdi.MakeItSimple.isEndOfInputFile;
+import static gdi.MakeItSimple.isFilePresent;
+import static gdi.MakeItSimple.openInputFile;
+import static gdi.MakeItSimple.println;
+import static gdi.MakeItSimple.*;
+
 import java.util.ArrayList;
 
 import javax.lang.model.element.Element;
@@ -8,11 +14,13 @@ import uebung01.UI;
 
 public class BinaryTree implements Tree {
 	
-
+	//for testing
 	public static void main(String[] args) {
 		BinaryTree b = new BinaryTree();
 		boolean a = b.insert(1);
 		System.out.println(a);
+		
+		b.printPreorder();
 		
 
 	}
@@ -79,6 +87,15 @@ public class BinaryTree implements Tree {
 	@Override
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
+		if (!isFilePresent(filename)) {
+			println("File not found");
+			return false;
+		}
+
+		Object file = openInputFile(filename);
+		while(!isEndOfInputFile(file)){
+			this.insert(readInt(file));
+		}
 		return false;
 	}
 
@@ -127,6 +144,8 @@ public class BinaryTree implements Tree {
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
+		if(this.root == null)
+			return true;
 		return false;
 	}
 
@@ -150,22 +169,37 @@ public class BinaryTree implements Tree {
 
 	@Override
 	public void printPostorder() {
-		// TODO Auto-generated method stub
+		printPostorder(this.root);
+		
+	}
+	private void printPostorder(TreeNode n) {
 		
 	}
 
 	@Override
 	public void printPreorder() {
-		// TODO Auto-generated method stub
-		
+		this.printPreorder(this.root);
+	}
+	
+	private void printPreorder(TreeNode n) {	//recursive
+		if (n != null) {// tree not empty
+			System.out.println(n.getElement());
+			printPreorder (n.getLeft());
+			printPreorder (n.getRight());
+			}
 	}
 
 	@Override
 	public void printLevelorder() {
-		// TODO Auto-generated method stub
+		printLevelorder(this.root.getLeft(), this.root.getRight());
 		
 	}
 
+	private void printLevelorder(TreeNode left, TreeNode right) {
+		System.out.println(left.getElement());
+		System.out.println(right.getElement());
+		
+	}
 	@Override
 	public Tree clone() {
 		// TODO Auto-generated method stub
