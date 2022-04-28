@@ -1,6 +1,6 @@
 package uebung02.BinaryTree;
 
-public class TreeNode {
+public class TreeNode extends IntElement{
 
 	private int elem;
 	private TreeNode left;
