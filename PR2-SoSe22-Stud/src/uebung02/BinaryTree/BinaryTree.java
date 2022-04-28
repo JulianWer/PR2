@@ -96,7 +96,7 @@ public class BinaryTree implements Tree {
 
 		Object file = openInputFile(filename); // opens file for the input
 		while (!isEndOfInputFile(file)) {
-			this.insert(readInt(file)); //read in elements
+			this.insert(readInt(file)); // read in elements
 		}
 		return false;
 	}
@@ -127,7 +127,7 @@ public class BinaryTree implements Tree {
 		while (n.getRight() != null) {
 			n = n.getRight();
 		}
-		return (Element)n;
+		return (Element) n;
 
 	}
 
@@ -137,7 +137,7 @@ public class BinaryTree implements Tree {
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-		return (Element)n;
+		return (Element) n;
 	}
 
 	public boolean remove(Element val) {
@@ -181,6 +181,12 @@ public class BinaryTree implements Tree {
 	}
 
 	private void printPostorder(TreeNode n) {
+		if (n != null) {
+
+			printPostorder(n.getLeft()); // go left
+			printPostorder(n.getRight());
+			println(n.getElement());
+		}
 
 	}
 
