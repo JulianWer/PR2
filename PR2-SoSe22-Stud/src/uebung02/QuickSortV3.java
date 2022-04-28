@@ -7,14 +7,14 @@ import static gdi.MakeItSimple.*;
 
 public class QuickSortV3 implements SortInterface{
 	StatObject so;
-	
+	@Override
 	public void sort(int[] F , StatObject so) {
 		// TODO Auto-generated method stub
 		this.so = so;
 		sort(F,0, F.length-1);
 		
 	}
-
+	@Override
 	public void sort(int[] F , int u, int o) {
 		// TODO Auto-generated method stub
 		if(o > u) {
