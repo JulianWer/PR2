@@ -1,4 +1,4 @@
-package uebung02;
+package uebung02.BinaryTree;
 
 import javax.lang.model.element.Element;
 

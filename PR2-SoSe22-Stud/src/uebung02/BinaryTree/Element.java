@@ -1,4 +1,4 @@
-package uebung02;
+package uebung02.BinaryTree;
 
 public interface Element extends Comparable{
 	
