@@ -1,4 +1,4 @@
-package uebung02;
+package uebung02.BinaryTree;
 
 import static gdi.MakeItSimple.isEndOfInputFile;
 import static gdi.MakeItSimple.isFilePresent;
