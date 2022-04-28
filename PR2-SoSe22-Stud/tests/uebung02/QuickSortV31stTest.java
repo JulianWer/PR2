@@ -4,6 +4,11 @@ package uebung02;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import uebung02.QickSort.QuickSortV3;
+import uebung02.QickSort.SortInterface;
+import uebung02.QickSort.StatObject;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import java.lang.invoke.MethodHandles;

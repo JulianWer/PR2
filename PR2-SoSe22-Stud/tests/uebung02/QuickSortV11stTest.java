@@ -1,6 +1,7 @@
 package uebung02;
 
 import pr2.uebung01.StatObjectSort;
+import uebung02.QickSort.StatObject;
 import pr2.uebung01.SortInterface;
 import org.junit.Before;
 import org.junit.Test;

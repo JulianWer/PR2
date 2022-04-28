@@ -1,4 +1,4 @@
-package uebung02;
+package uebung02.QickSort;
 import static gdi.MakeItSimple.*;
 
 import java.lang.reflect.Array;

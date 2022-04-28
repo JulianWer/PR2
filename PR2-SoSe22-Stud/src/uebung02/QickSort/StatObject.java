@@ -1,4 +1,4 @@
-package uebung02;
+package uebung02.QickSort;
 
 public class StatObject {
 	

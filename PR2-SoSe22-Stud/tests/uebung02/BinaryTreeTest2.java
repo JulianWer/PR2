@@ -2,6 +2,10 @@ package uebung02;
 
 import org.junit.Test;
 
+import uebung02.BinaryTree.BinaryTree;
+import uebung02.BinaryTree.IntElement;
+import uebung02.BinaryTree.Tree;
+
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;

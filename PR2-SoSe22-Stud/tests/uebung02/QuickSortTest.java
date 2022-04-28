@@ -3,6 +3,9 @@ package uebung02;
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
+import uebung02.QickSort.QuickSort;
+import uebung02.QickSort.QuickSortV2;
+
 class QuickSortTest {
 
 	@Test
