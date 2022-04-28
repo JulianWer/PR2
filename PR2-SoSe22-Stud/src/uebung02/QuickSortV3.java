@@ -18,7 +18,7 @@ public class QuickSortV3 implements SortInterface{
 	public void sort(int[] F , int u, int o) {
 		// TODO Auto-generated method stub
 		if(o > u) {
-			so.setCnt();
+			so.incrunCounter();
 			int i = split(F,u,o);
 			sort(F,u,i-1);
 			sort(F,i+1,o);
@@ -33,7 +33,7 @@ public class QuickSortV3 implements SortInterface{
 		int p = o;
 		int index = u;
 		for (int zeiger = u; zeiger <= o-1; zeiger++) {
-			so.setCompcnt();
+			so.inccomparisonCounter();
 			if(F[zeiger] <= F[p]) {
 				
 				println(F[index] +" "+ F[zeiger]);
@@ -53,7 +53,7 @@ public class QuickSortV3 implements SortInterface{
 	@Override
 	public void swap(int[] F,int i1, int i2) {
 		// TODO Auto-generated method stub
-		so.setSwpcnt();
+		so.incswapCounter();
 		int remember =  F[i1];
 		F[i1] = F[i2];
 		F[i2] = remember;
