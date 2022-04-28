@@ -38,7 +38,7 @@ public class QickSortMain {
 		Object in = openInputFile(ipath);
 		int[] array = new int[readLine(in).length()];
 		Object file = openInputFile(ipath);
-		for (int i = 0; !isEndOfInputFile(ipath); i++) {
+		for (int i = 0; i<array.length && !isEndOfInputFile(file); i++) {
 			array[i] = readInt(file);
 		}
 		closeInputFile(file);

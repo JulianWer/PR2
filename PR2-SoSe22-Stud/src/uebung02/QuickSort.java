@@ -1,22 +1,29 @@
 package uebung02;
 
-public class QuickSort {
-	
-	
-	
-	public void quicksort(int[] array, int lowerLimit, int upperLimit) {
+public class QuickSort implements SortInterface{
+	StatObject so;
+	@Override
+	public void sort(int[] F, StatObject so) {
+		// TODO Auto-generated method stub
+		this.so = so;
+		sort(F,0, F.length-1);
+		
+	}
+	@Override
+	public void sort(int[] array, int lowerLimit, int upperLimit) {
 		System.out.println(upperLimit);
 		System.out.println(lowerLimit);
 		
 		if(upperLimit > lowerLimit) {
+			so.incrunCounter();
 			System.out.println("upperlimit is higher than lowerlimit");
 			int splitIndex = split(array, lowerLimit, upperLimit);
-			quicksort(array, lowerLimit, splitIndex);
-			quicksort(array, (splitIndex+1), upperLimit);
+			sort(array, lowerLimit, splitIndex);
+			sort(array, (splitIndex+1), upperLimit);
 		}
 	}
-
-	private int split(int[] array, int lowerLimit, int upperLimit) {	// Ordnet F bzgl. des mittleren Elements
+	@Override
+	public int split(int[] array, int lowerLimit, int upperLimit) {	// Ordnet F bzgl. des mittleren Elements
 		// TODO Auto-generated method stub
 		int pivotIndex = (lowerLimit + upperLimit) / 2;
 		int pivot = array[pivotIndex];
@@ -27,6 +34,7 @@ public class QuickSort {
 			
 			boolean found = false;
 			for(int i = lowerLimit; (i < (upperLimit + 1) && !found); i++) {
+				so.inccomparisonCounter();
 				if(array[i] >= pivot) {
 					found = true;
 					l = i;
@@ -34,6 +42,7 @@ public class QuickSort {
 			}
 			found = false;
 			for(int i = upperLimit; (i > (lowerLimit - 1) && !found); i--) {
+				so.inccomparisonCounter();
 				if(array[i] <= pivot) {
 					found = true;
 					r = i;
@@ -44,6 +53,7 @@ public class QuickSort {
 				int help = array[r];
 				array[r] = array[l];
 				array[l] = help;
+				so.incswapCounter();
 				lowerLimit = l + 1;
 				upperLimit = r - 1;
 			}else {
@@ -53,6 +63,16 @@ public class QuickSort {
 		
 		
 		return upperLimit;
+	}
+
+	
+
+	
+
+	@Override
+	public void swap(int[] F, int i1, int i2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
