@@ -23,13 +23,18 @@ public class BinaryTree implements Tree {
 	// for testing
 	public static void main(String[] args) {
 		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(1);
-		b.insert(20);
-		b.insert(4);
-		b.insert(7);
-		b.insert();
-		System.out.println(b.getMax());
-		System.out.println(b.getMin());
+		boolean a = b.insert(new IntElement(10));
+		boolean a2 = b.insert(new IntElement(8));
+		a2 = b.insert(new IntElement(12));
+		b.insert(new IntElement(4));
+		b.insert(new IntElement(9));
+		b.insert(new IntElement(11));
+		b.insert(new IntElement(15));
+		System.out.println(a);
+		System.out.println(a2);
+		System.out.println(((IntElement) b.getMax()).getKey());
+		System.out.println(((IntElement) b.getMin()).getKey());
+		
 		System.out.println("Preorder: ");
 		b.printPreorder();
 	}
@@ -49,16 +54,19 @@ public class BinaryTree implements Tree {
 		TreeNode child = root;
 		while (child != null) { // at least 1 node in tree
 			parent = child;
-			if (val.compareTo(child.getElement()) == 0)
+			//if (val.compareTo(child.getElement()) == 0) causes problems 
+			if(((Integer)((IntElement)val).getKey()) == ((Integer)((IntElement)child.getElement()).getKey()))
 				return false; // element already in tree, i is not inserted
-			else if ( val.compareTo(child.getElement()) < 0)
+			//else if ( val.compareTo(child.getElement()) < 0)
+			else if (((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)child.getElement()).getKey()))
 				child = child.getLeft(); // insert in left tree
 			else
 				child = child.getRight(); // insert in right tree
 		}
 		if (parent == null) // empty tree -> insert first node
 			root = new TreeNode(val);
-		else if (val.compareTo(parent.getElement()) < 0)
+		//else if (val.compareTo(parent.getElement()) < 0)
+		else if(((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)parent.getElement()).getKey()))
 			parent.setLeft(new TreeNode(val)); // insert left from parent
 		else
 			parent.setRight(new TreeNode(val)); // insert right from parent
@@ -125,7 +133,19 @@ public class BinaryTree implements Tree {
 
 	public boolean remove(Element val) {
 		// TODO Auto-generated method stub
-		
+		//first to element has to be found, then all references have to be refreshed
+		TreeNode n = this.root;
+		boolean found = false;
+		while(!found) {
+			IntElement intElementVal = (IntElement) val;	//cast to IntElement
+			IntElement intElementNode = (IntElement) n.getElement();
+			if((Integer) intElementVal.getKey() < (Integer) intElementNode.getKey())
+				n = n.getLeft();
+			else
+				n = n.getRight();
+			
+			
+		}
 		
 		return false;
 	}

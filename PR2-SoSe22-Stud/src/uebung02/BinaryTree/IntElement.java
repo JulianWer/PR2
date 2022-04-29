@@ -1,8 +1,10 @@
 package uebung02.BinaryTree;
 
 public class IntElement implements Element, Cloneable {
+	private Integer key;
+	
 	public IntElement(int i) {
-		
+		this.key = new Integer(i);
 	}
 
 	@Override
@@ -14,7 +16,7 @@ public class IntElement implements Element, Cloneable {
 	@Override
 	public Object getKey() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.key;
 	}
 	
 	@Override
