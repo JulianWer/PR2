@@ -48,7 +48,7 @@ public class QuickSortV2 implements SortInterface {
 			l = p;
 			r = u - 1;
 
-			for(int i = u; (i < o && !finish); i++) {
+			for(int i = u ; (i <= o && !finish); i++) {
 				so.inccomparisonCounter();
 				if(F[i] > piv) {
 					l = i;
@@ -56,7 +56,7 @@ public class QuickSortV2 implements SortInterface {
 				}
 			}
 			finish = false;
-			for(int i = (o - 1); (i > u && !finish); i--){
+			for(int i = (o - 1) ; (i >= u && !finish); i--){
 				so.inccomparisonCounter();
 				if(F[i] <= piv) {
 					r = i;
