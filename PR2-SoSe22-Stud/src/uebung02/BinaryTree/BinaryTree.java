@@ -30,10 +30,12 @@ public class BinaryTree implements Tree {
 		b.insert(4);
 		b.insert(7);
 		b.insert(11);
-		System.out.println(b.getMax());
-		System.out.println(b.getMin());
+		
 		System.out.println("Preorder: ");
 		b.printPreorder();
+		
+		System.out.println();
+		b.printLevelorder();
 	}
 
 	public BinaryTree() {
@@ -214,11 +216,13 @@ public class BinaryTree implements Tree {
 	private void printLevelorder(TreeNode k) {
 		QueueImpl queue = new QueueImpl();
 		queue.enter(k);
-		while (queue != null ) {
+		while (!queue.isEmpty()) {
 				TreeNode n = (TreeNode) queue.leave();
-				println(n.getElement());
-				queue.enter(n.getLeft());
-				queue.enter(n.getRight());
+				if(n != null) {
+					println(n.getElement());
+					queue.enter(n.getLeft());
+					queue.enter(n.getRight());
+				}
 				
 		}
 	}
