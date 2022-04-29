@@ -47,11 +47,15 @@ public class QuickSort implements SortInterface {
 			so.inccomparisonCounter();
 			while(array[l] < pivot) {
 				l++;
+				if (array[l] <= pivot)
+					so.inccomparisonCounter();
 			}
 			int r = upperLimit;
 			so.inccomparisonCounter();
 			while(array[r] > pivot) {
 				r--;
+				if(array[r] >= pivot)
+					so.inccomparisonCounter(); // TODO abweichung um 1
 			}
 			
 
