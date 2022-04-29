@@ -4,7 +4,7 @@ public class QuickSortV2 implements SortInterface {
 
 	public static void main(String[] args) {
 		int array[] = new int[] {44,6,55,30,94,18};
-		new QuickSortV2New().sort(array, 0,(array.length-1));
+		new QuickSortV2().sort(array, 0,(array.length-1));
 		
 		
 		for(int i = 0; i < array.length; i++)
@@ -43,13 +43,17 @@ public class QuickSortV2 implements SortInterface {
 					finish = true;
 				}
 			}
-				finish = false;
+			if(!finish)
+				l = p;
+			finish = false;
 			for(int i = (o - 1); (i > u && !finish); i--){
 				if(F[i] <= piv) {
 					r = i;
 					finish = true;
 				}	
 			}
+			if(!finish)
+				r = u - 1;
 		if(l < r) {
 			int i = F[r];
 			F[r] = F[l];
