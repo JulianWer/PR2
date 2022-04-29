@@ -5,11 +5,13 @@ import static gdi.MakeItSimple.isFilePresent;
 import static gdi.MakeItSimple.openInputFile;
 import static gdi.MakeItSimple.println;
 import static gdi.MakeItSimple.*;
+import static pr2.util.Queue.*;
 
-import java.util.ArrayList;
+
 
 import javax.lang.model.element.Element;
 
+import pr2.util.Queue;
 import uebung01.UI;
 
 public class BinaryTree implements Tree {
@@ -185,7 +187,7 @@ public class BinaryTree implements Tree {
 
 			printPostorder(n.getLeft()); // go left
 			printPostorder(n.getRight());
-			println(n.getElement());
+			println(n.getElement()); // print when the recursion goes back
 		}
 
 	}
@@ -203,11 +205,18 @@ public class BinaryTree implements Tree {
 	}
 
 	public void printLevelorder() {
-
+		this.printLevelorder(this.root);
 	}
 
-	private void printLevelorder(TreeNode left, TreeNode right) {
-
+	private void printLevelorder(TreeNode k) {
+		Queue queue;
+		queue.add(k.getElement());
+		while (queue != null ) {
+				TreeNode n = (TreeNode) queue.leave();
+				println(n.getElement());
+				queue.add(n.getLeft());
+				queue.add(n.getRight());
+		}
 	}
 
 	public Tree clone() {
