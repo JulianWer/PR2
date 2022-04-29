@@ -59,17 +59,22 @@ public class BinaryTree implements Tree {
 		// TODO Auto-generated method stub
 		TreeNode parent = null;
 		TreeNode child = root;
+		
 		while (child != null) { // at least 1 node in tree
 			parent = child;
+			
 			//if (val.compareTo(child.getElement()) == 0) causes problems 
-			if(((Integer)((IntElement)val).getKey()) == ((Integer)((IntElement)child.getElement()).getKey()))
-				return false; // element already in tree, i is not inserted
+			if(((Integer)((IntElement)val).getKey()) == ((Integer)((IntElement)child.getElement()).getKey())) {
+				return false; }// element already in tree, i is not inserted
 			//else if ( val.compareTo(child.getElement()) < 0)
+			
 			else if (((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)child.getElement()).getKey()))
 				child = child.getLeft(); // insert in left tree
 			else
-				child = child.getRight(); // insert in right tree
+				child = child.getRight(); // insert in right tre
+			
 		}
+		this.size += 1;
 		if (parent == null) // empty tree -> insert first node
 			root = new TreeNode(val);
 		//else if (val.compareTo(parent.getElement()) < 0)
