@@ -139,7 +139,15 @@ public class BinaryTree implements Tree {
 
 	public void clear() {
 		// TODO Auto-generated method stub
-
+		clear(this.root); // clears entire tree
+	}
+	
+	private void clear(TreeNode node) {
+		if(node != null) {
+			clear(node.getRight());
+			clear(node.getLeft());
+			node = null;
+		}
 	}
 
 	public Tree addAll(Tree otherTree) {
