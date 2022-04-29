@@ -25,11 +25,13 @@ public class BinaryTree implements Tree {
 	// for testing
 	public static void main(String[] args) {
 		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(1);
-		b.insert(20);
+		boolean a = b.insert(10);
+		b.insert(8);
+		b.insert(12);
 		b.insert(4);
-		b.insert(7);
+		b.insert(9);
 		b.insert(11);
+		b.insert(15);
 		
 		System.out.println("Preorder: ");
 		b.printPreorder();
