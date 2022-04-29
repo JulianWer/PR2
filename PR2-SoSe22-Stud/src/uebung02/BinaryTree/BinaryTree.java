@@ -105,7 +105,38 @@ public class BinaryTree implements Tree {
 
 	public boolean contains(Element val) {
 		// TODO Auto-generated method stub
-		return false;
+		TreeNode parent = null;
+		TreeNode child = root;
+		boolean found = false;
+		boolean deleteLeftRef = false;
+		
+		while(!found) {
+			System.out.println((Integer)((IntElement)val).getKey());
+			System.out.println(((Integer)((IntElement)child.getElement()).getKey()));
+			//search for the element which should be deleted
+			if(((Integer)((IntElement)val).getKey()).equals( ((Integer)((IntElement)child.getElement()).getKey())) ){
+				//break loop
+				found = true;
+			}
+			
+			if((Integer)((IntElement)val).getKey() < ((Integer)((IntElement)child.getElement()).getKey())) {
+				//go left
+				parent = child;
+				child = child.getLeft();
+				deleteLeftRef = true;
+				continue;
+			}
+			if((Integer)((IntElement)val).getKey() > ((Integer)((IntElement)child.getElement()).getKey())) {
+				//go Right
+				parent = child;
+				child = child.getRight();
+				deleteLeftRef = false;
+			}
+			
+		}if(found) {
+			return true;
+		}else
+			return false;
 	}
 
 	public int size() {
@@ -174,7 +205,7 @@ public class BinaryTree implements Tree {
 				continue;
 			}
 			if((Integer)((IntElement)val).getKey() > ((Integer)((IntElement)child.getElement()).getKey())) {
-				//go left
+				//go Right
 				parent = child;
 				child = child.getRight();
 				deleteLeftRef = false;
