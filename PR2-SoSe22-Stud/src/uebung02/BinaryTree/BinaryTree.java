@@ -230,7 +230,32 @@ public class BinaryTree implements Tree {
 
 	public boolean equal(Tree otherTree) {
 		// TODO Auto-generated method stub
-		return false;
+		QueueImpl queueTree1 = new QueueImpl();
+		QueueImpl queueTree2 = new QueueImpl();
+		queueTree1.enter(this.root);
+		queueTree2.enter(((BinaryTree) otherTree).root);
+		while (!queueTree1.isEmpty() && !queueTree2.isEmpty()) {
+			TreeNode n1 = (TreeNode) queueTree1.leave();
+			TreeNode n2 = (TreeNode) queueTree2.leave();
+
+			if (n1 != null && n2 != null) {
+				if (n1.getElement() != n2.getElement())
+					return false;
+			}
+			if (n1 != null) {
+				queueTree1.enter(n1.getLeft());
+				queueTree1.enter(n1.getRight());
+				}
+				if (n2 != null) {
+					queueTree2.enter(n2.getLeft());
+					queueTree2.enter(n2.getRight());
+				}
+			
+
+		}
+		if (queueTree1.isEmpty() ^ queueTree2.isEmpty())
+			return false;
+		return true;
 	}
 
 	public Tree createTree() {
