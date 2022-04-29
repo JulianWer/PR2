@@ -41,6 +41,7 @@ public class BinaryTree implements Tree {
 		b.printPreorder();
 		System.out.println("start remove");
 		b.remove(new IntElement(8));
+		b.remove(new IntElement(15));
 		System.out.println("Preorder: ");
 		b.printPreorder();
 	}
@@ -215,23 +216,11 @@ public class BinaryTree implements Tree {
 				TreeNode k = getMax(child.getLeft());
 				int remember = (Integer)((IntElement)k.getElement()).getKey();
 				remove(k.getElement());
-				((IntElement)child.getElement()).setKey(remember);	//not working
+				((IntElement)child.getElement()).setKey(remember);	
 			}
-			
-			
-			
-			
-			
-			
-			
-		
+
 		}
-		
-		
-		
-		
-			
-		
+	
 		return true;
 	}
 
