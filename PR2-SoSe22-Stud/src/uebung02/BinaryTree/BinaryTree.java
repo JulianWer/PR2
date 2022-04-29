@@ -33,17 +33,18 @@ public class BinaryTree implements Tree {
 		//b.remove(new IntElement(4));
 		//b.remove(new IntElement(15));
 		
-		System.out.println(a);
-		System.out.println(a2);
-		System.out.println(((IntElement) b.getMax()).getKey());
-		System.out.println(((IntElement) b.getMin()).getKey());
-		System.out.println("Preorder: ");
-		b.printPreorder();
-		System.out.println("start remove");
-		b.remove(new IntElement(8));
+//		System.out.println(a);
+//		System.out.println(a2);
+//		System.out.println(((IntElement) b.getMax()).getKey());
+//		System.out.println(((IntElement) b.getMin()).getKey());
+//		System.out.println("Preorder: ");
+//		b.printPreorder();
+//		System.out.println("start remove");
+//		b.remove(new IntElement(8));
 		b.remove(new IntElement(15));
 		System.out.println("Preorder: ");
 		b.printPreorder();
+		println("contains: " + b.contains(new IntElement(15)));
 	}
 
 	public BinaryTree() {
@@ -74,7 +75,7 @@ public class BinaryTree implements Tree {
 				child = child.getRight(); // insert in right tre
 			
 		}
-		this.size += 1;
+		this.size += 1; // count size
 		if (parent == null) // empty tree -> insert first node
 			root = new TreeNode(val);
 		//else if (val.compareTo(parent.getElement()) < 0)
@@ -115,7 +116,7 @@ public class BinaryTree implements Tree {
 		boolean found = false;
 		boolean deleteLeftRef = false;
 		
-		while(!found) {
+		while(!found && child != null) {
 			System.out.println((Integer)((IntElement)val).getKey());
 			System.out.println(((Integer)((IntElement)child.getElement()).getKey()));
 			//search for the element which should be deleted
