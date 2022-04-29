@@ -20,8 +20,10 @@ public class QuickSortV3 implements SortInterface {
 
 	@Override
 	public void sort(int[] F, int u, int o) {
+		if(F.length <= 1 ) so.incrunCounter();
 		if (o > u) { // runs as long as the upper cabinets is greater than the under
-			so.incrunCounter();// count runs for statistics
+			// count runs for statistics
+			so.incrunCounter();
 			int i = split(F, u, o);// call split method and write the index to i
 			sort(F, u, i - 1); // set upper cabinets one down
 			sort(F, i + 1, o); // set under cabinets one up
@@ -34,7 +36,7 @@ public class QuickSortV3 implements SortInterface {
 	@Override
 	public int split(int[] F, int u, int o) {
 		// TODO Auto-generated method stub
-
+		
 		int p = o; // set the pivot element to the upper cabinets
 		int index = u; // set index to under cabinets
 		for (int zeiger = u; zeiger <= o - 1; zeiger++) {
