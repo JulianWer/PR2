@@ -1,6 +1,9 @@
 package uebung02.BinaryTree;
 
 public class IntElement implements Element, Cloneable {
+	public IntElement(int i) {
+		
+	}
 
 	@Override
 	public int compareTo(Object arg0) {
