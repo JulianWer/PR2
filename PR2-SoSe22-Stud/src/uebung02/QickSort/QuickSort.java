@@ -19,12 +19,12 @@ public class QuickSort implements SortInterface {
 
 	@Override
 	public void sort(int[] array, int lowerLimit, int upperLimit) {
-		System.out.println(upperLimit);
-		System.out.println(lowerLimit);
+		
+		if(array.length <= 1) so.incrunCounter();
 
 		if (upperLimit > lowerLimit) { // runs as long as the upper cabinets is greater than the under
 			so.incrunCounter();// count runs for statistics
-			println("upperlimit is higher than lowerlimit");
+			//println("upperlimit is higher than lowerlimit");
 			int splitIndex = split(array, lowerLimit, upperLimit); // call split method and write the index to splitIndex
 			sort(array, lowerLimit, splitIndex); // call method recursive 
 			sort(array, (splitIndex + 1), upperLimit);
@@ -36,29 +36,24 @@ public class QuickSort implements SortInterface {
 		// TODO Auto-generated method stub
 		int pivotIndex = (lowerLimit + upperLimit) / 2; // set pivotIndex to the middle
 		int pivot = array[pivotIndex]; // set middle element of the array to the pivot element 
-		println("Pivot: " + pivot);
+		
 
-		int l = upperLimit, r = lowerLimit;
+		
 		while (lowerLimit <= upperLimit) { // run as long as upper is greater than lower
-
-			boolean found = false; // set boolean found to false
+			
+		
 			// for loop loops as long as i is smaller than upperLimit +1 and the boolean found is false
-			for (int i = lowerLimit; (i < (upperLimit + 1) && !found); i++) { 
-				so.inccomparisonCounter(); // count comparison Counter one up
-				if (array[i] >= pivot) { // compare values of index i and pivot element  
-					found = true; 
-					l = i; // set l to the value of i 
-				}
+			int l = lowerLimit;
+			so.inccomparisonCounter();
+			while(array[l] < pivot) {
+				l++;
 			}
-			found = false;
-			// for loop loops as long as i is smaller than lowerLimit +1 and the boolean found is false
-			for (int i = upperLimit; (i > (lowerLimit - 1) && !found); i--) {
-				so.inccomparisonCounter();
-				if (array[i] <= pivot) {// compare values of index i and pivot element  
-					found = true;
-					r = i;
-				}
+			int r = upperLimit;
+			so.inccomparisonCounter();
+			while(array[r] > pivot) {
+				r--;
 			}
+			
 
 			if (l < r) {
 				swap(array, r, l); // call swap method with array, r and l
@@ -69,6 +64,11 @@ public class QuickSort implements SortInterface {
 				return r;
 			}
 		}
+		
+		for (int i : array) { // output after every run
+			print(i + " ");
+		}
+		println();
 
 		return upperLimit;
 	}
