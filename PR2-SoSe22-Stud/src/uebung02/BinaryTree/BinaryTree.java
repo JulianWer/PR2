@@ -277,7 +277,26 @@ public class BinaryTree implements Tree {
 
 	public Tree addAll(Tree otherTree) {
 		// TODO Auto-generated method stub
-		return null;
+		TreeNode child = ((BinaryTree)otherTree).root;
+		if(child != null) {
+			this.insert(child.getElement());
+			addAll(child.getLeft(), this);
+			addAll(child.getRight(), this);
+		}
+		
+		
+		return this;
+	}
+	
+	private void addAll(TreeNode n, BinaryTree b) {
+		if(n != null) {
+			b.insert(n.getElement());
+			if(n.getLeft() != null)
+				addAll(n.getLeft(), b);
+			if(n.getRight() != null)
+				addAll(n.getRight(), b);
+		}
+		
 	}
 
 	public void printInorder() {
