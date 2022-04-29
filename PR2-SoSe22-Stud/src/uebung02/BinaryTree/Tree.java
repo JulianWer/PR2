@@ -1,6 +1,6 @@
 package uebung02.BinaryTree;
 
-import javax.lang.model.element.Element;
+
 
 public interface Tree { // only int values stored in tree
 

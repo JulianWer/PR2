@@ -9,9 +9,6 @@ import static pr2.util.Queue.*;
 import static pr2.util.LinkedList.*;
 
 
-
-import javax.lang.model.element.Element;
-
 import pr2.util.LinkedListI;
 import pr2.util.Queue;
 import pr2.util.QueueImpl;
@@ -23,24 +20,24 @@ public class BinaryTree implements Tree {
 	private int size = 0;
 
 	// for testing
-	public static void main(String[] args) {
-		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(1);
-		b.insert(20);
-		b.insert(4);
-		b.insert(7);
-		b.insert(11);
-		System.out.println(b.getMax());
-		System.out.println(b.getMin());
-		System.out.println("Preorder: ");
-		b.printPreorder();
-	}
+//	public static void main(String[] args) {
+//		BinaryTree b = new BinaryTree();
+//		boolean a = b.insert(1);
+//		b.insert(20);
+//		b.insert(4);
+//		b.insert(7);
+//		b.insert(11);
+//		System.out.println(b.getMax());
+//		System.out.println(b.getMin());
+//		System.out.println("Preorder: ");
+//		b.printPreorder();
+//	}
 
 	public BinaryTree() {
 		this.root = null;
 	}
 
-	public BinaryTree(int rootValue) {
+	public BinaryTree(Element rootValue) {
 		this.root = new TreeNode(rootValue);
 	}
 
@@ -52,19 +49,19 @@ public class BinaryTree implements Tree {
 		TreeNode child = root;
 		while (child != null) { // at least 1 node in tree
 			parent = child;
-			if (((Comparable<Integer>) val).compareTo(child.getElement()) == 0)
+			if (val.compareTo(child.getElement()) == 0)
 				return false; // element already in tree, i is not inserted
-			else if (((Comparable<Integer>) val).compareTo(child.getElement()) < 0)
+			else if ( val.compareTo(child.getElement()) < 0)
 				child = child.getLeft(); // insert in left tree
 			else
 				child = child.getRight(); // insert in right tree
 		}
 		if (parent == null) // empty tree -> insert first node
-			root = new TreeNode((int) ((Comparable<Integer>) val));
-		else if (((Comparable<Integer>) val).compareTo(parent.getElement()) < 0)
-			parent.setLeft(new TreeNode((int) ((Comparable<Integer>) val))); // insert left from parent
+			root = new TreeNode(val);
+		else if (val.compareTo(parent.getElement()) < 0)
+			parent.setLeft(new TreeNode(val)); // insert left from parent
 		else
-			parent.setRight(new TreeNode((int) ((Comparable<Integer>) val))); // insert right from parent
+			parent.setRight(new TreeNode(val)); // insert right from parent
 		return true; // i successfully inserted
 	}
 

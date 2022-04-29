@@ -1,12 +1,12 @@
 package uebung02.BinaryTree;
 
-public class TreeNode extends IntElement{
+public class TreeNode{
 
-	private int elem;
+	private Element elem;
 	private TreeNode left;
 	private TreeNode right;
 
-	public TreeNode(int i) {
+	public TreeNode(Element i) {
 		elem = i;
 		left = right = null;
 	}
@@ -19,7 +19,7 @@ public class TreeNode extends IntElement{
 		return right;
 	}
 
-	public int getElement() {
+	public Element getElement() {
 		return elem;
 	}
 
@@ -31,7 +31,7 @@ public class TreeNode extends IntElement{
 		right = n;
 	}
 
-	public void setElement (int e) {
+	public void setElement (Element e) {
 		elem = e;
 	}
 	
