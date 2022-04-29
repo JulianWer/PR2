@@ -206,8 +206,25 @@ public class BinaryTree implements Tree {
 
 	public Tree clone() {
 		// TODO Auto-generated method stub
+		BinaryTree treeClone = new BinaryTree();
+		treeClone.root = clone(this.root);
 		
-		return null;
+		return treeClone;
+	}
+	
+	private TreeNode clone (TreeNode root) {
+		if(root == null) {
+			return null;
+		}
+		
+		TreeNode nodeClone = new TreeNode(this.root.getElement());
+		nodeClone.right = clone(this.root.getRight());
+		nodeClone.right = clone(this.root.getLeft());
+		return nodeClone;
+	}
+	
+	public boolean equals(Object other) {
+		return false;
 	}
 
 	public boolean equal(Tree otherTree) {
@@ -242,7 +259,7 @@ public class BinaryTree implements Tree {
 
 	public Tree createTree() {
 		// TODO Auto-generated method stub
-		return null;
+		return new BinaryTree();
 	}
 
 	public void visualize() {
