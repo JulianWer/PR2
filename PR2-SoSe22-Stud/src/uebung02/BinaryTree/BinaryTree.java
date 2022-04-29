@@ -6,6 +6,9 @@ import static gdi.MakeItSimple.openInputFile;
 import static gdi.MakeItSimple.println;
 import static gdi.MakeItSimple.*;
 import static pr2.util.Queue.*;
+
+import graphvisualizer.TreeVisualizer;
+
 import static pr2.util.LinkedList.*;
 
 
@@ -44,6 +47,7 @@ public class BinaryTree implements Tree {
 		b.remove(new IntElement(15));
 		System.out.println("Preorder: ");
 		b.printPreorder();
+		b.visualize();
 		println("contains: " + b.contains(new IntElement(15)));
 	}
 
@@ -422,6 +426,8 @@ public class BinaryTree implements Tree {
 
 	public void visualize() {
 		// TODO Auto-generated method stub
+		TreeVisualizer t = new TreeVisualizer();
+		t.draw(root);
 
 	}
 
