@@ -30,11 +30,17 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(9));
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
+		//b.remove(new IntElement(4));
+		//b.remove(new IntElement(15));
+		
 		System.out.println(a);
 		System.out.println(a2);
 		System.out.println(((IntElement) b.getMax()).getKey());
 		System.out.println(((IntElement) b.getMin()).getKey());
-		
+		System.out.println("Preorder: ");
+		b.printPreorder();
+		System.out.println("start remove");
+		b.remove(new IntElement(10));
 		System.out.println("Preorder: ");
 		b.printPreorder();
 	}
@@ -121,6 +127,17 @@ public class BinaryTree implements Tree {
 		return (Element) n.getElement();
 
 	}
+	
+	
+	private TreeNode getMax(TreeNode k) {
+		// TODO Auto-generated method stub
+		TreeNode n = k;
+		while (n.getRight() != null) {
+			n = n.getRight();
+		}
+		return n;
+
+	}
 
 	public Element getMin() {
 		// TODO Auto-generated method stub
@@ -134,20 +151,63 @@ public class BinaryTree implements Tree {
 	public boolean remove(Element val) {
 		// TODO Auto-generated method stub
 		//first to element has to be found, then all references have to be refreshed
-		TreeNode n = this.root;
+		TreeNode parent = null;
+		TreeNode child = root;
 		boolean found = false;
+		boolean deleteLeftRef = false;
+		
 		while(!found) {
-			IntElement intElementVal = (IntElement) val;	//cast to IntElement
-			IntElement intElementNode = (IntElement) n.getElement();
-			if((Integer) intElementVal.getKey() < (Integer) intElementNode.getKey())
-				n = n.getLeft();
-			else
-				n = n.getRight();
+			System.out.println((Integer)((IntElement)val).getKey());
+			System.out.println(((Integer)((IntElement)child.getElement()).getKey()));
+			//search for the element which should be deleted
+			if(((Integer)((IntElement)val).getKey()).equals( ((Integer)((IntElement)child.getElement()).getKey())) ){
+				//break loop
+				found = true;
+			}
 			
+			if((Integer)((IntElement)val).getKey() < ((Integer)((IntElement)child.getElement()).getKey())) {
+				//go left
+				parent = child;
+				child = child.getLeft();
+				deleteLeftRef = true;
+				continue;
+			}
+			if((Integer)((IntElement)val).getKey() > ((Integer)((IntElement)child.getElement()).getKey())) {
+				//go left
+				parent = child;
+				child = child.getRight();
+				deleteLeftRef = false;
+			}
 			
 		}
+		if(child == this.root) {	//delete root
+			if(child.getLeft() == null)
+				this.root = child.getRight();	//replace the root with right element
+			else if(child.getRight() == null)
+				this.root = child.getLeft();	//replace the root with left element
+			else {
+				//replace the root with biggest element from left tree
+				TreeNode k = getMax(child.getLeft());
+				int remember = (Integer)((IntElement)k.getElement()).getKey();
+				remove(k.getElement());
+				((IntElement)this.root.getElement()).setKey(remember);
+			
+				
+				return true;
+			}
+		}
 		
-		return false;
+		if(child.getLeft() == null && child.getRight() == null) {
+			if(deleteLeftRef)
+				parent.setLeft(null);
+			else
+				parent.setRight(null);
+			
+			System.out.println("child removed");
+		}
+			
+		
+		return true;
 	}
 
 	public boolean isEmpty() {
@@ -209,7 +269,7 @@ public class BinaryTree implements Tree {
 
 	private void printPreorder(TreeNode n) { // recursive
 		if (n != null) {// tree not empty
-			System.out.println(n.getElement());
+			System.out.println((Integer)((IntElement)n.getElement()).getKey());
 			printPreorder(n.getLeft());
 			printPreorder(n.getRight());
 		}

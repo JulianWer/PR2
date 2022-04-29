@@ -6,6 +6,10 @@ public class IntElement implements Element, Cloneable {
 	public IntElement(int i) {
 		this.key = new Integer(i);
 	}
+	
+	public void setKey(int i) {
+		this.key = i;
+	}
 
 	@Override
 	public int compareTo(Object arg0) {
