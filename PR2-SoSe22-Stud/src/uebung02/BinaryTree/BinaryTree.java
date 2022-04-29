@@ -195,16 +195,41 @@ public class BinaryTree implements Tree {
 				
 				return true;
 			}
+		}else {
+			//delete normal node
+			
+			if(child.getLeft() == null) {
+				//parent is stored in local object partent
+				if(parent.getLeft() == child) {
+					parent.setLeft(child.getRight());
+				}else {
+					parent.setRight(child.getRight());
+				}
+			}else if(child.getRight() == null) {
+				if(parent.getLeft() == child) {
+					parent.setLeft(child.getLeft());
+				}else {
+					parent.setRight(child.getLeft());
+				}
+			}else {
+				TreeNode k = getMax(child.getLeft());
+				int remember = (Integer)((IntElement)k.getElement()).getKey();
+				remove(k.getElement());
+				((IntElement)k.getElement()).setKey(remember);
+			}
+			
+			
+			
+			
+			
+			
+			
+		
 		}
 		
-		if(child.getLeft() == null && child.getRight() == null) {
-			if(deleteLeftRef)
-				parent.setLeft(null);
-			else
-				parent.setRight(null);
-			
-			System.out.println("child removed");
-		}
+		
+		
+		
 			
 		
 		return true;
