@@ -42,9 +42,12 @@ public class QuickSortV2 implements SortInterface {
 		// TODO Auto-generated method stub
 		int p = o;
 		int piv = F[p];
-		int l = 0, r = 0;
+		int l = p, r = u - 1;
 		while(u <= o) {
 			boolean finish = false;
+			l = p;
+			r = u - 1;
+
 			for(int i = u; (i < o && !finish); i++) {
 				so.inccomparisonCounter();
 				if(F[i] > piv) {
@@ -52,8 +55,6 @@ public class QuickSortV2 implements SortInterface {
 					finish = true;
 				}
 			}
-			if(!finish)
-				l = p;
 			finish = false;
 			for(int i = (o - 1); (i > u && !finish); i--){
 				so.inccomparisonCounter();
@@ -62,8 +63,7 @@ public class QuickSortV2 implements SortInterface {
 					finish = true;
 				}	
 			}
-			if(!finish)
-				r = u - 1;
+	
 		if(l < r) {
 //			int i = F[r];
 //			F[r] = F[l];
@@ -75,6 +75,7 @@ public class QuickSortV2 implements SortInterface {
 //			int i = F[p];
 //			F[p] = F[l];
 //			F[l] = i;
+
 			swap(F, p, l);
 			return l;
 		}
