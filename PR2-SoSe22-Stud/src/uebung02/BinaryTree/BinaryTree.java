@@ -6,12 +6,15 @@ import static gdi.MakeItSimple.openInputFile;
 import static gdi.MakeItSimple.println;
 import static gdi.MakeItSimple.*;
 import static pr2.util.Queue.*;
+import static pr2.util.LinkedList.*;
 
 
 
 import javax.lang.model.element.Element;
 
+import pr2.util.LinkedListI;
 import pr2.util.Queue;
+import pr2.util.QueueImpl;
 import uebung01.UI;
 
 public class BinaryTree implements Tree {
@@ -209,13 +212,13 @@ public class BinaryTree implements Tree {
 	}
 
 	private void printLevelorder(TreeNode k) {
-		Queue queue;
-		queue.add(k.getElement());
+		QueueImpl queue = new QueueImpl();
+		queue.enter(k);
 		while (queue != null ) {
 				TreeNode n = (TreeNode) queue.leave();
 				println(n.getElement());
-				queue.add(n.getLeft());
-				queue.add(n.getRight());
+				queue.enter(n.getLeft());
+				queue.enter(n.getRight());
 				
 		}
 	}
