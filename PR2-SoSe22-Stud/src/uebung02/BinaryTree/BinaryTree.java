@@ -21,18 +21,18 @@ public class BinaryTree implements Tree {
 	private int size = 0;
 
 	// for testing
-//	public static void main(String[] args) {
-//		BinaryTree b = new BinaryTree();
-//		boolean a = b.insert(1);
-//		b.insert(20);
-//		b.insert(4);
-//		b.insert(7);
-//		b.insert(11);
-//		System.out.println(b.getMax());
-//		System.out.println(b.getMin());
-//		System.out.println("Preorder: ");
-//		b.printPreorder();
-//	}
+	public static void main(String[] args) {
+		BinaryTree b = new BinaryTree();
+		boolean a = b.insert(1);
+		b.insert(20);
+		b.insert(4);
+		b.insert(7);
+		b.insert();
+		System.out.println(b.getMax());
+		System.out.println(b.getMin());
+		System.out.println("Preorder: ");
+		b.printPreorder();
+	}
 
 	public BinaryTree() {
 		this.root = null;
@@ -42,9 +42,8 @@ public class BinaryTree implements Tree {
 		this.root = new TreeNode(rootValue);
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean insert(Element val) {
-		System.out.println((int) ((Comparable<Integer>) val));
+		System.out.println(val);
 		// TODO Auto-generated method stub
 		TreeNode parent = null;
 		TreeNode child = root;
@@ -66,30 +65,6 @@ public class BinaryTree implements Tree {
 		return true; // i successfully inserted
 	}
 
-//	public boolean insert(int i) {// ((Comparable<Integer>) i)
-//		System.out.println(i);
-//		TreeNode parent = null;
-//		TreeNode child = root;
-//		while (child != null) { // at least 1 node in tree
-//			parent = child;
-//			if (((Comparable<Integer>) i).compareTo(child.getElement()) == 0)
-//				return false; // element already in tree, i is not inserted
-//			else if (((Comparable<Integer>) i).compareTo(child.getElement()) < 0)
-//				child = child.getLeft(); // insert in left tree
-//			else
-//				child = child.getRight(); // insert in right tree
-//		}
-//		// parent node found
-//		if (parent == null) // empty tree -> insert first node
-//			root = new TreeNode(i);
-//		else if (((Comparable<Integer>) i).compareTo(parent.getElement()) < 0)
-//			parent.setLeft(new TreeNode(i)); // insert left from parent
-//		else
-//			parent.setRight(new TreeNode(i)); // insert right from parent
-//		this.size++;
-//		return true; // i successfully inserted
-//	}
-
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
 		if (!isFilePresent(filename)) {
@@ -106,6 +81,10 @@ public class BinaryTree implements Tree {
 
 	public boolean saveToFile(String filename) {
 		// TODO Auto-generated method stub
+		Object output = openOutputFile(filename);
+		while(this.root != null) {
+			this.root.print(); // prints all elements
+		}
 		return false;
 	}
 
@@ -116,6 +95,7 @@ public class BinaryTree implements Tree {
 
 	public int size() {
 		// TODO Auto-generated method stub
+		
 		return this.size;
 	}
 
@@ -140,11 +120,13 @@ public class BinaryTree implements Tree {
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-		return (Element) n;
+		return (Element) n.getElement();
 	}
 
 	public boolean remove(Element val) {
 		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
 
@@ -172,9 +154,9 @@ public class BinaryTree implements Tree {
 
 	private void printInorder(TreeNode n) {
 		if (n != null) {
-			System.out.println(n.getLeft());
-			System.out.println(n.getElement());
-			System.out.println(n.getRight());
+			printInorder(n.getLeft());
+			println(n.getElement());
+			printInorder(n.getRight());
 		}
 	}
 
@@ -204,6 +186,7 @@ public class BinaryTree implements Tree {
 			printPreorder(n.getRight());
 		}
 	}
+	
 
 	public void printLevelorder() {
 		this.printLevelorder(this.root);
@@ -223,6 +206,7 @@ public class BinaryTree implements Tree {
 
 	public Tree clone() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

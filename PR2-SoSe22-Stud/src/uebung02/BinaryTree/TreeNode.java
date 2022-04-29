@@ -1,10 +1,14 @@
 package uebung02.BinaryTree;
 
-public class TreeNode{
+import graphvisualizer.VisualizableNode;
+import graphvisualizer.VisualizableOneKeyNode;
 
-	private Element elem;
-	private TreeNode left;
-	private TreeNode right;
+public class TreeNode implements VisualizableOneKeyNode { // Node of a binary tree
+
+////////////////////////class TreeNode     //////////////////////////////////
+	Element elem; // all kinds of Element can be stored in tree
+	TreeNode left;
+	TreeNode right;
 
 	public TreeNode(Element i) {
 		elem = i;
@@ -31,8 +35,29 @@ public class TreeNode{
 		right = n;
 	}
 
-	public void setElement (Element e) {
-		elem = e;
+	public void print() {
+		pr.MakeItSimple.print(elem + " ");
+//pr.MakeItSimple.print(elem.toString() + " ");
 	}
-	
+
+	/**
+	 * @return children of this node
+	 */
+	public VisualizableNode[] getChildren() {
+
+		return new VisualizableNode[] { left, right };
+	}
+
+	@Override
+	public Object getKey() {
+		return elem.getKey();
+	}
+
+	/**
+	 * @return the keys of this node.
+	 */
+	public Object[] getKeys() {
+		return new Object[] { elem.getKey() };
+	};
+
 }
