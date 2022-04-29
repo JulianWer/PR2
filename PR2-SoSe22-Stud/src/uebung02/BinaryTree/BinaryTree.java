@@ -216,6 +216,7 @@ public class BinaryTree implements Tree {
 				println(n.getElement());
 				queue.add(n.getLeft());
 				queue.add(n.getRight());
+				
 		}
 	}
 
