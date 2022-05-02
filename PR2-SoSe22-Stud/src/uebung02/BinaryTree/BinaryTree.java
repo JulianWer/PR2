@@ -45,10 +45,11 @@ public class BinaryTree implements Tree {
 //		System.out.println("start remove");
 //		b.remove(new IntElement(8));
 		b.remove(new IntElement(15));
+		b.clear();
 		System.out.println("Preorder: ");
 		b.printPreorder();
 		b.visualize();
-		println("contains: " + b.contains(new IntElement(15)));
+		//println("contains: " + b.contains(new IntElement(15)));
 	}
 
 	public BinaryTree() {
@@ -265,7 +266,7 @@ public class BinaryTree implements Tree {
 		return true;
 	}
 
-	public boolean isEmpty() {
+	public boolean isEmpty() { 
 		// TODO Auto-generated method stub
 		if (this.root == null)
 			return true;
@@ -274,16 +275,9 @@ public class BinaryTree implements Tree {
 
 	public void clear() {
 		// TODO Auto-generated method stub
-		clear(this.root); // clears entire tree
+		this.root = null; // clears entire tree
 	}
 	
-	private void clear(TreeNode node) {
-		if(node != null) {
-			clear(node.getRight());
-			clear(node.getLeft());
-			node = null;
-		}
-	}
 
 	public Tree addAll(Tree otherTree) {
 		// TODO Auto-generated method stub
