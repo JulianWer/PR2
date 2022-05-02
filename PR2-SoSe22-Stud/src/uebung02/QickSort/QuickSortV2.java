@@ -40,25 +40,25 @@ public class QuickSortV2 implements SortInterface {
 	@Override
 	public int split(int[] F, int u, int o) {
 		// TODO Auto-generated method stub
-		int p = o;
+		int p = o;	//pivot is the last element within the range defined by u & o
 		int piv = F[p];
-		int l = p, r = u - 1;
+		int l = p, r = u - 1;	//initial values
 		while(u <= o) {
-			boolean finish = false;
+			boolean finish = false;	//flag for breaking the for-loops below
 			l = p;
 			r = u - 1;
 
 			for(int i = u ; (i <= o && !finish); i++) {
 				so.inccomparisonCounter();
-				if(F[i] > piv) {
+				if(F[i] > piv) {	//if the current element is greater than the pivot, the index will be stored in "i" and the loop will be exited
 					l = i;
 					finish = true;
 				}
 			}
-			finish = false;
+			finish = false;		//the flag is assigned its default value
 			for(int i = (o - 1) ; (i >= u && !finish); i--){
 				so.inccomparisonCounter();
-				if(F[i] <= piv) {
+				if(F[i] <= piv) {	//if the current element is smaller than the pivot or equal, the index will be stored in "i" and the loop will be exited
 					r = i;
 					finish = true;
 				}	

@@ -25,6 +25,27 @@ public class BinaryTree implements Tree {
 
 	// for testing
 	public static void main(String[] args) {
+		/*
+		 * BinaryTree b = new BinaryTree(); boolean a = b.insert(new IntElement(10));
+		 * boolean a2 = b.insert(new IntElement(8)); a2 = b.insert(new IntElement(12));
+		 * b.insert(new IntElement(4)); b.insert(new IntElement(9)); b.insert(new
+		 * IntElement(11)); b.insert(new IntElement(15)); //b.remove(new IntElement(4));
+		 * //b.remove(new IntElement(15));
+		 * 
+		 * // System.out.println(a); // System.out.println(a2); //
+		 * System.out.println(((IntElement) b.getMax()).getKey()); //
+		 * System.out.println(((IntElement) b.getMin()).getKey()); //
+		 * System.out.println("Preorder: "); // b.printPreorder(); //
+		 * System.out.println("start remove"); // b.remove(new IntElement(8));
+		 * //b.remove(new IntElement(15)); b.remove(new IntElement(12));
+		 * System.out.println("Preorder: "); b.printPreorder(); b.visualize();
+		 * println("contains: " + b.contains(new IntElement(15)));
+		 */
+		//testInorder();
+		testLevelOrder();
+	}
+	
+	private static void testInorder() {
 		BinaryTree b = new BinaryTree();
 		boolean a = b.insert(new IntElement(10));
 		boolean a2 = b.insert(new IntElement(8));
@@ -33,23 +54,37 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(9));
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
-		//b.remove(new IntElement(4));
-		//b.remove(new IntElement(15));
 		
-//		System.out.println(a);
-//		System.out.println(a2);
-//		System.out.println(((IntElement) b.getMax()).getKey());
-//		System.out.println(((IntElement) b.getMin()).getKey());
-//		System.out.println("Preorder: ");
-//		b.printPreorder();
-//		System.out.println("start remove");
-//		b.remove(new IntElement(8));
-		b.remove(new IntElement(15));
-		b.clear();
-		System.out.println("Preorder: ");
-		b.printPreorder();
-		b.visualize();
-		//println("contains: " + b.contains(new IntElement(15)));
+		System.out.println("Inorder Test:");
+		b.printInorder();
+	}
+	
+	private static void testPostOrder() {
+		BinaryTree b = new BinaryTree();
+		boolean a = b.insert(new IntElement(10));
+		boolean a2 = b.insert(new IntElement(8));
+		a2 = b.insert(new IntElement(12));
+		b.insert(new IntElement(4));
+		b.insert(new IntElement(9));
+		b.insert(new IntElement(11));
+		b.insert(new IntElement(15));
+		
+		System.out.println("PostOrder Test:");
+		b.printPostorder();
+	}
+	
+	private static void testLevelOrder() {
+		BinaryTree b = new BinaryTree();
+		boolean a = b.insert(new IntElement(10));
+		boolean a2 = b.insert(new IntElement(8));
+		a2 = b.insert(new IntElement(12));
+		b.insert(new IntElement(4));
+		b.insert(new IntElement(9));
+		b.insert(new IntElement(11));
+		b.insert(new IntElement(15));
+		System.out.println("testLevelOrder Test:");
+		b.printLevelorder();
+	
 	}
 
 	public BinaryTree() {
@@ -266,7 +301,7 @@ public class BinaryTree implements Tree {
 		return true;
 	}
 
-	public boolean isEmpty() { 
+	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		if (this.root == null)
 			return true;
@@ -275,9 +310,16 @@ public class BinaryTree implements Tree {
 
 	public void clear() {
 		// TODO Auto-generated method stub
-		this.root = null; // clears entire tree
+		clear(this.root); // clears entire tree
 	}
 	
+	private void clear(TreeNode node) {
+		if(node != null) {
+			clear(node.getRight());
+			clear(node.getLeft());
+			node = null;
+		}
+	}
 
 	public Tree addAll(Tree otherTree) {
 		// TODO Auto-generated method stub
@@ -311,7 +353,7 @@ public class BinaryTree implements Tree {
 	private void printInorder(TreeNode n) {
 		if (n != null) {
 			printInorder(n.getLeft());
-			println(n.getElement());
+			println((Integer)((IntElement)n.getElement()).getKey());
 			printInorder(n.getRight());
 		}
 	}
@@ -326,7 +368,7 @@ public class BinaryTree implements Tree {
 
 			printPostorder(n.getLeft()); // go left
 			printPostorder(n.getRight());
-			println(n.getElement()); // print when the recursion goes back
+			println((Integer)((IntElement)n.getElement()).getKey()); // print when the recursion goes back
 		}
 
 	}
@@ -337,7 +379,7 @@ public class BinaryTree implements Tree {
 
 	private void printPreorder(TreeNode n) { // recursive
 		if (n != null) {// tree not empty
-			System.out.println((Integer)((IntElement)n.getElement()).getKey());
+			println((Integer)((IntElement)n.getElement()).getKey());
 			printPreorder(n.getLeft());
 			printPreorder(n.getRight());
 		}
@@ -353,7 +395,9 @@ public class BinaryTree implements Tree {
 		queue.enter(k);
 		while (queue != null ) {
 				TreeNode n = (TreeNode) queue.leave();
-				println(n.getElement());
+				if(n == null)
+					return;
+				println((Integer)((IntElement)n.getElement()).getKey());
 				queue.enter(n.getLeft());
 				queue.enter(n.getRight());
 				
@@ -421,6 +465,7 @@ public class BinaryTree implements Tree {
 	public void visualize() {
 		// TODO Auto-generated method stub
 		TreeVisualizer t = new TreeVisualizer();
+		
 		t.draw(root);
 
 	}
