@@ -4,7 +4,7 @@ public class IntElement implements Element, Cloneable {
 	private Integer key;
 	
 	public IntElement(int i) {
-		this.key = new Integer(i);
+		this.key = i;
 	}
 	
 	public void setKey(int i) {
