@@ -64,26 +64,21 @@ public class QuickSortV2 implements SortInterface {
 				}	
 			}
 	
-		if(l < r) {
-//			int i = F[r];
-//			F[r] = F[l];
-//			F[l] = i;
+		if(l < r) {	
+
 			swap(F, l, r);
 			u = l + 1;
 			o = r;
-		}else {
-//			int i = F[p];
-//			F[p] = F[l];
-//			F[l] = i;
+		}else {	//if l & r have crossed, p & l will be swaped
+
 
 			swap(F, p, l);
 			return l;
 		}
 			
 		}
-		//int i = F[p];
-		//F[p] = F[u];
-		//F[u] = i;
+		
+		//p & u will be swapped
 		swap(F,p, u);
 		return u;
 	}
