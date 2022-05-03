@@ -125,8 +125,10 @@ public class BinaryTree implements Tree {
 		Object file = openInputFile(filename); // opens file for the input
 		while (!isEndOfInputFile(file)) {
 			this.insert(new IntElement (readInt(file))); // read in elements
+			this.size++;
 		}
-		return false;
+		closeInputFile(file);
+		return true;
 	}
 
 	public boolean saveToFile(String filename) {
