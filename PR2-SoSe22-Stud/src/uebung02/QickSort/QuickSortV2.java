@@ -71,7 +71,6 @@ public class QuickSortV2 implements SortInterface {
 			o = r;
 		}else {	//if l & r have crossed, p & l will be swaped
 
-
 			swap(F, p, l);
 			return l;
 		}
