@@ -83,7 +83,7 @@ public class BinaryTree implements Tree {
 	public BinaryTree(Element rootValue) {
 		this.root = new TreeNode(rootValue);
 	}
-
+@Override
 	public boolean insert(Element val) {
 		System.out.println(val);
 		// TODO Auto-generated method stub
@@ -114,7 +114,7 @@ public class BinaryTree implements Tree {
 			parent.setRight(new TreeNode(val)); // insert right from parent
 		return true; // i successfully inserted
 	}
-
+	@Override
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
 		if (!isFilePresent(filename)) {
@@ -130,7 +130,7 @@ public class BinaryTree implements Tree {
 		closeInputFile(file);
 		return true;
 	}
-
+	@Override
 	public boolean saveToFile(String filename) {
 		// TODO Auto-generated method stub
 		Object output = openOutputFile(filename);
@@ -139,7 +139,7 @@ public class BinaryTree implements Tree {
 		}
 		return false;
 	}
-
+	@Override
 	public boolean contains(Element val) {
 		// TODO Auto-generated method stub
 		TreeNode parent = null;
@@ -175,12 +175,12 @@ public class BinaryTree implements Tree {
 		}else
 			return false;
 	}
-
+	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return this.size;
 	}
-
+	@Override
 	public int height() {
 		// TODO Auto-generated method stub
 		if(this.isEmpty())
@@ -206,7 +206,7 @@ public class BinaryTree implements Tree {
 	        return heightRight+1;
 	    }
 	}
-
+	@Override
 	public Element getMax() {
 		// TODO Auto-generated method stub
 		TreeNode n = this.root;
@@ -227,7 +227,7 @@ public class BinaryTree implements Tree {
 		return n;
 
 	}
-
+	@Override
 	public Element getMin() {
 		// TODO Auto-generated method stub
 		TreeNode n = this.root;
@@ -236,7 +236,7 @@ public class BinaryTree implements Tree {
 		}
 		return (Element) n.getElement();
 	}
-
+	@Override
 	public boolean remove(Element val) {
 		// TODO Auto-generated method stub
 		//first to element has to be found, then all references have to be refreshed
@@ -311,21 +311,21 @@ public class BinaryTree implements Tree {
 	
 		return true;
 	}
-
+	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		if (this.root == null)
 			return true;
 		return false;
 	}
-
+	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
 		this.root = null; // clears entire tree
 	}
-	
 
 
+	@Override
 	public Tree addAll(Tree otherTree) {
 		// TODO Auto-generated method stub
 		TreeNode child = ((BinaryTree)otherTree).root;
@@ -349,7 +349,7 @@ public class BinaryTree implements Tree {
 		}
 		
 	}
-
+	@Override
 	public void printInorder() {
 		this.printInorder(this.root);
 
@@ -362,7 +362,7 @@ public class BinaryTree implements Tree {
 			printInorder(n.getRight());
 		}
 	}
-
+	@Override
 	public void printPostorder() {
 		printPostorder(this.root);
 
@@ -377,7 +377,7 @@ public class BinaryTree implements Tree {
 		}
 
 	}
-
+	@Override
 	public void printPreorder() {
 		this.printPreorder(this.root);
 	}
@@ -389,8 +389,8 @@ public class BinaryTree implements Tree {
 			printPreorder(n.getRight());
 		}
 	}
-	
 
+	@Override
 	public void printLevelorder() {
 		this.printLevelorder(this.root);
 	}
@@ -409,6 +409,7 @@ public class BinaryTree implements Tree {
 		}
 	}
 
+	@Override
 	public Tree clone() {
 		// TODO Auto-generated method stub
 		BinaryTree treeClone = new BinaryTree();
@@ -427,11 +428,11 @@ public class BinaryTree implements Tree {
 		nodeClone.right = clone(this.root.getLeft());
 		return nodeClone;
 	}
-	
-	public boolean equals(Object other) {
+	@Override
+	public boolean equals(Object other) { // TODO
 		return false;
 	}
-
+	@Override
 	public boolean equal(Tree otherTree) {
 		// TODO Auto-generated method stub
 		QueueImpl queueTree1 = new QueueImpl();
@@ -461,12 +462,12 @@ public class BinaryTree implements Tree {
 			return false;
 		return true;
 	}
-
+	@Override
 	public Tree createTree() {
 		// TODO Auto-generated method stub
 		return new BinaryTree();
 	}
-
+	@Override
 	public void visualize() {
 		// TODO Auto-generated method stub
 		TreeVisualizer t = new TreeVisualizer();
