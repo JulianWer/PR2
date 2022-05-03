@@ -25,24 +25,25 @@ public class BinaryTree implements Tree {
 
 	// for testing
 	public static void main(String[] args) {
-		/*
-		 * BinaryTree b = new BinaryTree(); boolean a = b.insert(new IntElement(10));
-		 * boolean a2 = b.insert(new IntElement(8)); a2 = b.insert(new IntElement(12));
-		 * b.insert(new IntElement(4)); b.insert(new IntElement(9)); b.insert(new
-		 * IntElement(11)); b.insert(new IntElement(15)); //b.remove(new IntElement(4));
-		 * //b.remove(new IntElement(15));
-		 * 
-		 * // System.out.println(a); // System.out.println(a2); //
-		 * System.out.println(((IntElement) b.getMax()).getKey()); //
-		 * System.out.println(((IntElement) b.getMin()).getKey()); //
-		 * System.out.println("Preorder: "); // b.printPreorder(); //
-		 * System.out.println("start remove"); // b.remove(new IntElement(8));
-		 * //b.remove(new IntElement(15)); b.remove(new IntElement(12));
-		 * System.out.println("Preorder: "); b.printPreorder(); b.visualize();
-		 * println("contains: " + b.contains(new IntElement(15)));
-		 */
+
+		  BinaryTree b = new BinaryTree(); boolean a = b.insert(new IntElement(10));
+		  boolean a2 = b.insert(new IntElement(8)); a2 = b.insert(new IntElement(12));
+		  b.insert(new IntElement(4)); b.insert(new IntElement(9)); b.insert(new
+		  IntElement(11)); b.insert(new IntElement(15)); //b.remove(new IntElement(4));
+		  b.remove(new IntElement(15));
+
+		  // System.out.println(a); // System.out.println(a2); //
+		  System.out.println(((IntElement) b.getMax()).getKey()); //
+		  System.out.println(((IntElement) b.getMin()).getKey()); //
+		  System.out.println("Preorder: "); // b.printPreorder(); //
+		  System.out.println("start remove"); // b.remove(new IntElement(8));
+		  //b.remove(new IntElement(15)); b.remove(new IntElement(12));
+		  System.out.println("Preorder: "); b.printPreorder();
+		 println("contains: " + b.contains(new IntElement(15)));
+		 b.clear();
+		 b.visualize();
 		//testInorder();
-		testLevelOrder();
+		//testLevelOrder();
 	}
 	
 	private static void testInorder() {
@@ -187,7 +188,6 @@ public class BinaryTree implements Tree {
 
 	public int size() {
 		// TODO Auto-generated method stub
-		
 		return this.size;
 	}
 
@@ -310,16 +310,10 @@ public class BinaryTree implements Tree {
 
 	public void clear() {
 		// TODO Auto-generated method stub
-		clear(this.root); // clears entire tree
+		this.root = null; // clears entire tree
 	}
 	
-	private void clear(TreeNode node) {
-		if(node != null) {
-			clear(node.getRight());
-			clear(node.getLeft());
-			node = null;
-		}
-	}
+
 
 	public Tree addAll(Tree otherTree) {
 		// TODO Auto-generated method stub
