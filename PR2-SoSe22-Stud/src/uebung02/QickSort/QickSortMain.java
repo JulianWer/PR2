@@ -10,7 +10,7 @@ public class QickSortMain {
 		UI();
 	}
 	private static void UI() {
-		print("Welcome, please Enter the file to sort:"); //test //test
+		print("Welcome, please Enter the file to sort:"); //test
 		String filePath = readLine();
 		while(!isFilePresent(filePath)) {
 			println();
