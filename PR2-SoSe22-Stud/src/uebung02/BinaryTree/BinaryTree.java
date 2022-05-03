@@ -42,6 +42,7 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(9));
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
+		
 		System.out.println(b.height());
 		
 		b.visualize();
@@ -192,10 +193,10 @@ public class BinaryTree implements Tree {
 		int heightLeft = 0;
 	    int heightRight = 0;
 	    
-	    if(n.left!=null)
-	        heightLeft = height(n.left);
-	    if(n.right!=null)
-	        heightRight = height(n.right);
+	    if(n.getLeft()!=null)
+	        heightLeft = height(n.getLeft());
+	    if(n.getRight()!=null)
+	        heightRight = height(n.getRight());
 	    if(heightLeft > heightRight){
 	        return heightLeft+1;
 	    }
