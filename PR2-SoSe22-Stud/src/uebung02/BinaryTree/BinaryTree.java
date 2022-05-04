@@ -43,7 +43,7 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
 		
-		System.out.println(b.height());
+		println(b.height());
 		
 		b.visualize();
 	}
@@ -58,7 +58,7 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
 		
-		System.out.println("PostOrder Test:");
+		println("PostOrder Test:");
 		b.printPostorder();
 	}
 	
@@ -71,7 +71,7 @@ public class BinaryTree implements Tree {
 		b.insert(new IntElement(9));
 		b.insert(new IntElement(11));
 		b.insert(new IntElement(15));
-		System.out.println("testLevelOrder Test:");
+		println("testLevelOrder Test:");
 		b.printLevelorder();
 	
 	}
@@ -246,8 +246,8 @@ public class BinaryTree implements Tree {
 		boolean deleteLeftRef = false;
 		
 		while(!found) {
-			System.out.println((Integer)((IntElement)val).getKey());
-			System.out.println(((Integer)((IntElement)child.getElement()).getKey()));
+			println((Integer)((IntElement)val).getKey());
+			println(((Integer)((IntElement)child.getElement()).getKey()));
 			//search for the element which should be deleted
 			if(((Integer)((IntElement)val).getKey()).equals( ((Integer)((IntElement)child.getElement()).getKey())) ){
 				//break loop
