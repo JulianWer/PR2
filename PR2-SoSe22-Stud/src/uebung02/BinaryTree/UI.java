@@ -56,10 +56,10 @@ public class UI {
 						println("contains not the number");
 					break;
 				case "4":// get max value
-					println("The max value is : " + btree.getMax());
+					println("The max value is : " + (Integer)btree.getMax().getKey());
 					break;
 				case "5":// get min value
-					println("The min value is : " + btree.getMin());
+					println("The min value is : " + (Integer)btree.getMin().getKey());
 					break;
 				case "6": // check if binary tree is empty
 					if (btree.isEmpty()) {
