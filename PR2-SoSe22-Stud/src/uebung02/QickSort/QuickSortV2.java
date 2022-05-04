@@ -1,5 +1,5 @@
 package uebung02.QickSort;
-
+import static gdi.MakeItSimple.*;
 import static org.junit.Assert.assertArrayEquals;
 
 public class QuickSortV2 implements SortInterface {
@@ -12,7 +12,7 @@ public class QuickSortV2 implements SortInterface {
 		
 		
 		for(int i = 0; i < array.length; i++)
-			System.out.print(array[i] + " ");
+			print(array[i] + " ");
 		
 
 	}
