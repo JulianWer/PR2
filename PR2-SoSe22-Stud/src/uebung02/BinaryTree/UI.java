@@ -26,10 +26,10 @@ public class UI {
 		do { // run as long as checkdo is true
 			println("You have the following options to use : ");
 			println(" [1] insert to tree \n [2] insert from file \n [3] contains a node \n [4] get the maximal value \n [5] get the minimal value \n [6] check if empty \n [7] clear the tree \n [8] print the Inorder \n [9] print the Postorder \n [10] print the Preorder \n [11] visualize tree");
-			print(" Type the Number here:");
+			print(" Type the Number here: ");
 			switch (readLine()) { // switch case
 				case "1": // insert
-					print("insert number:");
+					print("insert number: ");
 					boolean newNumbers = true; // create variable newNumbers
 
 					while (newNumbers) { // loop while newNumbers is true
@@ -92,7 +92,7 @@ public class UI {
 			if (inputstr.equalsIgnoreCase("y")) checkdo=true;
 			else checkdo = false;
 		}while(checkdo);
-
+		println("goodbye, thanks for using the tool");
 	}
 	
 	
