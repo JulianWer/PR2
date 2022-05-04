@@ -27,58 +27,6 @@ public class BinaryTree implements Tree {
 	private TreeNode root;
 	private int size = 0;
 
-	// for testing
-	public static void main(String[] args) {
-
-		
-		 
-		 testInorder();
-		//testInorder();
-		//testLevelOrder();
-	}
-	
-	private static void testInorder() {
-		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(new IntElement(10));
-		boolean a2 = b.insert(new IntElement(8));
-		a2 = b.insert(new IntElement(12));
-		b.insert(new IntElement(4));
-		b.insert(new IntElement(9));
-		b.insert(new IntElement(11));
-		b.insert(new IntElement(15));
-		
-		println(b.height());
-		
-		b.visualize();
-	}
-	
-	private static void testPostOrder() {
-		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(new IntElement(10));
-		boolean a2 = b.insert(new IntElement(8));
-		a2 = b.insert(new IntElement(12));
-		b.insert(new IntElement(4));
-		b.insert(new IntElement(9));
-		b.insert(new IntElement(11));
-		b.insert(new IntElement(15));
-		
-		println("PostOrder Test:");
-		b.printPostorder();
-	}
-	
-	private static void testLevelOrder() {
-		BinaryTree b = new BinaryTree();
-		boolean a = b.insert(new IntElement(10));
-		boolean a2 = b.insert(new IntElement(8));
-		a2 = b.insert(new IntElement(12));
-		b.insert(new IntElement(4));
-		b.insert(new IntElement(9));
-		b.insert(new IntElement(11));
-		b.insert(new IntElement(15));
-		println("testLevelOrder Test:");
-		b.printLevelorder();
-	
-	}
 
 	public BinaryTree() {
 		this.root = null;
@@ -87,10 +35,14 @@ public class BinaryTree implements Tree {
 	public BinaryTree(Element rootValue) {
 		this.root = new TreeNode(rootValue);
 	}
-@Override
+
+	/**
+	* Insert method adds an Element to the BinaryTree
+	*  @return boolean if the adding is accepted
+	*/
+	@Override
 	public boolean insert(Element val) {
-		System.out.println(val);
-		// TODO Auto-generated method stub
+
 		TreeNode parent = null;
 		TreeNode child = root;
 		
@@ -118,6 +70,8 @@ public class BinaryTree implements Tree {
 			parent.setRight(new TreeNode(val)); // insert right from parent
 		return true; // i successfully inserted
 	}
+
+	// inserts the data from a file to the binary tree
 	@Override
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
@@ -129,14 +83,15 @@ public class BinaryTree implements Tree {
 		Object file = openInputFile(filename); // opens file for the input
 		while (!isEndOfInputFile(file)) {
 			this.insert(new IntElement (readInt(file))); // read in elements
-			this.size++;
 		}
-		closeInputFile(file);
-		return true;
+		closeInputFile(file); // closes the input File
+		return true; // returns true if the adding is accepted
 	}
+
+	// saves the binary tree data to a file
 	@Override
 	public boolean saveToFile(String filename) {
-		// TODO Auto-generated method stub
+		// FIXME
 		Object output = openOutputFile(filename);
 		while(this.root != null) {
 			this.root.print(); // prints all elements
@@ -145,11 +100,10 @@ public class BinaryTree implements Tree {
 	}
 	@Override
 	public boolean contains(Element val) {
-		// TODO Auto-generated method stub
 		TreeNode parent = null;
 		TreeNode child = root;
 		boolean found = false;
-		boolean deleteLeftRef = false;
+
 		
 		while(!found && child != null) {
 			println((Integer)((IntElement)val).getKey());
@@ -158,35 +112,35 @@ public class BinaryTree implements Tree {
 			if(((Integer)((IntElement)val).getKey()).equals( ((Integer)((IntElement)child.getElement()).getKey())) ){
 				//break loop
 				found = true;
+				continue;
 			}
 			
 			if((Integer)((IntElement)val).getKey() < ((Integer)((IntElement)child.getElement()).getKey())) {
 				//go left
 				parent = child;
 				child = child.getLeft();
-				deleteLeftRef = true;
 				continue;
 			}
 			if((Integer)((IntElement)val).getKey() > ((Integer)((IntElement)child.getElement()).getKey())) {
 				//go Right
 				parent = child;
 				child = child.getRight();
-				deleteLeftRef = false;
+
 			}
 			
-		}if(found) {
+		}
+		if(found) { // returns ture if the element was found , else return false
 			return true;
 		}else
 			return false;
 	}
 	@Override
-	public int size() {
-		// TODO Auto-generated method stub
+	public int size() { // size was counted in the insert method
 		return this.size;
 	}
 	@Override
-	public int height() {
-		// TODO Auto-generated method stub
+	public int height() { //returns the height of the tree ( levels+1)
+		// checks if not empty
 		if(this.isEmpty())
 			return 0;
 		else {
@@ -200,19 +154,18 @@ public class BinaryTree implements Tree {
 	    int heightRight = 0;
 	    
 	    if(n.getLeft()!=null)
-	        heightLeft = height(n.getLeft());
+	        heightLeft = height(n.getLeft()); // recursive call
 	    if(n.getRight()!=null)
 	        heightRight = height(n.getRight());
 	    if(heightLeft > heightRight){
-	        return heightLeft+1;
+	        return heightLeft+1; // levels +1
 	    }
 	    else{
 	        return heightRight+1;
 	    }
 	}
 	@Override
-	public Element getMax() {
-		// TODO Auto-generated method stub
+	public Element getMax() { // returns the max Element
 		TreeNode n = this.root;
 		while (n.getRight() != null) {
 			n = n.getRight();	//go right as long as there are remaining elements
@@ -222,8 +175,7 @@ public class BinaryTree implements Tree {
 	}
 	
 	
-	private TreeNode getMax(TreeNode k) {
-		// TODO Auto-generated method stub
+	private TreeNode getMax(TreeNode k) { // used in remove method
 		TreeNode n = k;
 		while (n.getRight() != null) {
 			n = n.getRight();
@@ -232,8 +184,7 @@ public class BinaryTree implements Tree {
 
 	}
 	@Override
-	public Element getMin() {
-		// TODO Auto-generated method stub
+	public Element getMin() {// returns min element
 		TreeNode n = this.root;
 		while (n.getLeft() != null) {
 			n = n.getLeft();	//go left as long as there are remaining elements
@@ -316,16 +267,15 @@ public class BinaryTree implements Tree {
 		return true;
 	}
 	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+	public boolean isEmpty() { // returns a boolean, checks if the binary tree is empty
 		if (this.root == null)
 			return true;
 		return false;
 	}
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		this.root = null; // clears entire tree
+		this.size = 0; // resets size
 	}
 
 
@@ -355,14 +305,14 @@ public class BinaryTree implements Tree {
 	}
 	@Override
 	public void printInorder() {
-		this.printInorder(this.root);
+		this.printInorder(this.root); // calls private method
 
 	}
 
 	private void printInorder(TreeNode n) {
 		if (n != null) {
-			printInorder(n.getLeft());
-			println((Integer)((IntElement)n.getElement()).getKey());
+			printInorder(n.getLeft()); // recursive call
+			print(" "+(Integer)((IntElement)n.getElement()).getKey()); // prints out
 			printInorder(n.getRight());
 		}
 	}
@@ -377,18 +327,18 @@ public class BinaryTree implements Tree {
 
 			printPostorder(n.getLeft()); // go left
 			printPostorder(n.getRight());
-			println((Integer)((IntElement)n.getElement()).getKey()); // print when the recursion goes back
+			print(" "+(Integer)((IntElement)n.getElement()).getKey()); // print when the recursion goes back
 		}
 
 	}
 	@Override
 	public void printPreorder() {
-		this.printPreorder(this.root);
+		this.printPreorder(this.root);// calls method
 	}
 
 	private void printPreorder(TreeNode n) { // recursive
 		if (n != null) {// tree not empty
-			println((Integer)((IntElement)n.getElement()).getKey());
+			print(" "+(Integer)((IntElement)n.getElement()).getKey());
 			printPreorder(n.getLeft());
 			printPreorder(n.getRight());
 		}
@@ -406,7 +356,7 @@ public class BinaryTree implements Tree {
 				TreeNode n = (TreeNode) queue.leave();
 				if(n == null)
 					return;
-				println((Integer)((IntElement)n.getElement()).getKey());
+				print(" "+(Integer)((IntElement)n.getElement()).getKey());
 				queue.enter(n.getLeft());
 				queue.enter(n.getRight());
 				
@@ -423,6 +373,7 @@ public class BinaryTree implements Tree {
 	}
 	
 	private TreeNode clone (TreeNode root) {
+		// FIXME
 		if(root == null) {
 			return null;
 		}
@@ -438,7 +389,7 @@ public class BinaryTree implements Tree {
 	}
 	@Override
 	public boolean equal(Tree otherTree) {
-		// TODO Auto-generated method stub
+		// FIXME
 		QueueImpl queueTree1 = new QueueImpl();
 		QueueImpl queueTree2 = new QueueImpl();
 		queueTree1.enter(this.root);
@@ -468,12 +419,10 @@ public class BinaryTree implements Tree {
 	}
 	@Override
 	public Tree createTree() {
-		// TODO Auto-generated method stub
 		return new BinaryTree();
 	}
 	@Override
 	public void visualize() {
-		// TODO Auto-generated method stub
 		TreeVisualizer t = new TreeVisualizer();
 		
 		t.draw(root);
