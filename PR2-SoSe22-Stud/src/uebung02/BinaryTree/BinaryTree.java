@@ -186,7 +186,7 @@ public class BinaryTree implements Tree {
 		if(this.isEmpty())
 			return 0;
 		else {
-			TreeNode n = this.root;
+			TreeNode n = this.root;	//calculate the height recursively
 			return height(n);
 		}
 	}
@@ -211,7 +211,7 @@ public class BinaryTree implements Tree {
 		// TODO Auto-generated method stub
 		TreeNode n = this.root;
 		while (n.getRight() != null) {
-			n = n.getRight();
+			n = n.getRight();	//go right as long as there are remaining elements
 		}
 		return (Element) n.getElement();
 
@@ -232,7 +232,7 @@ public class BinaryTree implements Tree {
 		// TODO Auto-generated method stub
 		TreeNode n = this.root;
 		while (n.getLeft() != null) {
-			n = n.getLeft();
+			n = n.getLeft();	//go left as long as there are remaining elements
 		}
 		return (Element) n.getElement();
 	}
@@ -285,7 +285,7 @@ public class BinaryTree implements Tree {
 				return true;
 			}
 		}else {
-			//delete normal node
+			//delete a normal node
 			
 			if(child.getLeft() == null) {
 				//parent is stored in local object partent
