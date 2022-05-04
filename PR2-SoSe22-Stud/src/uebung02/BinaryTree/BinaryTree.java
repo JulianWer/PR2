@@ -152,8 +152,8 @@ public class BinaryTree implements Tree {
 		boolean deleteLeftRef = false;
 		
 		while(!found && child != null) {
-			System.out.println((Integer)((IntElement)val).getKey());
-			System.out.println(((Integer)((IntElement)child.getElement()).getKey()));
+			println((Integer)((IntElement)val).getKey());
+			println(((Integer)((IntElement)child.getElement()).getKey()));
 			//search for the element which should be deleted
 			if(((Integer)((IntElement)val).getKey()).equals( ((Integer)((IntElement)child.getElement()).getKey())) ){
 				//break loop
