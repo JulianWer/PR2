@@ -4,8 +4,8 @@
 package uebung02.QickSort;
 
 /**
- * @author Johannes
- * @author Julian
+ * @author Johannes , Julian ,Selin
+ * @since 2022-04
  */
 public interface SortInterface {
 	

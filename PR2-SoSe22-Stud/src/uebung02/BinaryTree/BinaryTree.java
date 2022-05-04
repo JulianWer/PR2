@@ -16,7 +16,11 @@ import pr2.util.LinkedListI;
 import pr2.util.Queue;
 import pr2.util.QueueImpl;
 import uebung01.UI;
- 
+
+/**
+ * @author Johannes , Julian ,Selin
+ * @since 2022-04
+ */
 
 public class BinaryTree implements Tree {
 

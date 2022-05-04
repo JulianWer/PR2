@@ -2,7 +2,7 @@ package uebung02.QickSort;
 import static gdi.MakeItSimple.*;
 
 /**
- * @author Johannes , Julian
+ * @author Johannes , Julian ,Selin
  * @since 2022-04
  */
 

@@ -2,6 +2,11 @@ package uebung02.QickSort;
 import static gdi.MakeItSimple.*;
 import static org.junit.Assert.assertArrayEquals;
 
+/**
+ * @author Johannes , Julian ,Selin
+ * @since 2022-04
+ */
+
 public class QuickSortV2 implements SortInterface {
 	
 	StatObject so;

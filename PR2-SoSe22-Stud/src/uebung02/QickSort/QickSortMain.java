@@ -2,7 +2,10 @@ package uebung02.QickSort;
 import static gdi.MakeItSimple.*;
 
 import java.lang.reflect.Array;
-
+/**
+ * @author Johannes , Julian ,Selin
+ * @since 2022-04
+ */
 public class QickSortMain {
 
 	public static void main(String[] args) {
