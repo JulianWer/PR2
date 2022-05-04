@@ -93,6 +93,7 @@ public class UI {
 			else checkdo = false;
 		}while(checkdo);
 		println("goodbye, thanks for using the tool");
+		System.exit(0);// exit Program
 	}
 	
 	
