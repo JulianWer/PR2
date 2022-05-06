@@ -36,7 +36,7 @@ public class UI {
 						print("Next number: ");
 						int input = Integer.parseInt(readLine()); // parse the input to an integer
 						btree.insert(new IntElement(input)); // call insert method
-						println("enter another element (y/n) ?");
+						println("Want to enter another element (y/n) ?");
 						String inputstr = readLine(); // check if the user want to type a new number
 						if (!inputstr.equalsIgnoreCase("y"))
 							newNumbers = false;

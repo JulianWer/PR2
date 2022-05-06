@@ -52,11 +52,11 @@ public class BinaryTree implements Tree {
 			parent = child;
 			
 			//if (val.compareTo(child.getElement()) == 0) causes problems 
-			if(((Integer)((IntElement)val).getKey()) == ((Integer)((IntElement)child.getElement()).getKey())) {
+			if (val.compareTo(child.getElement()) == 0) {
 				return false; }// element already in tree, i is not inserted
 			//else if ( val.compareTo(child.getElement()) < 0)
 			
-			else if (((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)child.getElement()).getKey()))
+			else if (val.compareTo(child.getElement()) > 0)
 				child = child.getLeft(); // insert in left tree
 			else
 				child = child.getRight(); // insert in right tree
@@ -66,7 +66,7 @@ public class BinaryTree implements Tree {
 		if (parent == null) // empty tree -> insert first node
 			root = new TreeNode(val);
 		//else if (val.compareTo(parent.getElement()) < 0)
-		else if(((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)parent.getElement()).getKey()))
+		else if(val.compareTo(parent.getElement()) > 0)
 			parent.setLeft(new TreeNode(val)); // insert left from parent
 		else
 			parent.setRight(new TreeNode(val)); // insert right from parent

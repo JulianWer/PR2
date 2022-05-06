@@ -22,7 +22,7 @@ public class IntElement implements Element, Cloneable {
 				return 0;	//identical
 			else if((Integer) element.getKey() > this.key)
 				return 1;	//arg0 is greater
-			else if((Integer) element.getKey() == this.key)
+			else if((Integer) element.getKey() < this.key)
 				return -1;	//arg0 is smaller
 			
 			
@@ -38,7 +38,7 @@ public class IntElement implements Element, Cloneable {
 	@Override
 	public Object getKey() {
 		// TODO Auto-generated method stub
-		return this.key;
+		return (Integer)this.key;
 	}
 	
 	@Override
