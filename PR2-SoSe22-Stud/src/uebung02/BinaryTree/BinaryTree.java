@@ -38,7 +38,8 @@ public class BinaryTree implements Tree {
 
 	/**
 	* Insert method adds an Element to the BinaryTree
-	*  @return boolean if the adding is accepted
+	*  @return true if the adding is accepted
+	 * @return false if the adding is rejected
 	*/
 	@Override
 	//true if inserted 
@@ -77,9 +78,8 @@ public class BinaryTree implements Tree {
 	@Override
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
-		//rueckgabewert bearbeiten
 		if (!isFilePresent(filename)) {
-			println("File not found");
+			println(" File not found! ");
 			return false;
 		}
 		boolean ckeckMulti = true;

@@ -90,10 +90,13 @@ public class UI {
 			String inputstr = readLine();
 			// check if the user want to do something else
 			if (inputstr.equalsIgnoreCase("y")) checkdo=true;
-			else checkdo = false;
+			else{ checkdo = false;
+				println("goodbye, thanks for using the tool");
+				System.exit(0);// exit Program
+				}
+
 		}while(checkdo);
-		println("goodbye, thanks for using the tool");
-		System.exit(0);// exit Program
+
 	}
 	
 	
