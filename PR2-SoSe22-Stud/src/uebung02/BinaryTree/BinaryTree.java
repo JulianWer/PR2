@@ -41,6 +41,8 @@ public class BinaryTree implements Tree {
 	*  @return boolean if the adding is accepted
 	*/
 	@Override
+	//true if inserted 
+	// false if error occurred
 	public boolean insert(Element val) {
 
 		TreeNode parent = null;
@@ -57,7 +59,7 @@ public class BinaryTree implements Tree {
 			else if (((Integer)((IntElement)val).getKey()) < ((Integer)((IntElement)child.getElement()).getKey()))
 				child = child.getLeft(); // insert in left tree
 			else
-				child = child.getRight(); // insert in right tre
+				child = child.getRight(); // insert in right tree
 			
 		}
 		this.size += 1; // count size
@@ -75,6 +77,7 @@ public class BinaryTree implements Tree {
 	@Override
 	public boolean insertFromFile(String filename) {
 		// TODO Auto-generated method stub
+		//rueckgabewert bearbeiten
 		if (!isFilePresent(filename)) {
 			println("File not found");
 			return false;
@@ -125,14 +128,12 @@ public class BinaryTree implements Tree {
 				//go Right
 				parent = child;
 				child = child.getRight();
-
+				continue;
 			}
 			
 		}
-		if(found) { // returns ture if the element was found , else return false
-			return true;
-		}else
-			return false;
+		return found;
+		
 	}
 	@Override
 	public int size() { // size was counted in the insert method
@@ -266,12 +267,12 @@ public class BinaryTree implements Tree {
 	
 		return true;
 	}
+	
 	@Override
 	public boolean isEmpty() { // returns a boolean, checks if the binary tree is empty
-		if (this.root == null)
-			return true;
-		return false;
+		return (this.root == null);
 	}
+	
 	@Override
 	public void clear() {
 		this.root = null; // clears entire tree
@@ -316,6 +317,7 @@ public class BinaryTree implements Tree {
 			printInorder(n.getRight());
 		}
 	}
+	
 	@Override
 	public void printPostorder() {
 		printPostorder(this.root);

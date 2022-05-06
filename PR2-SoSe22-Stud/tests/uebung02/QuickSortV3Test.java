@@ -1,8 +1,8 @@
 package uebung02;
 
-import pr2.uebung01.StatObjectSort;
-import pr2.uebung02.SortInterface;
+
 import uebung02.QickSort.QuickSortV3;
+import uebung02.QickSort.SortInterface;
 import uebung02.QickSort.StatObject;
 
 import org.junit.Before;

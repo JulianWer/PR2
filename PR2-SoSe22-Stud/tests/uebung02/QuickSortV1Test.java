@@ -62,17 +62,17 @@ public class QuickSortV1Test {
 		so = new StatObject();
 		sm.sort(F1, so);
 		assertThat(F1, is(new int[] { 2, 3, 4, 6, 7, 9, 10, 11, 14, 17, 19, 20, 23, 29, 32, 33, 38, 44, 55, 67, 82 }));
-//		assertEquals(122, so.getcomparisonCounter());
-//		assertEquals(23, so.getswapCounter());
-//		assertEquals(20, so.getrunCounter());
+		assertEquals(122, so.getcomparisonCounter());
+		assertEquals(23, so.getswapCounter());
+		assertEquals(20, so.getrunCounter());
 		
 		so = new StatObject();
 		sm.sort(F2, so);
 		assertThat(F2,
 				is(new int[] { 2, 3, 4, 6, 7, 9, 10, 10, 10, 11, 14, 17, 19, 20, 23, 29, 32, 33, 38, 44, 55, 67, 82 }));
-//		assertEquals(142, so.getcomparisonCounter());
-//		assertEquals(29, so.getswapCounter());
-//		assertEquals(22, so.getrunCounter());
+		assertEquals(142, so.getcomparisonCounter());
+		assertEquals(29, so.getswapCounter());
+		assertEquals(22, so.getrunCounter());
 		
 		so = new StatObject();
 		sm.sort(F3, so);
