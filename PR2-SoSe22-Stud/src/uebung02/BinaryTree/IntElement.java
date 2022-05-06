@@ -27,9 +27,11 @@ public class IntElement implements Element, Cloneable {
 			
 			
 		}
-		//0 for identical
-		//1 if arg0 > this
-		//-1 if arg0 < this
+		/**
+		 * @return 0 for identical
+		 * @return 1 if arg0 > this
+		 * @return -1 if arg0 < this
+		 * */
 		return -1;
 	}
 

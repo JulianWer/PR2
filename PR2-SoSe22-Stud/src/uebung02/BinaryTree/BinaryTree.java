@@ -82,13 +82,13 @@ public class BinaryTree implements Tree {
 			println("File not found");
 			return false;
 		}
-
+		boolean ckeckMulti = true;
 		Object file = openInputFile(filename); // opens file for the input
 		while (!isEndOfInputFile(file)) {
-			this.insert(new IntElement (readInt(file))); // read in elements
+			if(!this.insert(new IntElement (readInt(file)))){ckeckMulti = false;}; // read in elements
 		}
 		closeInputFile(file); // closes the input File
-		return true; // returns true if the adding is accepted
+		return ckeckMulti; // returns true if the adding is accepted
 	}
 
 	// saves the binary tree data to a file
