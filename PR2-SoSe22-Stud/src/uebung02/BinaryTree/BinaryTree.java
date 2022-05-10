@@ -400,15 +400,15 @@ public class BinaryTree implements Tree {
 
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof Tree))
-        	return false;
+        if (!(other instanceof Tree))
+            return false;
         return this.equal((Tree) other);
-    }	
+    }
 
     @Override
     public boolean equal(Tree otherTree) {
-    	if(!(otherTree instanceof BinaryTree))
-    		return false;
+        if (!(otherTree instanceof BinaryTree))
+            return false;
         QueueImpl queueTree1 = new QueueImpl();
         QueueImpl queueTree2 = new QueueImpl();
         queueTree1.enter(this.root);
