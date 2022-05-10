@@ -82,8 +82,6 @@ public class UI {
                         } else
                             println("tree is not initialized please create a new tree");
                     }
-
-
                     break;
                 case "2":// insert form file
                     print("Which tree? (1/2)");
@@ -152,11 +150,27 @@ public class UI {
                     break;
 
                 case "7":// clear binary tree
-                    println("The max value is : " + (Integer) btree.getMax().getKey());
+                    print("Which tree? (1/2) ");
+                    line = readLine();
+                    if (line.equals("1"))
+                        println("The max value is : " + (Integer) btree.getMax().getKey());
+                    else if (line.equals("2") && btree2 != null)
+                        println("The max value is : " + (Integer) btree2.getMax().getKey());
+                    else
+                        println("tree is not initialized please create a new tree");
                     break;
+
                 case "8":// print inorder
-                    println("The min value is : " + (Integer) btree.getMin().getKey());
+                    print("Which tree? (1/2) ");
+                    line = readLine();
+                    if (line.equals("1"))
+                        println("The min value is : " + (Integer) btree.getMin().getKey());
+                    else if (line.equals("2") && btree2 != null)
+                        println("The min value is : " + (Integer) btree2.getMin().getKey());
+                    else
+                        println("tree is not initialized please create a new tree");
                     break;
+
                 case "9":// print postorde
                     print("Which tree? (1/2) ");
                     line = readLine();
