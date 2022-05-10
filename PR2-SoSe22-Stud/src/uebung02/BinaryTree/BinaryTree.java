@@ -114,8 +114,6 @@ public class BinaryTree implements Tree {
 
 
         while (!found && child != null) {
-            println((Integer) ((IntElement) val).getKey());
-            println(((Integer) ((IntElement) child.getElement()).getKey()));
             //search for the element which should be deleted
             if (val.compareTo(child.getElement()) == 0) {
                 //break loop
@@ -203,34 +201,33 @@ public class BinaryTree implements Tree {
 
     @Override
     public boolean remove(Element val) {
-        // TODO Auto-generated method stub
         //first to element has to be found, then all references have to be refreshed
         TreeNode parent = null;
         TreeNode child = root;
         boolean found = false;
-        boolean deleteLeftRef = false;
 
+        if (!contains(val)) {
+            println("Element does not exist");
+            return false;
+        }
         while (!found) {
-            println((Integer) ((IntElement) val).getKey());
-            println(((Integer) ((IntElement) child.getElement()).getKey()));
             //search for the element which should be deleted
-            if (((Integer) ((IntElement) val).getKey()).equals(((Integer) ((IntElement) child.getElement()).getKey()))) {
+            if (val.compareTo(child.getElement()) == 0) {
                 //break loop
                 found = true;
             }
 
-            if ((Integer) ((IntElement) val).getKey() < ((Integer) ((IntElement) child.getElement()).getKey())) {
+            if (val.compareTo(child.getElement()) > 0) {
                 //go left
                 parent = child;
                 child = child.getLeft();
-                deleteLeftRef = true;
                 continue;
             }
-            if ((Integer) ((IntElement) val).getKey() > ((Integer) ((IntElement) child.getElement()).getKey())) {
+            if (val.compareTo(child.getElement()) < 0) {
                 //go Right
                 parent = child;
                 child = child.getRight();
-                deleteLeftRef = false;
+
             }
 
         }
@@ -291,7 +288,6 @@ public class BinaryTree implements Tree {
 
     @Override
     public Tree addAll(Tree otherTree) {
-        // TODO Auto-generated method stub
         TreeNode child = ((BinaryTree) otherTree).root;
         if (child != null) {
             this.insert(child.getElement());
@@ -378,7 +374,6 @@ public class BinaryTree implements Tree {
 
     @Override
     public Tree clone() {
-        // TODO Auto-generated method stub
         BinaryTree treeClone = new BinaryTree();
         treeClone.root = clone(this.root);
 
@@ -398,7 +393,7 @@ public class BinaryTree implements Tree {
     }
 
     @Override
-    public boolean equals(Object other) { // TODO
+    public boolean equals(Object other) {
         return false;
     }
 
