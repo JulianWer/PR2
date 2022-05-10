@@ -81,14 +81,14 @@ public class BinaryTree implements Tree {
     @Override
     public boolean insertFromFile(String filename) {
         boolean insertedElement = false;
-        ;
         if (isFilePresent(filename)) {
-            int[] elements = readIntegerArray(filename);
-            for (int element : elements)
-                if (this.insert(new IntElement(element)))
-                    insertedElement = true;
+            int[] elements = readIntegerArray(filename); // reads the file into an array (elements)
+            for (int element : elements) { // for each loop for elements
+                if (this.insert(new IntElement(element))) // if the element is added correctly
+                    insertedElement = true; // set insertedElement to true
+            }
         } else
-            println(" File not found.");
+            println(" File not found."); // if the file is not present / wrong path
 
         return insertedElement; //successful inserted elements from file
     }
@@ -96,52 +96,48 @@ public class BinaryTree implements Tree {
     // saves the binary tree data to a file
     @Override
     public boolean saveToFile(String filename) {
-        int[] array = new int[this.size()];
-        if (saveToFile(this.root, array, 0) == 0)
+        int[] array = new int[this.size()]; // init array to save in
+        if (saveToFile(this.root, array, 0) == 0) // if the root is empty return false
             return false;
-        saveIntegerArray(array, filename);
-        return true;
+        saveIntegerArray(array, filename); // saves the array to a file
+        return true; // return ture if everything is accepted
     }
 
-    private int saveToFile(TreeNode root, int[] array, int index) {
-        if (root == null) {
-            return index;
+    private int saveToFile(TreeNode root, int[] array, int index) { // fills the array with the elements
+        if (root == null) { // if the root is empty return false
+            return index; // return 0
         }
-        array[index++] = (Integer) root.getKey();
-        index = saveToFile(root.getLeft(), array, index);
-        index = saveToFile(root.getRight(), array, index);
-        return index;
+        array[index++] = (Integer) root.getKey(); // adds to array a key and increments the index
+        index = saveToFile(root.getLeft(), array, index); // go recursive left
+        index = saveToFile(root.getRight(), array, index);// go recursive right
+        return index; // returns the end index
     }
 
     @Override
     public boolean contains(Element val) {
-        TreeNode parent = null;
-        TreeNode child = root;
-        boolean found = false;
+        TreeNode child = root; // child ist the root
+        boolean found = false; // init found to false
 
         while (!found && child != null) {
             //search for the element which should be deleted
-            if (val.compareTo(child.getElement()) == 0) {
+            if (val.compareTo(child.getElement()) == 0) { // if 0, the elements are equal
                 //break loop
-                found = true;
-                continue;
+                found = true; // set found to true
+                continue; // jump to the top of the loop
             }
-
-            if (val.compareTo(child.getElement()) > 0) {
+            if (val.compareTo(child.getElement()) > 0) { // if 1, the child is bigger than the val
                 //go left
-                parent = child;
-                child = child.getLeft();
+                child = child.getLeft(); // go the left branch
                 continue;
             }
-            if (val.compareTo(child.getElement()) < 0) {
+            if (val.compareTo(child.getElement()) < 0) {// if 1, the child is smaller than the val
                 //go Right
-                parent = child;
-                child = child.getRight();
+                child = child.getRight(); // go the right branch
                 continue;
             }
 
         }
-        return found;
+        return found; // return found
 
     }
 
@@ -153,11 +149,11 @@ public class BinaryTree implements Tree {
     @Override
     public int height() { //returns the height of the tree ( levels+1)
         // checks if not empty
-        if (this.isEmpty())
+        if (this.isEmpty()) // if the root is empty return 0
             return 0;
         else {
             TreeNode n = this.root;    //calculate the height recursively
-            return height(n);
+            return height(n); // call the private method
         }
     }
 
@@ -169,7 +165,7 @@ public class BinaryTree implements Tree {
             heightLeft = height(n.getLeft()); // recursive call
         if (n.getRight() != null)
             heightRight = height(n.getRight());
-        if (heightLeft > heightRight) {
+        if (heightLeft > heightRight) { // checks which branch is longer
             return heightLeft + 1; // levels +1
         } else {
             return heightRight + 1;
