@@ -392,7 +392,8 @@ public class BinaryTree implements Tree {
             return null;
         }
 
-        TreeNode nodeClone = new TreeNode(this.root.getElement());
+        TreeNode nodeClone = new TreeNode(new IntElement((Integer)((IntElement)root.getElement()).getKey()));
+        //TreeNode nodeClone = new TreeNode(this.root.getElement());
         nodeClone.right = clone(this.root.getRight());
         nodeClone.right = clone(this.root.getLeft());
         return nodeClone;
