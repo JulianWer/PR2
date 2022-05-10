@@ -26,15 +26,15 @@ import uebung01.UI;
 public class BinaryTree implements Tree {
 
     private TreeNode root;
-    private int size = 0;
+    private int size = 0; // init attribute of size is 0 for the beginning
 
 
-    public BinaryTree() {
+    public BinaryTree() { // without parameter, root is null
         this.root = null;
     }
 
-    public BinaryTree(Element rootValue) {
-        this.root = new TreeNode(rootValue);
+    public BinaryTree(Element rootValue) { // parameter to set the first element
+        this.root = new TreeNode(rootValue); // creates new TreeNode (new Tree)
     }
 
     /**
@@ -160,7 +160,6 @@ public class BinaryTree implements Tree {
     private int height(TreeNode n) {
         int heightLeft = 0;
         int heightRight = 0;
-
         if (n.getLeft() != null)
             heightLeft = height(n.getLeft()); // recursive call
         if (n.getRight() != null)
@@ -178,17 +177,17 @@ public class BinaryTree implements Tree {
         while (n.getRight() != null) {
             n = n.getRight();    //go right as long as there are remaining elements
         }
-        return (Element) n.getElement();
+        return n.getElement(); // gets the last element right
 
     }
 
 
     private TreeNode getMax(TreeNode k) { // used in remove method
-        TreeNode n = k;
-        while (n.getRight() != null) {
+        TreeNode n = k; // set a new treenode to k
+        while (n.getRight() != null) { // loop as long as the getRight is not null write the get right to n
             n = n.getRight();
         }
-        return n;
+        return n; // return n
 
     }
 
@@ -198,7 +197,7 @@ public class BinaryTree implements Tree {
         while (n.getLeft() != null) {
             n = n.getLeft();    //go left as long as there are remaining elements
         }
-        return (Element) n.getElement();
+        return n.getElement(); // gets the last element left
     }
 
     @Override
