@@ -248,9 +248,9 @@ public class BinaryTree implements Tree {
                 int remember = (Integer) ((IntElement) k.getElement()).getKey();
                 remove(k.getElement());
                 ((IntElement) this.root.getElement()).setKey(remember);
+                
 
-
-                return true;
+                
             }
         } else {
             //delete a normal node
@@ -276,7 +276,7 @@ public class BinaryTree implements Tree {
             }
 
         }
-
+        this.size--;
         return true;
     }
 
