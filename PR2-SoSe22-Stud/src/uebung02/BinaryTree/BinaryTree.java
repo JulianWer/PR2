@@ -405,7 +405,6 @@ public class BinaryTree implements Tree {
 
     @Override
     public boolean equal(Tree otherTree) {
-        // FIXME
         QueueImpl queueTree1 = new QueueImpl();
         QueueImpl queueTree2 = new QueueImpl();
         queueTree1.enter(this.root);
@@ -415,7 +414,7 @@ public class BinaryTree implements Tree {
             TreeNode n2 = (TreeNode) queueTree2.leave();
 
             if (n1 != null && n2 != null) {
-                if (n1.getElement() != n2.getElement())
+                if (((IntElement)n1.getElement()).compareTo(n2.getElement()) != 0)
                     return false;
             }
             if (n1 != null) {
