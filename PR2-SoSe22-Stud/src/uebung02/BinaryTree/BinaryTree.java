@@ -97,7 +97,8 @@ public class BinaryTree implements Tree {
     @Override
     public boolean saveToFile(String filename) {
         int[] array = new int[this.size()];
-        saveToFile(this.root, array, 0);
+        if (saveToFile(this.root, array, 0) == 0)
+            return false;
         saveIntegerArray(array, filename);
         return true;
     }
@@ -117,7 +118,6 @@ public class BinaryTree implements Tree {
         TreeNode parent = null;
         TreeNode child = root;
         boolean found = false;
-
 
         while (!found && child != null) {
             //search for the element which should be deleted
@@ -391,7 +391,7 @@ public class BinaryTree implements Tree {
             return null;
         }
 
-        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement)root.getElement()).getKey()));
+        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey()));
         //TreeNode nodeClone = new TreeNode(this.root.getElement());
         nodeClone.right = clone(root.getRight());
         nodeClone.left = clone(root.getLeft());
