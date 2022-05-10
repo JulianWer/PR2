@@ -436,32 +436,29 @@ public class BinaryTree implements Tree {
     public boolean equal(Tree otherTree) {
         if (!(otherTree instanceof BinaryTree))
             return false;
-        QueueImpl queueTree1 = new QueueImpl();
-        QueueImpl queueTree2 = new QueueImpl();
-        queueTree1.enter(this.root);
-        queueTree2.enter(((BinaryTree) otherTree).root);
-        while (!queueTree1.isEmpty() && !queueTree2.isEmpty()) {
-            TreeNode n1 = (TreeNode) queueTree1.leave();
-            TreeNode n2 = (TreeNode) queueTree2.leave();
-
-            if (n1 != null && n2 != null) {
-                if (((IntElement) n1.getElement()).compareTo(n2.getElement()) != 0)
-                    return false;
-            }
-            if (n1 != null) {
-                queueTree1.enter(n1.getLeft());
-                queueTree1.enter(n1.getRight());
-            }
-            if (n2 != null) {
-                queueTree2.enter(n2.getLeft());
-                queueTree2.enter(n2.getRight());
-            }
-
-
+        int currentTreeElements[] = this.convertTreeToArray(this);
+        int otherTreeElements[] = ((BinaryTree)otherTree).convertTreeToArray((BinaryTree)otherTree);
+        
+        if(currentTreeElements.length != otherTreeElements.length)
+        	return false;
+        
+        for(int i : currentTreeElements) {
+        	boolean found = false;
+        	for(int i2 : otherTreeElements) {
+        		if(i == i2)
+        			found = true;
+        	}
+        	if(!found)
+        		return false;
         }
-        if (queueTree1.isEmpty() ^ queueTree2.isEmpty())
-            return false;
-        return true;
+		return true;
+       
+    }
+    
+    private int[] convertTreeToArray(Tree t) {
+    	 int[] array = new int[t.size()];
+    	 saveToFile(((BinaryTree)t).root, array, 0);
+         return array;
     }
 
     @Override
