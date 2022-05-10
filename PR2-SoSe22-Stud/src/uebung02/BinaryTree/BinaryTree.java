@@ -106,8 +106,8 @@ public class BinaryTree implements Tree {
         if (root == null) {
             return index;
         }
-        index = saveToFile(root.getLeft(), array, index);
         array[index++] = (Integer) root.getKey();
+        index = saveToFile(root.getLeft(), array, index);
         index = saveToFile(root.getRight(), array, index);
         return index;
     }
@@ -248,9 +248,8 @@ public class BinaryTree implements Tree {
                 int remember = (Integer) ((IntElement) k.getElement()).getKey();
                 remove(k.getElement());
                 ((IntElement) this.root.getElement()).setKey(remember);
-                
 
-                
+
             }
         } else {
             //delete a normal node
@@ -392,7 +391,7 @@ public class BinaryTree implements Tree {
             return null;
         }
 
-        TreeNode nodeClone = new TreeNode(new IntElement((Integer)((IntElement)root.getElement()).getKey()));
+        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey()));
         //TreeNode nodeClone = new TreeNode(this.root.getElement());
         nodeClone.right = clone(this.root.getRight());
         nodeClone.right = clone(this.root.getLeft());
@@ -419,7 +418,7 @@ public class BinaryTree implements Tree {
             TreeNode n2 = (TreeNode) queueTree2.leave();
 
             if (n1 != null && n2 != null) {
-                if (((IntElement)n1.getElement()).compareTo(n2.getElement()) != 0)
+                if (((IntElement) n1.getElement()).compareTo(n2.getElement()) != 0)
                     return false;
             }
             if (n1 != null) {
