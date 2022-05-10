@@ -246,10 +246,8 @@ public class BinaryTree implements Tree {
                 //replace the root with biggest element from left tree
                 TreeNode k = getMax(child.getLeft());
                 int remember = (Integer) ((IntElement) k.getElement()).getKey();
-                remove(k.getElement());
-                ((IntElement) this.root.getElement()).setKey(remember);
-
-
+                remove(k.getElement()); // recursive call
+                ((IntElement) this.root.getElement()).setKey(remember); // recursive backwards
             }
         } else {
             //delete a normal node
@@ -292,25 +290,23 @@ public class BinaryTree implements Tree {
 
 
     @Override
-    public Tree addAll(Tree otherTree) {
+    public Tree addAll(Tree otherTree) { // adds all elements of otherTree to currentTree
         TreeNode child = ((BinaryTree) otherTree).root;
-        if (child != null) {
-            this.insert(child.getElement());
-            addAll(child.getLeft(), this);
+        if (child != null) { // when child is not empty
+            this.insert(child.getElement()); // adds element
+            addAll(child.getLeft(), this); // calls the private method for left and right
             addAll(child.getRight(), this);
         }
-
-
-        return this;
+        return this; // returns the Tree
     }
 
     private void addAll(TreeNode n, BinaryTree b) {
-        if (n != null) {
-            b.insert(n.getElement());
-            if (n.getLeft() != null)
-                addAll(n.getLeft(), b);
-            if (n.getRight() != null)
-                addAll(n.getRight(), b);
+        if (n != null) { // if the TreeNode is not null
+            b.insert(n.getElement()); // add an element to the tree (this)
+            if (n.getLeft() != null) // when the left side is not null
+                addAll(n.getLeft(), b); // recursive call for the left side of each element
+            if (n.getRight() != null) // when the right side is not null
+                addAll(n.getRight(), b);// recursive call for the right side of each element
         }
 
     }
@@ -364,14 +360,14 @@ public class BinaryTree implements Tree {
     }
 
     private void printLevelorder(TreeNode k) {
-        QueueImpl queue = new QueueImpl();
-        queue.enter(k);
-        while (queue != null) {
+        QueueImpl queue = new QueueImpl(); // init queue
+        queue.enter(k); // adds k to queue
+        while (queue != null) { // go in the while when queue is not empty
             TreeNode n = (TreeNode) queue.leave();
-            if (n == null)
+            if (n == null) // only when n is null, return
                 return;
-            print(" " + (Integer) ((IntElement) n.getElement()).getKey());
-            queue.enter(n.getLeft());
+            print(" " + (Integer) ((IntElement) n.getElement()).getKey()); // print out with recursion
+            queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
             queue.enter(n.getRight());
 
         }
@@ -380,52 +376,47 @@ public class BinaryTree implements Tree {
     @Override
     public Tree clone() {
         BinaryTree treeClone = new BinaryTree();
-        treeClone.root = clone(this.root);
-
+        treeClone.root = clone(this.root); // calls the private method with clone(this.root)
         return treeClone;
     }
 
     private TreeNode clone(TreeNode root) {
-        // FIXME
-        if (root == null) {
+        if (root == null) { // if root is null then return null
             return null;
         }
-
-        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey()));
+        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey())); // gets each element from root
         //TreeNode nodeClone = new TreeNode(this.root.getElement());
-        nodeClone.right = clone(root.getRight());
+        nodeClone.right = clone(root.getRight()); // recursive call for both sides
         nodeClone.left = clone(root.getLeft());
-        return nodeClone;
+        return nodeClone; // returns the cloned root
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Tree))
+    public boolean equals(Object other) { // compares structure and values
+        if (!(other instanceof Tree)) // if the Object is no instance of the Tree and the BinaryTree then return false
             return false;
         if (!(other instanceof BinaryTree))
             return false;
         QueueImpl queueTree1 = new QueueImpl();
         QueueImpl queueTree2 = new QueueImpl();
-        queueTree1.enter(this.root);
-        queueTree2.enter(((BinaryTree) other).root);
-        while (!queueTree1.isEmpty() && !queueTree2.isEmpty()) {
-            TreeNode n1 = (TreeNode) queueTree1.leave();
+        queueTree1.enter(this.root); // enter root to queue 1
+        queueTree2.enter(((BinaryTree) other).root); // enter the root of other to queue 2
+        while (!queueTree1.isEmpty() && !queueTree2.isEmpty()) { // loop while the queues are not empty
+            TreeNode n1 = (TreeNode) queueTree1.leave(); // write elements from the queue in a new treenode
             TreeNode n2 = (TreeNode) queueTree2.leave();
 
-            if (n1 != null && n2 != null) {
-                if (((IntElement) n1.getElement()).compareTo(n2.getElement()) != 0)
+            if (n1 != null && n2 != null) { // if the treenodes are both not null
+                if (((IntElement) n1.getElement()).compareTo(n2.getElement()) != 0) // compare n1 and n2 whether they are not equal, return false
                     return false;
             }
-            if (n1 != null) {
-                queueTree1.enter(n1.getLeft());
+            if (n1 != null) { // go through the elements of n1 and add them to the queue 1
+                queueTree1.enter(n1.getLeft()); // get the left and the right node of n1
                 queueTree1.enter(n1.getRight());
             }
             if (n2 != null) {
-                queueTree2.enter(n2.getLeft());
+                queueTree2.enter(n2.getLeft());// get the left and the right node of n2
                 queueTree2.enter(n2.getRight());
             }
-
-
         }
         if (queueTree1.isEmpty() ^ queueTree2.isEmpty())
             return false;
@@ -433,44 +424,44 @@ public class BinaryTree implements Tree {
     }
 
     @Override
-    public boolean equal(Tree otherTree) {
+    public boolean equal(Tree otherTree) { // compares the values
         if (!(otherTree instanceof BinaryTree))
             return false;
-        int currentTreeElements[] = this.convertTreeToArray(this);
-        int otherTreeElements[] = ((BinaryTree)otherTree).convertTreeToArray((BinaryTree)otherTree);
-        
-        if(currentTreeElements.length != otherTreeElements.length)
-        	return false;
-        
-        for(int i : currentTreeElements) {
-        	boolean found = false;
-        	for(int i2 : otherTreeElements) {
-        		if(i == i2)
-        			found = true;
-        	}
-        	if(!found)
-        		return false;
+        int currentTreeElements[] = this.convertTreeToArray(this); // convert the current tree to an array
+        int otherTreeElements[] = ((BinaryTree) otherTree).convertTreeToArray((BinaryTree) otherTree); // convert the otherTree to an array
+
+        if (currentTreeElements.length != otherTreeElements.length) // if both arrays have not the same length return false
+            return false;
+
+        //search the equal values in both trees
+        for (int i : currentTreeElements) { // for each loop for the first array
+            boolean found = false; // set found boolean to false
+            for (int i2 : otherTreeElements) { // for each loop for the second array
+                if (i == i2) // compare one value of array 1 with all values from array 2
+                    found = true; // if one is equal set found to true
+            }
+            if (!found) // if one value is not in the other array return false
+                return false;
         }
-		return true;
-       
+        return true; // at the end return true, because all elements are equal
+
     }
-    
-    private int[] convertTreeToArray(Tree t) {
-    	 int[] array = new int[t.size()];
-    	 saveToFile(((BinaryTree)t).root, array, 0);
-         return array;
+
+    private int[] convertTreeToArray(Tree t) { // converts a tree to an array
+        int[] array = new int[t.size()];
+        saveToFile(((BinaryTree) t).root, array, 0); // calls method saveToFile  (private) writes the elements into the array
+        return array; // return the array
     }
 
     @Override
     public Tree createTree() {
-        return new BinaryTree();
+        return new BinaryTree(); // creates a new BinaryTree
     }
 
     @Override
     public void visualize() {
-        TreeVisualizer t = new TreeVisualizer();
-
-        t.draw(root);
+        TreeVisualizer t = new TreeVisualizer(); // visualizes a tree
+        t.draw(root); // draw the root to the window
 
     }
 
