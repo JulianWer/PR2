@@ -4,8 +4,9 @@ import static gdi.MakeItSimple.isEndOfInputFile;
 import static gdi.MakeItSimple.isFilePresent;
 import static gdi.MakeItSimple.openInputFile;
 import static gdi.MakeItSimple.println;
-import static gdi.MakeItSimple.*;
+
 import static pr2.util.Queue.*;
+import static pr.MakeItSimple.*;
 
 import graphvisualizer.TreeVisualizer;
 
@@ -27,29 +28,7 @@ public class BinaryTree implements Tree {
     private TreeNode root;
     private int size = 0;
 
-    //test
-    public static void main(String[] args) {
-        BinaryTree b = new BinaryTree();
-        b.insert(new IntElement(10));
-        b.insert(new IntElement(8));
-        b.insert(new IntElement(12));
-        b.insert(new IntElement(13));
-        b.insert(new IntElement(11));
-        b.insert(new IntElement(9));
-        b.insert(new IntElement(4));
 
-        BinaryTree c = new BinaryTree();
-        c.insert(new IntElement(10));
-        c.insert(new IntElement(8));
-        c.insert(new IntElement(12));
-        c.insert(new IntElement(13));
-        c.insert(new IntElement(11));
-        c.insert(new IntElement(9));
-        c.insert(new IntElement(4));
-        b.saveToFile("C:\\Users\\Johannes\\Desktop\\tree.txt");
-        print(b.equal(c));
-        b.visualize();
-    }
     public BinaryTree() {
         this.root = null;
     }
@@ -101,45 +80,37 @@ public class BinaryTree implements Tree {
     // inserts the data from a file to the binary tree
     @Override
     public boolean insertFromFile(String filename) {
-        if (!isFilePresent(filename)) {
-            println(" File not found! ");
-            return false;
-        }
-        boolean ckeckMulti = true;
-        Object file = openInputFile(filename); // opens file for the input
-        while (!isEndOfInputFile(file)) {
-            if (!this.insert(new IntElement(readInt(file)))) {
-                ckeckMulti = false;
-            }
-            ; // read in elements
-        }
-        closeInputFile(file); // closes the input File
-        return ckeckMulti; // returns true if the adding is accepted
+        boolean insertedElement = false;
+        ;
+        if (isFilePresent(filename)) {
+            int[] elements = readIntegerArray(filename);
+            for (int element : elements)
+                if (this.insert(new IntElement(element)))
+                    insertedElement = true;
+        } else
+            println(" File not found.");
+
+        return insertedElement; //successful inserted elements from file
     }
 
-    // saves the binary tree data to a file
     // saves the binary tree data to a file
     @Override
     public boolean saveToFile(String filename) {
-        // FIXME
-        int count = 0;
-        int elements[] = new int[this.size];
-        QueueImpl queue = new QueueImpl();
-        queue.enter(this.root);
-
-        while (queue != null ) {
-            TreeNode n = (TreeNode) queue.leave();
-            if(n != null) {
-                elements[count] = (Integer) ((IntElement) n.getElement()).getKey();
-                queue.enter(n.getLeft());
-                queue.enter(n.getRight());
-            }
-        }
-        saveIntegerArray(elements, filename);
+        int[] array = new int[this.size()];
+        saveToFile(this.root, array, 0);
+        saveIntegerArray(array, filename);
         return true;
     }
 
-
+    private int saveToFile(TreeNode root, int[] array, int index) {
+        if (root == null) {
+            return index;
+        }
+        index = saveToFile(root.getLeft(), array, index);
+        array[index++] = (Integer) root.getKey();
+        index = saveToFile(root.getRight(), array, index);
+        return index;
+    }
 
     @Override
     public boolean contains(Element val) {
