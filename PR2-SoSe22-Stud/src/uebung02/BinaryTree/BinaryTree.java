@@ -27,7 +27,29 @@ public class BinaryTree implements Tree {
     private TreeNode root;
     private int size = 0;
 
+    //test
+    public static void main(String[] args) {
+        BinaryTree b = new BinaryTree();
+        b.insert(new IntElement(10));
+        b.insert(new IntElement(8));
+        b.insert(new IntElement(12));
+        b.insert(new IntElement(13));
+        b.insert(new IntElement(11));
+        b.insert(new IntElement(9));
+        b.insert(new IntElement(4));
 
+        BinaryTree c = new BinaryTree();
+        c.insert(new IntElement(10));
+        c.insert(new IntElement(8));
+        c.insert(new IntElement(12));
+        c.insert(new IntElement(13));
+        c.insert(new IntElement(11));
+        c.insert(new IntElement(9));
+        c.insert(new IntElement(4));
+        b.saveToFile("C:\\Users\\Johannes\\Desktop\\tree.txt");
+        print(b.equal(c));
+        b.visualize();
+    }
     public BinaryTree() {
         this.root = null;
     }
@@ -96,15 +118,28 @@ public class BinaryTree implements Tree {
     }
 
     // saves the binary tree data to a file
+    // saves the binary tree data to a file
     @Override
     public boolean saveToFile(String filename) {
         // FIXME
-        Object output = openOutputFile(filename);
-        while (this.root != null) {
-            this.root.print(); // prints all elements
+        int count = 0;
+        int elements[] = new int[this.size];
+        QueueImpl queue = new QueueImpl();
+        queue.enter(this.root);
+
+        while (queue != null ) {
+            TreeNode n = (TreeNode) queue.leave();
+            if(n != null) {
+                elements[count] = (Integer) ((IntElement) n.getElement()).getKey();
+                queue.enter(n.getLeft());
+                queue.enter(n.getRight());
+            }
         }
-        return false;
+        saveIntegerArray(elements, filename);
+        return true;
     }
+
+
 
     @Override
     public boolean contains(Element val) {
