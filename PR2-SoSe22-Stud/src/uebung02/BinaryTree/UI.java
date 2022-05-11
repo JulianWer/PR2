@@ -109,26 +109,32 @@ public class UI {
                    print("insert number: ");
                    boolean newNumbers = true; // create variable newNumbers
                    while (newNumbers) { // loop while newNumbers is true
-                            String inputstr = "";
-                           print("Next number: ");
-                           int input = readInt(); // parse the input to an integer
-                           btree.insert(new IntElement(input)); // call insert method
-                           println("Want to enter another element (y/n) ?");
-                           while(inputstr.isEmpty() || inputstr.isBlank())
-                               inputstr = readLine();
+                       String inputstr = "";
+                       print("Next number: ");
+                       int input = readInt(); // parse the input to an integer
+                       btree.insert(new IntElement(input)); // call insert method
+                       println("Want to enter another element (y/n) ?");
+                       while(inputstr.isEmpty() || inputstr.isBlank())
+                           inputstr = readLine();
                        if (!inputstr.equalsIgnoreCase("y"))
-                               newNumbers = false;
+                           newNumbers = false;
                    }
                    break;
 
                case(2):
-                       print("Please enter a filepath: ");
-                       btree.insertFromFile(readLine());
-                       break;
+                   print("Please enter a filepath: ");
+                   String inputstr = "";
+                   while(inputstr.isEmpty() || inputstr.isBlank())
+                       inputstr = readLine();
+                   btree.insertFromFile(inputstr);
+                   break;
 
                case(3):
                    println("Type in full file path:");
-                   btree.saveToFile(readLine());
+                   inputstr = "";
+                   while(inputstr.isEmpty() || inputstr.isBlank())
+                       inputstr = readLine();
+                   btree.saveToFile(inputstr);
                    break;
 
                case(4):
