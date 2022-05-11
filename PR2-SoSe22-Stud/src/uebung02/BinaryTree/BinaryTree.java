@@ -142,8 +142,16 @@ public class BinaryTree implements Tree {
     }
 
     @Override
-    public int size() { // size was counted in the insert method
-        return this.size;
+    public int size() {
+        return size(this.root);
+    }
+
+
+    private int size(TreeNode node) {
+        if (node == null)
+            return 0;
+        else
+            return (size(node.left) + 1 + size(node.right));
     }
 
     @Override
@@ -335,7 +343,7 @@ public class BinaryTree implements Tree {
 
             printPostorder(n.getLeft()); // go left
             printPostorder(n.getRight());
-            print( (Integer) ((IntElement) n.getElement()).getKey() + " "); // print when the recursion goes back
+            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // print when the recursion goes back
         }
 
     }
@@ -358,19 +366,16 @@ public class BinaryTree implements Tree {
         this.printLevelorder(this.root);
     }
 
-
-
     private void printLevelorder(TreeNode k) {
         QueueImpl queue = new QueueImpl(); // init queue
         queue.enter(k); // adds k to queue
-        while (!queue.isEmpty()) { // go in the while when queue is not empty
+        while (queue != null) { // go in the while when queue is not empty
             TreeNode n = (TreeNode) queue.leave();
-
-            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // print out with recursion
-            if(n.getLeft() != null)
-                queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
-            if(n.getRight() != null)
-                queue.enter(n.getRight());
+            if (n == null) // only when n is null, return
+                return;
+            print(" " + (Integer) ((IntElement) n.getElement()).getKey()); // print out with recursion
+            queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
+            queue.enter(n.getRight());
 
         }
     }
