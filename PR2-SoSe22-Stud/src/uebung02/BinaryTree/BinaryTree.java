@@ -436,7 +436,7 @@ public class BinaryTree implements Tree {
         if (!(otherTree instanceof BinaryTree))
             return false;
         int currentTreeElements[] = this.convertTreeToArray(this); // convert the current tree to an array
-        int otherTreeElements[] = ((BinaryTree) otherTree).convertTreeToArray((BinaryTree) otherTree); // convert the otherTree to an array
+        int otherTreeElements[] = ((BinaryTree) otherTree).convertTreeToArray(otherTree); // convert the otherTree to an array
 
         if (currentTreeElements.length != otherTreeElements.length) // if both arrays have not the same length return false
             return false;
