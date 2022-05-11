@@ -142,8 +142,16 @@ public class BinaryTree implements Tree {
     }
 
     @Override
-    public int size() { // size was counted in the insert method
-        return this.size;
+    public int size() {
+        return size(this.root);
+    }
+
+
+    private int size(TreeNode node) {
+        if (node == null)
+            return 0;
+        else
+            return (size(node.left) + 1 + size(node.right));
     }
 
     @Override
