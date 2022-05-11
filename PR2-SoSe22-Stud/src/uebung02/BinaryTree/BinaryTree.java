@@ -319,7 +319,7 @@ public class BinaryTree implements Tree {
     private void printInorder(TreeNode n) {
         if (n != null) {
             printInorder(n.getLeft()); // recursive call
-            print(" " + (Integer) ((IntElement) n.getElement()).getKey()); // prints out
+            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // prints out
             printInorder(n.getRight());
         }
     }
@@ -335,7 +335,7 @@ public class BinaryTree implements Tree {
 
             printPostorder(n.getLeft()); // go left
             printPostorder(n.getRight());
-            print(" " + (Integer) ((IntElement) n.getElement()).getKey()); // print when the recursion goes back
+            print( (Integer) ((IntElement) n.getElement()).getKey() + " "); // print when the recursion goes back
         }
 
     }
@@ -347,7 +347,7 @@ public class BinaryTree implements Tree {
 
     private void printPreorder(TreeNode n) { // recursive
         if (n != null) {// tree not empty
-            print(" " + (Integer) ((IntElement) n.getElement()).getKey());
+            print((Integer) ((IntElement) n.getElement()).getKey() + " ");
             printPreorder(n.getLeft());
             printPreorder(n.getRight());
         }
