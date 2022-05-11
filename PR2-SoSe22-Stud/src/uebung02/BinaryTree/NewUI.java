@@ -69,7 +69,7 @@ public class NewUI {
    }
 
    private int selectTree(){
-        print("Enter the index of the tree, you want to select: ");
+        println("Enter the index of the tree, you want to select: ");
         int i = readInt();
         if(i < 0 || i >= this.trees.size())
             println("Tree doesnt exists");
@@ -108,16 +108,18 @@ public class NewUI {
            int selection = readInt();
            switch(selection){
                case 1: // insert
+                   String inputst;
                    print("insert number: ");
                    boolean newNumbers = true; // create variable newNumbers
                    while (newNumbers) { // loop while newNumbers is true
-
+                            String inputstr = "";
                            print("Next number: ");
-                           int input = Integer.parseInt(readLine()); // parse the input to an integer
+                           int input = readInt(); // parse the input to an integer
                            btree.insert(new IntElement(input)); // call insert method
                            println("Want to enter another element (y/n) ?");
-                           String inputstr = readLine(); // check if the user want to type a new number
-                           if (!inputstr.equalsIgnoreCase("y"))
+                           while(inputstr.isEmpty() || inputstr.isBlank())
+                               inputstr = readLine();
+                       if (!inputstr.equalsIgnoreCase("y"))
                                newNumbers = false;
                    }
                    break;
@@ -134,7 +136,7 @@ public class NewUI {
 
                case(4):
                    print("Please enter a number which u want to search:");
-                   if (btree.contains(new IntElement(Integer.parseInt(readLine())))) {
+                   if (btree.contains(new IntElement(readInt()))) {
                        println("contains the number");
                    } else
                        println("contains not the number");
@@ -155,7 +157,7 @@ public class NewUI {
                    break;
                case(9):
                    println("Type in Number: ");
-                   btree.remove(new IntElement(Integer.parseInt(readLine())));
+                   btree.remove(new IntElement(readInt()));
                    break;
                case(10):
                    if (btree.isEmpty()) {
