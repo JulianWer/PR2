@@ -218,7 +218,7 @@ public class BinaryTree implements Tree {
         TreeNode child = root;
         boolean found = false;
 
-        if (!contains(val)) {
+        if (!contains(val)) {   //checks if the value is contained by the tree
             println("Element does not exist");
             return false;
         }
@@ -258,20 +258,20 @@ public class BinaryTree implements Tree {
         } else {
             //delete a normal node
 
-            if (child.getLeft() == null) {
+            if (child.getLeft() == null) {  //node has no left child
                 //parent is stored in local object partent
                 if (parent.getLeft() == child) {
                     parent.setLeft(child.getRight());
                 } else {
                     parent.setRight(child.getRight());
                 }
-            } else if (child.getRight() == null) {
+            } else if (child.getRight() == null) {  //node has no right child
                 if (parent.getLeft() == child) {
                     parent.setLeft(child.getLeft());
                 } else {
                     parent.setRight(child.getLeft());
                 }
-            } else {
+            } else {    //node has 2 childs
                 TreeNode k = getMax(child.getLeft());
                 int remember =  (Integer) k.getKey();
                 remove(k.getElement());
