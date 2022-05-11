@@ -3,13 +3,16 @@ import gdi.MakeItSimple;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 
 import static gdi.MakeItSimple.*;
 public class NewUI {
 
     private ArrayList<BinaryTree> trees;
+    private Scanner sc;
 
     public NewUI(){
+        this.sc = new Scanner(System.in);
         this.trees = new ArrayList<>();
     }
 
@@ -25,10 +28,34 @@ public class NewUI {
             println("[2] list existing trees");
             println("[3] select Tree");
 
+            switch (Integer.parseInt(readLine())) { // switch case
+                case(1):
+                    createNewTree();
+                    break;
+                case(2):
+                    listExistingTrees();
+                    break;
+                case(3):
+                    int index = selectTree();
+            }
+
         }while(checkdo);
     }
 
    private void createNewTree(){
+        this.trees.add(new BinaryTree());
+        println("A new Tree was created");
+   }
+
+   private void listExistingTrees(){
+        if(this.trees.isEmpty())
+            println("There are no trees, to create one select \"create new tree\"");
+        for(int i = 0; i < this.trees.size(); i++)
+           println("[" + i + "]. BinaryTree");
+
+   }
+
+   private int selectTree(){
 
    }
 }
