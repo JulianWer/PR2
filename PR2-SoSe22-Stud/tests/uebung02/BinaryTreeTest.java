@@ -66,11 +66,11 @@ public class BinaryTreeTest {
         tree1.addAll(tree2);
         assertEquals(tree1.size(), tree2.size());
 
-        // assertEquals(false, tree1.clone().isEmpty());
-        // assertEquals(true, tree1.remove(10));
-        // assertEquals(true, tree1.isEmpty());
-        // assertEquals(false, tree1.contains(10));
-        // assertEquals(true, tree1.clone().isEmpty());
+//         assertEquals(false, tree1.clone().isEmpty());
+//         assertEquals(true, tree1.remove(10));
+//         assertEquals(true, tree1.isEmpty());
+//         assertEquals(false, tree1.contains(10));
+//         assertEquals(true, tree1.clone().isEmpty());
     }
 
     @Test

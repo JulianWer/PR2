@@ -104,9 +104,8 @@ public class BinaryTree implements Tree {
     }
 
     private int saveToFile(TreeNode root, int[] array, int index) { // fills the array with the elements
-        if (root == null) { // if the root is empty return false
-            return index; // return 0
-        }
+        // if the root is empty return false
+        if (root == null) return index;
         array[index++] = (Integer) root.getKey(); // adds to array a key and increments the index
         index = saveToFile(root.getLeft(), array, index); // go recursive left
         index = saveToFile(root.getRight(), array, index);// go recursive right
@@ -274,7 +273,7 @@ public class BinaryTree implements Tree {
                 }
             } else {
                 TreeNode k = getMax(child.getLeft());
-                int remember = (Integer) ((IntElement) k.getElement()).getKey();
+                int remember =  (Integer) k.getKey();
                 remove(k.getElement());
                 ((IntElement) child.getElement()).setKey(remember);
             }
@@ -327,7 +326,7 @@ public class BinaryTree implements Tree {
     private void printInorder(TreeNode n) {
         if (n != null) {
             printInorder(n.getLeft()); // recursive call
-            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // prints out
+            print( n.getKey() + " "); // prints out
             printInorder(n.getRight());
         }
     }
@@ -343,7 +342,7 @@ public class BinaryTree implements Tree {
 
             printPostorder(n.getLeft()); // go left
             printPostorder(n.getRight());
-            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // print when the recursion goes back
+            print( n.getKey() + " "); // print when the recursion goes back
         }
 
     }
@@ -355,7 +354,7 @@ public class BinaryTree implements Tree {
 
     private void printPreorder(TreeNode n) { // recursive
         if (n != null) {// tree not empty
-            print((Integer) ((IntElement) n.getElement()).getKey() + " ");
+            print(n.getKey() + " ");
             printPreorder(n.getLeft());
             printPreorder(n.getRight());
         }
@@ -373,7 +372,7 @@ public class BinaryTree implements Tree {
         while (!queue.isEmpty()) { // go in the while when queue is not empty
             TreeNode n = (TreeNode) queue.leave();
 
-            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // print out with recursion
+            print(n.getKey() + " "); // print out with recursion
             if(n.getLeft() != null)
                 queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
             if(n.getRight() != null)
