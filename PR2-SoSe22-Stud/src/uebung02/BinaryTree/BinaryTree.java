@@ -358,16 +358,19 @@ public class BinaryTree implements Tree {
         this.printLevelorder(this.root);
     }
 
+
+
     private void printLevelorder(TreeNode k) {
         QueueImpl queue = new QueueImpl(); // init queue
         queue.enter(k); // adds k to queue
-        while (queue != null) { // go in the while when queue is not empty
+        while (!queue.isEmpty()) { // go in the while when queue is not empty
             TreeNode n = (TreeNode) queue.leave();
-            if (n == null) // only when n is null, return
-                return;
-            print(" " + (Integer) ((IntElement) n.getElement()).getKey()); // print out with recursion
-            queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
-            queue.enter(n.getRight());
+
+            print((Integer) ((IntElement) n.getElement()).getKey() + " "); // print out with recursion
+            if(n.getLeft() != null)
+                queue.enter(n.getLeft()); // recursive call in queue to write all elements in queue
+            if(n.getRight() != null)
+                queue.enter(n.getRight());
 
         }
     }
