@@ -151,7 +151,66 @@ public class NewUI {
                        println("Binary tree is not Empty");
                    }
                    break;
+               case(11):
+                   btree.clear();
+                   break;
+               case(12):
+                   print("enter the index of the tree, you want to add: ");
+                   int index = readInt();
+                   if(index < 0 || index >= this.trees.size()) {
+                       println("tree doesnt exist");
+                   }else
+                       btree.addAll(this.trees.get(index));
+                   break;
+               case(13):
+                   btree.printInorder();
+                   break;
+               case(14):
+                   btree.printPostorder();
+                   break;
+               case(15):
+                   btree.printPreorder();
+                   break;
+               case(16):
+                   btree.printLevelorder();
+                   break;
+               case(17):
+                   this.trees.add((BinaryTree)btree.clone());
+                   println("Tree is cloned. The index of the clone tree is: " + (this.trees.size() - 1));
+                   break;
+               case(18):
+                   print("select the index of another tree to compare with: ");
+                   int i = readInt();
+                   if(i < 0 || i >= this.trees.size()) {
+                       println("tree doesnt exist");
+                       break;
+                   }
+                   boolean b = btree.equals(this.trees.get(i));
+                   if(b)
+                       println("identical");
+                   else
+                       println("not identical");
+                   break;
+
+               case(19):
+                   print("select the index of another tree to compare with: ");
+                   i = readInt();
+                   if(i < 0 || i >= this.trees.size()) {
+                       println("tree doesnt exist");
+                       break;
+                   }
+                   b = btree.equal(this.trees.get(i));
+                   if(b)
+                       println("identical");
+                   else
+                       println("not identical");
+                   break;
+               case 20:
+                   this.trees.add((BinaryTree) btree.createTree());
+                   println("Tree created. The index of the tree tree is: " + (this.trees.size() - 1));
+                   break;
            }
+
        }while(checkdo);
    }
 }
