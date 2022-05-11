@@ -37,6 +37,7 @@ public class NewUI {
                     break;
                 case(3):
                     int index = selectTree();
+                    showOptionsForTree(this.trees.get(index));
             }
 
         }while(checkdo);
@@ -56,6 +57,101 @@ public class NewUI {
    }
 
    private int selectTree(){
+        print("Enter the index of the tree, you want to select: ");
+        int i = sc.nextInt();
+        if(i < 0 || i >= this.trees.size())
+            println("Tree doesnt exists");
+        return i;
+   }
 
+   private void showOptionsForTree(BinaryTree btree){
+       boolean checkdo = true;
+       do { // run as long as checkdo is true
+           println("You have the following options to use : ");
+           println(" [1] insert to tree " +
+                   "\n [2] insert from file " +
+                   "\n [3] save to file " +
+                   "\n [4] contains a node " +
+                   "\n [5] get size " +
+                   "\n [6] get height " +
+                   "\n [7] get the maximal value " +
+                   "\n [8] get the minimal value " +
+                   "\n [9] remove " +
+                   "\n [10] check if empty " +
+                   "\n [11] clear the tree " +
+                   "\n [12] addAll from otherTree " +
+                   "\n [13] print the Inorder " +
+                   "\n [14] print the Postorder " +
+                   "\n [15] print the Preorder " +
+                   "\n [16] print Levelorder " +
+                   "\n [17] clone tree " +
+                   "\n [18] is equals (structure and elements) " +
+                   "\n [19] is equal (content) " +
+                   "\n [20] create new tree " +
+                   "\n [21] visualize tree " +
+                   "\n [22] <= return to main menu");
+           print(" Type the Number here: ");
+
+           int selection = sc.nextInt();
+           switch(selection){
+               case 1: // insert
+                   print("insert number: ");
+                   boolean newNumbers = true; // create variable newNumbers
+                   while (newNumbers) { // loop while newNumbers is true
+
+                           print("Next number: ");
+                           int input = Integer.parseInt(readLine()); // parse the input to an integer
+                           btree.insert(new IntElement(input)); // call insert method
+                           println("Want to enter another element (y/n) ?");
+                           String inputstr = readLine(); // check if the user want to type a new number
+                           if (!inputstr.equalsIgnoreCase("y"))
+                               newNumbers = false;
+                   }
+                   break;
+
+               case(2):
+                       print("Please enter a filepath: ");
+                       btree.insertFromFile(readLine());
+                       break;
+
+               case(3):
+                   println("Type in full file path:");
+                   btree.saveToFile(readLine());
+                   break;
+
+               case(4):
+                   print("Please enter a number which u want to search:");
+                   if (btree.contains(new IntElement(Integer.parseInt(readLine())))) {
+                       println("contains the number");
+                   } else
+                       println("contains not the number");
+                   break;
+
+               case(5):
+                   println("size: " + btree.size());
+                   break;
+               case(6):
+                   println("height: " + btree.height());
+                   break;
+
+               case(7):
+                   println("The max value is : " + (Integer) btree.getMax().getKey());
+                   break;
+               case(8):
+                   println("The min value is : " + (Integer) btree.getMin().getKey());
+                   break;
+               case(9):
+                   println("Type in Number: ");
+                   btree.remove(new IntElement(Integer.parseInt(readLine())));
+                   break;
+               case(10):
+                   if (btree.isEmpty()) {
+                       println("Binary tree is Empty");
+                   } else {
+                       println("Binary tree is not Empty");
+                   }
+                   break;
+           }
+       }while(checkdo);
    }
 }
