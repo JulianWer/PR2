@@ -173,6 +173,8 @@ public class BinaryTree implements Tree {
 
     @Override
     public Element getMax() { // returns the max Element
+        if(this.root == null)
+            return null;
         TreeNode n = this.root;
         while (n.getRight() != null) {
             n = n.getRight();    //go right as long as there are remaining elements
@@ -193,6 +195,8 @@ public class BinaryTree implements Tree {
 
     @Override
     public Element getMin() {// returns min element
+        if(this.root == null)
+            return null;
         TreeNode n = this.root;
         while (n.getLeft() != null) {
             n = n.getLeft();    //go left as long as there are remaining elements
