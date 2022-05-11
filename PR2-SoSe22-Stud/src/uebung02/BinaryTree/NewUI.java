@@ -9,10 +9,9 @@ import static gdi.MakeItSimple.*;
 public class NewUI {
 
     private ArrayList<BinaryTree> trees;
-    private Scanner sc;
+
 
     public NewUI(){
-        this.sc = new Scanner(System.in);
         this.trees = new ArrayList<>();
     }
 
@@ -22,25 +21,38 @@ public class NewUI {
 
     public void runUI(){
         boolean checkdo = true; // create checkdo variable(condition for do while loop)
-        println("Welcome on the Tree Menue!");
+        showMainMenuOption();
         do{
-            println("[1] create new tree");
-            println("[2] list existing trees");
-            println("[3] select Tree");
-
-            switch (Integer.parseInt(readLine())) { // switch case
+            print("input: ");
+            switch (readInt()) { // switch case
                 case(1):
                     createNewTree();
                     break;
                 case(2):
+                    println("========TREES=========");
                     listExistingTrees();
+                    println("======================");
                     break;
                 case(3):
                     int index = selectTree();
                     showOptionsForTree(this.trees.get(index));
+                    showMainMenuOption();
+                    break;
+                case(4):
+                    checkdo = false;
+                    break;
+
             }
 
         }while(checkdo);
+    }
+
+    private void showMainMenuOption(){
+        println("Welcome on the Tree Menue!");
+        println("[1] create new tree");
+        println("[2] list existing trees");
+        println("[3] select Tree");
+        println("[4] quit");
     }
 
    private void createNewTree(){
@@ -58,7 +70,7 @@ public class NewUI {
 
    private int selectTree(){
         print("Enter the index of the tree, you want to select: ");
-        int i = sc.nextInt();
+        int i = readInt();
         if(i < 0 || i >= this.trees.size())
             println("Tree doesnt exists");
         return i;
@@ -89,10 +101,11 @@ public class NewUI {
                    "\n [19] is equal (content) " +
                    "\n [20] create new tree " +
                    "\n [21] visualize tree " +
+                   "\n ===========================================" +
                    "\n [22] <= return to main menu");
            print(" Type the Number here: ");
 
-           int selection = sc.nextInt();
+           int selection = readInt();
            switch(selection){
                case 1: // insert
                    print("insert number: ");
@@ -205,9 +218,15 @@ public class NewUI {
                    else
                        println("not identical");
                    break;
-               case 20:
+               case(20):
                    this.trees.add((BinaryTree) btree.createTree());
                    println("Tree created. The index of the tree tree is: " + (this.trees.size() - 1));
+                   break;
+               case(21):
+                    btree.visualize();
+                    break;
+               case(22):
+                   checkdo = false;
                    break;
            }
 
