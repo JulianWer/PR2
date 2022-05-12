@@ -36,7 +36,7 @@ public class UI {
                     showMainMenuOption();
                     break;
                 case(4):
-                    checkdo = false;
+                    System.exit(0);
                     break;
 
             }
