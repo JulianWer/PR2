@@ -18,20 +18,20 @@ public class UI {
 
     public void runUI(){
         boolean checkdo = true; // create checkdo variable(condition for do while loop)
-        showMainMenuOption();
+        showMainMenuOption();   //prints the main menu
         do{
             print("input: ");
             switch (readInt()) { // switch case
-                case(1):
+                case(1):    //function creates a new tree and stores it in the array list
                     createNewTree();
                     break;
-                case(2):
+                case(2):    //list all trees
                     println("========TREES=========");
                     listExistingTrees();
                     println("======================");
                     break;
                 case(3):
-                    int index = selectTree();
+                    int index = selectTree();   //selects a tree and shows all available options
                     showOptionsForTree(this.trees.get(index));
                     showMainMenuOption();
                     break;
@@ -105,7 +105,6 @@ public class UI {
            int selection = readInt();
            switch(selection){
                case 1: // insert
-                   String inputst;
                    print("insert number: ");
                    boolean newNumbers = true; // create variable newNumbers
                    while (newNumbers) { // loop while newNumbers is true

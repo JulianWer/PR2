@@ -200,6 +200,15 @@ public class BinaryTree implements Tree {
 
     }
 
+    private TreeNode getMin(TreeNode k) { // used in remove method
+        TreeNode n = k; // set a new treenode to k
+        while (n.getLeft() != null) { // loop as long as the getRight is not null write the get right to n
+            n = n.getLeft();
+        }
+        return n; // return n
+
+    }
+
     @Override
     public Element getMin() {// returns min element
         if(this.root == null)
@@ -272,7 +281,8 @@ public class BinaryTree implements Tree {
                     parent.setRight(child.getLeft());
                 }
             } else {    //node has 2 childs
-                TreeNode k = getMax(child.getLeft());
+                //TreeNode k = getMax(child.getLeft());
+                TreeNode k = getMin(child.getRight());
                 int remember =  (Integer) k.getKey();
                 remove(k.getElement());
                 ((IntElement) child.getElement()).setKey(remember);
