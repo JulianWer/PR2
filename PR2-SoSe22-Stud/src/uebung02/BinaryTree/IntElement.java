@@ -38,7 +38,7 @@ public class IntElement implements Element, Cloneable {
 	@Override
 	public Object getKey() {
 		// TODO Auto-generated method stub
-		return (Integer)this.key;
+		return this.key;
 	}
 	
 	@Override

@@ -190,14 +190,7 @@ public class BinaryTree implements Tree {
     }
 
 
-    private TreeNode getMax(TreeNode k) { // used in remove method
-        TreeNode n = k; // set a new treenode to k
-        while (n.getRight() != null) { // loop as long as the getRight is not null write the get right to n
-            n = n.getRight();
-        }
-        return n; // return n
 
-    }
 
     private TreeNode getMin(TreeNode k) { // used in remove method
         TreeNode n = k; // set a new treenode to k
