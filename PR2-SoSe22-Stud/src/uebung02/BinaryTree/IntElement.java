@@ -2,7 +2,7 @@ package uebung02.BinaryTree;
 
 public class IntElement implements Element, Cloneable {
 	
-	private int key;
+	private Integer key;
 	
 	public IntElement(int i) {
 		this.key = i;
@@ -18,11 +18,11 @@ public class IntElement implements Element, Cloneable {
 		IntElement element;
 		if(arg0 instanceof IntElement) {
 			element = (IntElement) arg0;
-			if((Integer) element.getKey() == this.key)
+			if(element.getValue() == this.key)
 				return 0;	//identical
-			else if((Integer) element.getKey() > this.key)
+			else if(element.getValue() > this.key)
 				return 1;	//arg0 is greater
-			else if((Integer) element.getKey() < this.key)
+			else if(element.getValue() < this.key)
 				return -1;	//arg0 is smaller
 			
 			
@@ -45,6 +45,10 @@ public class IntElement implements Element, Cloneable {
     public Element clone() { // clone method from interface
 		// TODO Auto-generated method stub
 		return null;	
+	}
+
+	public Integer getValue(){
+		return this.key;
 	}
 
 }

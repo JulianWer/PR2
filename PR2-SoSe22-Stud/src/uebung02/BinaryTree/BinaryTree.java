@@ -105,7 +105,7 @@ public class BinaryTree implements Tree {
     private int saveToFile(TreeNode root, int[] array, int index) { // fills the array with the elements
         // if the root is empty return false
         if (root == null) return index;
-        array[index++] = (Integer) root.getKey(); // adds to array a key and increments the index
+        array[index++] = ((IntElement)root.getElement()).getValue(); // adds to array a key and increments the index
         index = saveToFile(root.getLeft(), array, index); // go recursive left
         index = saveToFile(root.getRight(), array, index);// go recursive right
         return index; // returns the end index
@@ -259,7 +259,7 @@ public class BinaryTree implements Tree {
             else {
                 //replace the root with biggest element from left tree
                 TreeNode k = getMin(child.getRight());
-                int remember = (Integer) ((IntElement) k.getElement()).getKey();
+                int remember = ((IntElement)k.getElement()).getValue();
                 remove(k.getElement()); // recursive call
                 ((IntElement) this.root.getElement()).setKey(remember); // recursive backwards
             }
@@ -282,7 +282,7 @@ public class BinaryTree implements Tree {
             } else {    //node has 2 childs
                 //TreeNode k = getMax(child.getLeft());
                 TreeNode k = getMin(child.getRight());
-                int remember =  (Integer) k.getKey();
+                int remember =  ((IntElement)k.getElement()).getValue();
                 remove(k.getElement());
                 ((IntElement) child.getElement()).setKey(remember);
             }
@@ -400,7 +400,7 @@ public class BinaryTree implements Tree {
         if (root == null) { // if root is null then return null
             return null;
         }
-        TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey())); // gets each element from root
+        TreeNode nodeClone = new TreeNode(new IntElement(((IntElement)root.getElement()).getValue())); // gets each element from root
         //TreeNode nodeClone = new TreeNode(this.root.getElement());
         nodeClone.left = clone(root.getLeft());
         nodeClone.right = clone(root.getRight()); // recursive call for both sides
@@ -422,7 +422,7 @@ public class BinaryTree implements Tree {
             TreeNode n2 = (TreeNode) queueTree2.leave();
 
             if (n1 != null && n2 != null) { // if the treenodes are both not null
-                if (((IntElement) n1.getElement()).compareTo(n2.getElement()) != 0) // compare n1 and n2 whether they are not equal, return false
+                if ((n1.getElement()).compareTo(n2.getElement()) != 0) // compare n1 and n2 whether they are not equal, return false
                     return false;
             }
             if (n1 != null) { // go through the elements of n1 and add them to the queue 1
