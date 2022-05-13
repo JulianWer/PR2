@@ -259,7 +259,7 @@ public class BinaryTree implements Tree {
                 this.root = child.getLeft();    //replace the root with left element
             else {
                 //replace the root with biggest element from left tree
-                TreeNode k = getMax(child.getLeft());
+                TreeNode k = getMin(child.getRight());
                 int remember = (Integer) ((IntElement) k.getElement()).getKey();
                 remove(k.getElement()); // recursive call
                 ((IntElement) this.root.getElement()).setKey(remember); // recursive backwards
