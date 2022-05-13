@@ -26,7 +26,6 @@ import uebung01.UI;
 public class BinaryTree implements Tree {
 
     private TreeNode root;
-    private int size = 0; // init attribute of size is 0 for the beginning
 
 
     public BinaryTree() { // without parameter, root is null
@@ -66,7 +65,7 @@ public class BinaryTree implements Tree {
                 child = child.getRight(); // insert in right tree
 
         }
-        this.size += 1; // count size
+
         if (parent == null) // empty tree -> insert first node
             root = new TreeNode(val);
             //else if (val.compareTo(parent.getElement()) < 0)
@@ -289,7 +288,6 @@ public class BinaryTree implements Tree {
             }
 
         }
-        this.size--;
         return true;
     }
 
@@ -301,7 +299,6 @@ public class BinaryTree implements Tree {
     @Override
     public void clear() {
         this.root = null; // clears entire tree
-        this.size = 0; // resets size
     }
 
 
@@ -377,6 +374,7 @@ public class BinaryTree implements Tree {
 
 
     private void printLevelorder(TreeNode k) {
+        if(k == null)   return;
         QueueImpl queue = new QueueImpl(); // init queue
         queue.enter(k); // adds k to queue
         while (!queue.isEmpty()) { // go in the while when queue is not empty
@@ -404,8 +402,8 @@ public class BinaryTree implements Tree {
         }
         TreeNode nodeClone = new TreeNode(new IntElement((Integer) ((IntElement) root.getElement()).getKey())); // gets each element from root
         //TreeNode nodeClone = new TreeNode(this.root.getElement());
-        nodeClone.right = clone(root.getRight()); // recursive call for both sides
         nodeClone.left = clone(root.getLeft());
+        nodeClone.right = clone(root.getRight()); // recursive call for both sides
         return nodeClone; // returns the cloned root
     }
 
