@@ -17,24 +17,26 @@ public class IntElement implements Element, Cloneable {
     @Override
     public int compareTo(Object arg0) {
         // TODO Auto-generated method stub
-        uebung02.BinaryTree.IntElement element;
-        if(arg0 instanceof uebung02.BinaryTree.IntElement) {
-            element = (uebung02.BinaryTree.IntElement) arg0;
-            if(element.getValue() == this.key)
-                return 0;	//identical
-            else if(element.getValue() > this.key)
-                return 1;	//arg0 is greater
-            else if(element.getValue() < this.key)
-                return -1;	//arg0 is smaller
+
+            uebung02.BinaryTree.IntElement element;
+            if (arg0 instanceof uebung02.BinaryTree.IntElement) {
+                element = (uebung02.BinaryTree.IntElement) arg0;
+                if (element.getValue() == this.key)
+                    return 0;    //identical
+                else if (element.getValue() > this.key)
+                    return 1;    //arg0 is greater
+                else if (element.getValue() < this.key)
+                    return -1;    //arg0 is smaller
 
 
-        }
-        /**
-         * @return 0 for identical
-         * @return 1 if arg0 > this
-         * @return -1 if arg0 < this
-         * */
-        return -1;
+            }
+            /**
+             * @return 0 for identical
+             * @return 1 if arg0 > this
+             * @return -1 if arg0 < this
+             * */
+            return -1;
+
     }
 
     @Override
