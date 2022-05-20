@@ -1,11 +1,11 @@
 package uebung03;
 
 public class Intersort {
-    static void insertionSort (int [] array) {
+    public void insertionSort (Comparable [] array) {
         for (int i = 1; i < array.length; i++) {
             int j = i;
-            int m = array[i];
-            while (j > 0 && array[j - 1] > m) {
+            Comparable m = array[i];
+            while (j > 0 && array[j - 1].compareTo(m) > 0 ) {
                 array[j] = array[j - 1];
                 j--;
             }
