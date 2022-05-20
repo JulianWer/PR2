@@ -2,6 +2,7 @@ package uebung03;
 
 import uebung02.BinaryTree.IntElement;
 import uebung02.QickSort.StatObject;
+import uebung03.Elements.StringElement;
 
 import static gdi.MakeItSimple.print;
 import static pr.MakeItSimple.println;
@@ -10,11 +11,12 @@ public class Intersort implements SortInterface {
 
 
     public static void main(String args[]){
-        uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
+        //uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
+        Comparable array[] = {new StringElement("Aaaa"), new StringElement("Aaaca"), new StringElement("fdgfd"), new StringElement("gahtaa"), new StringElement("Bfgd"), new StringElement("000")};
         SortInterface.sortArray(array, new Intersort());
         print("\n");
         for(Comparable t : array)
-            print(" " + ((IntElement) t).getValue());
+            print(" " + (String)((StringElement)t).getKey());
     }
     @Override
     public void sort(Comparable[] array, int u, int o) {
