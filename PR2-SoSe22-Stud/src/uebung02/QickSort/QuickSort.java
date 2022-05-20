@@ -10,7 +10,7 @@ public class QuickSort implements SortInterface {
 	StatObject so; // statistics collection
 
 	@Override
-	public void sort(int[] F, StatObject so) { // overloaded sort method for testing with parameters of an array and StatObject
+	public void sort(Comparable[] F, StatObject so) { // overloaded sort method for testing with parameters of an array and StatObject
 		// TODO Auto-generated method stub
 		this.so = so; // set StatObject to the attribute of itself
 		sort(F, 0, F.length - 1); // call the normal sort method
@@ -18,7 +18,7 @@ public class QuickSort implements SortInterface {
 	}
 
 	@Override
-	public void sort(int[] array, int lowerLimit, int upperLimit) {
+	public void sort(Comparable[] array, int lowerLimit, int upperLimit) {
 		
 		if(array.length <= 1) so.incrunCounter();
 
@@ -32,7 +32,7 @@ public class QuickSort implements SortInterface {
 	}
 
 	@Override
-	public int split(int[] array, int lowerLimit, int upperLimit) { // sorts elements in direction of the middle element
+	public int split(Comparable[] array, int lowerLimit, int upperLimit) { // sorts elements in direction of the middle element
 		// TODO Auto-generated method stub
 		int pivotIndex = (lowerLimit + upperLimit) / 2; // set pivotIndex to the middle
 		int pivot = array[pivotIndex]; // set middle element of the array to the pivot element 
