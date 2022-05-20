@@ -2,7 +2,6 @@ package uebung03;
 
 
 import uebung02.BinaryTree.IntElement;
-import uebung02.QickSort.SortInterface;
 import uebung02.QickSort.StatObject;
 
 import static gdi.MakeItSimple.*;
@@ -12,18 +11,20 @@ import static gdi.MakeItSimple.*;
  * @since 2022-04
  */
 
-public class QuickSortV3  {
+public class QuickSortV3 implements SortInterface {
     StatObject so;
 
+
     public static void main(String args[]){
+
         println("QuickSortV3");
         uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
-        new QuickSortV3().sort(array, new StatObject());
+        SortInterface.sortArray(array, new QuickSortV3());
         print("\n");
         for(Comparable t : array)
             print(" " + ((IntElement) t).getValue());
     }
-
+    @Override
     public void sort(Comparable[] F, StatObject so) { // overload method sort for testing
         // TODO Auto-generated method stub
         this.so = so;
@@ -31,7 +32,7 @@ public class QuickSortV3  {
 
     }
 
-
+    @Override
     public void sort(Comparable[] F, int u, int o) {
         if(F.length <= 1 ) so.incrunCounter();
         if (o > u) { // runs as long as the upper cabinets is greater than the under
@@ -46,7 +47,7 @@ public class QuickSortV3  {
 
     // The split method is the main operation for the program, the parameters are
     // the Array and upper,under cabinets
-
+    @Override
     public int split(Comparable[] F, int u, int o) {
         // TODO Auto-generated method stub
 
@@ -73,7 +74,7 @@ public class QuickSortV3  {
         return index;
     }
 
-
+    @Override
     public void swap(Comparable[] F, int i1, int i2) { // swap method
         // TODO Auto-generated method stub
         so.incswapCounter(); // count swap counter one up
