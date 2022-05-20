@@ -1,6 +1,7 @@
 package uebung03;
 import uebung02.BinaryTree.Element;
 import uebung02.BinaryTree.IntElement;
+import uebung03.Elements.StringElement;
 
 import static gdi.MakeItSimple.*;
 
@@ -27,11 +28,14 @@ public class UI {
 
             }else if(element.equals("int")){
                 intArray[indexcnt] = new IntElement(readInt());
+                for(Comparable t : intArray)
+                    print(" " + ((StringElement)t).getKey());
             }
             println("Do you want to add another items? y/n");
             check = readLine();
 
         }while(check.equals("y"));
+
 
 
     }
