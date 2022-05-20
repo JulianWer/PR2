@@ -2,6 +2,7 @@ package uebung03;
 
 public class Intersort {
     public void insertionSort (Comparable [] array) {
+
         for (int i = 1; i < array.length; i++) {
             int j = i;
             Comparable m = array[i];
