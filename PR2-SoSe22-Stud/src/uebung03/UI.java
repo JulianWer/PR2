@@ -11,6 +11,7 @@ public class UI {
 
     public void menu(){
 
+
         print("Welches Sortierverfahren wollen Sie verwinden? ");
         String sortCase = readLine();
         print("What kind of element do you want to read in? int/str ");
@@ -20,6 +21,7 @@ public class UI {
         String check;
         int indexcnt = 0;
         do{
+
             dynamic(indexcnt);
             if(element.equals("str")){
 
