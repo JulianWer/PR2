@@ -10,7 +10,6 @@ public class Intersort implements SortInterface {
 
 
     public static void main(String args[]){
-        println("InsertionSort");
         uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
         SortInterface.sortArray(array, new Intersort());
         print("\n");
