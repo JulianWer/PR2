@@ -4,12 +4,15 @@ import uebung03.Elements.Element;
 import uebung03.Elements.IntElement;
 import uebung03.Elements.StringElement;
 
+import java.util.Arrays;
+
 import static gdi.MakeItSimple.*;
+import static pr.MakeItSimple.readIntegerArray;
 
 
 public class UI {
 
-    Comparable[] cArray = new Comparable[1];
+    Comparable[] cArray;
     SortInterface sortAlgorithm;
 
     public void menu(){
@@ -29,26 +32,33 @@ public class UI {
 
         String check;
         int indexcnt = 0;
-
-        do{
-            dynamic(indexcnt);
-            if(element.equals("str")){
-                print("Please type your word here: ");
-                cArray[indexcnt] = new StringElement(readLine());
-
-
-            }else if(element.equals("int")){
-                print("Please type your Number here: ");
-                cArray[indexcnt] = new IntElement(readInt());
-                for(Comparable t : cArray)
-                    println(((IntElement)t).getKey()+" ");
-            }
-            println("Do you want to add another items? y/n");
+        print("Do you want to read from a file ? y/n");
+        String answerFileRead = readLine();
+        if(answerFileRead.equals("y")){
+            print("Please enter the file Path: ");
+            cArray = readFromFile(readLine(),element);
+        }else {
+            cArray = new Comparable[1];
             do {
-                check = readLine();
-            }while (check.isBlank() || check.isEmpty());
-            indexcnt++;
-        }while(check.equals("y"));
+                dynamic(indexcnt);
+                if (element.equals("str")) {
+                    print("Please type your word here: ");
+                    cArray[indexcnt] = new StringElement(readLine());
+
+
+                } else if (element.equals("int")) {
+                    print("Please type your Number here: ");
+                    cArray[indexcnt] = new IntElement(readInt());
+                    for (Comparable t : cArray)
+                        println(((IntElement) t).getKey() + " ");
+                }
+                println("Do you want to add another items? y/n");
+                do {
+                    check = readLine();
+                } while (check.isBlank() || check.isEmpty());
+                indexcnt++;
+            } while (check.equals("y"));
+        }
         println("Array to sort: ");
         printArray(cArray,"n");
         println();
@@ -88,6 +98,42 @@ public class UI {
             }
         }
 
+    }
+
+    public Comparable[] readFromFile(String filename, String type) {
+
+        if (!isFilePresent(filename)) {return new Comparable[]{};}
+            if(type.equals("int")) {
+             int [] newarray=readIntegerArray(filename);// reads the file into an array (elements)
+                Comparable[] comp = new Comparable[newarray.length];
+                for (int i = 0; i < newarray.length; i++) {
+                    comp[i] = new IntElement(newarray[i]);
+                }
+                return comp;
+            }
+        if(type.equals("str")) {
+            String inputStr = " ";
+
+            Object open  = openInputFile(filename); // FIXME
+
+            while(!isEndOfInputFile(open)){
+                inputStr += readLine();
+            }
+            String[] elements = inputStr.split(" ");
+            Comparable[] comp = new Comparable[elements.length];
+            for (int i = 0; i < comp.length; i++) {
+                comp[i] = new StringElement(elements[i]);
+            }
+            closeInputFile(open);
+            println(Arrays.toString(comp));
+            return comp;
+        }
+
+
+         else
+            println(" File not found."); // if the file is not present / wrong path
+
+        return new Comparable[0];
     }
 
 
