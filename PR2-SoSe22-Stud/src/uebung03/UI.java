@@ -33,6 +33,7 @@ public class UI {
         do{
             dynamic(indexcnt);
             if(element.equals("str")){
+                print("Please type your word here: ");
                 cArray[indexcnt] = new StringElement(readLine());
 
 
@@ -48,15 +49,17 @@ public class UI {
             }while (check.isBlank() || check.isEmpty());
             indexcnt++;
         }while(check.equals("y"));
-
-        printArray(cArray);
-        println("Sorted Array: ");
+        println("Array to sort: ");
+        printArray(cArray,"n");
+        println();
         SortInterface.sortArray(cArray, this.sortAlgorithm);
+        print("In which direction should the go? \nn-normal(left to right\nr-reverse(right to left)\nPlease type in here: ");
+        String direction = readLine();
         println("Sorted Array: ");
-        printArray(cArray);
+        printArray(cArray,direction);
     }
 
-    public void dynamic(int index){
+    private void dynamic(int index){
         if (index >= cArray.length){
             Comparable[] newArray = new Comparable[index+1];
             for (int i = 0; i < cArray.length; i++) {
@@ -66,13 +69,23 @@ public class UI {
         }
     }
 
-    private void printArray(Comparable array[]){
-        for(Comparable i : array){
-            if(i instanceof IntElement){
-                print(" " + ((IntElement)i).getKey());
+    private void printArray(Comparable array[], String direction){
+        if(direction.equals("n")) {
+            for (Comparable i : array) {
+                if (i instanceof IntElement) {
+                    print(((IntElement) i).getKey() + " ");
+                }
+                if (i instanceof StringElement)
+                    print(((StringElement) i).getKey() + " ");
             }
-            if(i instanceof StringElement)
-                print( ((StringElement)i).getKey() + " ");
+        } else if(direction.equals("r")){
+            for (int i = array.length-1; i >=0 ; i--) {
+                if (array[i] instanceof IntElement) {
+                    print(((IntElement) array[i]).getKey() + " ");
+                }
+                if (array[i] instanceof StringElement)
+                    print(((StringElement) array[i]).getKey() + " ");
+            }
         }
 
     }
