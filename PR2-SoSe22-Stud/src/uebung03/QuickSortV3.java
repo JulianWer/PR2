@@ -1,7 +1,7 @@
 package uebung03;
 
 
-import uebung02.BinaryTree.IntElement;
+import uebung03.Elements.IntElement;
 import uebung02.QickSort.StatObject;
 
 import static gdi.MakeItSimple.*;
@@ -18,11 +18,11 @@ public class QuickSortV3 implements SortInterface {
     public static void main(String args[]){
 
         println("QuickSortV3");
-        uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
+        IntElement array[] = {new IntElement(10), new IntElement(7), new IntElement(1), new IntElement(97), new IntElement(14), new IntElement(2), new IntElement(1),new IntElement(100) };
         SortInterface.sortArray(array, new QuickSortV3());
         print("\n");
         for(Comparable t : array)
-            print(" " + ((IntElement) t).getValue());
+            print(" " + ((IntElement) t).getKey());
     }
     @Override
     public void sort(Comparable[] F, StatObject so) { // overload method sort for testing
@@ -58,7 +58,6 @@ public class QuickSortV3 implements SortInterface {
             //if (F[zeiger] <= F[p]) { // compare both elements
             if (F[zeiger].compareTo(F[p]) >= 0 ) {
 
-                println(F[index] + " " + F[zeiger]);
                 if (zeiger != index) // swap only if the variables are not the same
                     swap(F, index, zeiger); // the root array gets changed
                 index++; // increment index
@@ -68,9 +67,7 @@ public class QuickSortV3 implements SortInterface {
         if (index != o) // swap only if index is not the same as the upper cabinets
             swap(F, index, p);
 
-        for (Comparable i : F) { // output after every run
-            print(i + " ");
-        }
+
         return index;
     }
 

@@ -18,9 +18,9 @@ public class IntElement implements Element, Cloneable {
     public int compareTo(Object arg0) {
         // TODO Auto-generated method stub
 
-            uebung02.BinaryTree.IntElement element;
-            if (arg0 instanceof uebung02.BinaryTree.IntElement) {
-                element = (uebung02.BinaryTree.IntElement) arg0;
+            IntElement element;
+            if (arg0 instanceof IntElement) {
+                element = (IntElement) arg0;
                 if (element.getValue() == this.key)
                     return 0;    //identical
                 else if (element.getValue() > this.key)

@@ -15,12 +15,12 @@ public class UI {
     public void menu(){
 
 
-        print("Welches Sortierverfahren wollen Sie verwinden? ");
+        print("Welches Sortierverfahren wollen Sie verwinden? \nq-QickSortV3 \ni-InterSort \nPlease type in here: ");
         String sortCase = readLine();
-        if(sortCase.equalsIgnoreCase("QuickSort")){
+        if(sortCase.equalsIgnoreCase("q")){
             this.sortAlgorithm = new QuickSortV3();
         }
-        if(sortCase.equalsIgnoreCase("InsertionSort")){
+        if(sortCase.equalsIgnoreCase("i")){
             this.sortAlgorithm = new Intersort();
         }
         print("What kind of element do you want to read in? int/str ");
@@ -37,9 +37,10 @@ public class UI {
 
 
             }else if(element.equals("int")){
+                print("Please type your Number here: ");
                 cArray[indexcnt] = new IntElement(readInt());
                 for(Comparable t : cArray)
-                    print(" " + ((IntElement)t).getKey());
+                    println(((IntElement)t).getKey()+" ");
             }
             println("Do you want to add another items? y/n");
             do {
