@@ -11,5 +11,8 @@ public class HashTableTestClass {
         SongImpl s[] = SongParser.parseSongs("E:\\localGitRepos\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
 
         h.put(s[0].getSongName(), s[0]);
+        h.put(s[0].getSongName(), s[0]);
+        h.put(s[0].getSongName(), s[0]);
+        h.put(s[0].getSongName(), s[0]);
     }
 }

@@ -20,6 +20,7 @@ public class LinearProbing implements Probing {
 
     @Override
     public void startProbing() {
+        sign = true;
         counter = 0;
     }
 }

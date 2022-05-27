@@ -3,6 +3,8 @@ package uebung03.HashTable;
 import uebung03.HashTable.ProbingAlgorithms.LinearProbing;
 
 import static gdi.MakeItSimple.print;
+import static gdi.MakeItSimple.println;
+import static java.lang.Math.abs;
 
 public class HashTable {
     //songtitel = key, value = songobject
@@ -59,18 +61,21 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
+        println();
+        println("put function: ");
         //key = songname
         boolean valueIsInserted = false;
         int index = this.hashFunction(key);
+        this.probing.startProbing();
         do {
-            print("Hashindex" + index);
+            println("Hashindex" + index);
             if (this.values[index] == null) { //value can be inserted => no collision
                 this.values[index] = value;
                 valueIsInserted = true;
             } else {
                 //collision happened
                 this.numberOfCollisions++;
-                index = this.probing.nextNum();
+                index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
             }
         }while(!valueIsInserted);
 
@@ -103,9 +108,15 @@ public class HashTable {
            // for(int i = 0; i < ((String) key).length(); i++){   //calculates the value of a string by adding all chars together
              //   value += ((String)key).charAt(i);
             //}
+            int n = key.hashCode();
+            int m = this.values.length;
 
-            return (key.hashCode() % (this.values.length - 1));  //calculates the array index
+            return (this.modulo(n, m));  //calculates the array index
         }
         return 0;
+    }
+
+    private int modulo(int n, int m){
+        return (n < 0) ? (m - (abs(n) % m) ) %m : (n % m);
     }
 }
