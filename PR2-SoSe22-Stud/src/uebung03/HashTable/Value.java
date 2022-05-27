@@ -5,7 +5,8 @@ public class Value {
     Object key;
     boolean overwrite = false;
 
-    public Value(Object value, Object Key){
+    public Value(Object value, Object key){
         this.value = value;
+        this.key = key;
     }
 }

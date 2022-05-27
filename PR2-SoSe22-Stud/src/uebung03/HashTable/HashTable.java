@@ -89,8 +89,9 @@ public class HashTable {
     }
 
     public boolean remove(Object key) {
-        if(!this.contains(key))
+        if(!this.containsKey(key))
             return false;
+
 
         this.probing.startProbing();
         int index = modulo(key.hashCode(), this.values.length);
@@ -98,13 +99,12 @@ public class HashTable {
         do{
             if(this.values[index].key.equals(key)){
                 this.values[index].overwrite = true;
+                removeFlag = true;
             }else{
                 index = this.modulo(index + this.probing.nextNum(), this.values.length);
             }
 
         }while(!removeFlag);
-
-
 
         return true;
     }
@@ -118,9 +118,13 @@ public class HashTable {
     }
 
     public boolean contains(Object value) {
-        for(Object o : this.values)
-            if(o.equals(value))
-                return true;
+        for(Value v : this.values){
+            if(v != null && v.value != null){
+                if(v.value.equals(value))
+                    return true;
+            }
+        }
+
         return false;
     }
 
@@ -147,7 +151,7 @@ public class HashTable {
         for(int i = 0; i < this.values.length; i++){
             if(this.values[i] == null)
                 continue;
-            println(i + "=> " + ((SongImpl)this.values[i].value).toString());
+            println(i + "=> " + ((SongImpl)this.values[i].value).toString() + "      //  " + this.values[i].overwrite);
         }
     }
 }
