@@ -8,11 +8,13 @@ import static gdi.MakeItSimple.*;
 public class SongParser {
 
     //Test main
-    public static void main(String args[]){
+    public static void main(String args[]) throws Exception{
+        HashTable h = new HashTable(20);
         SongImpl[] songs = SongParser.parseSongs("E:\\localGitRepos\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
         //output to console
         for(Song s : songs){
             println(s.toString());
+
         }
     }
     //Hilfsklasse
