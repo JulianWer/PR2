@@ -8,7 +8,7 @@ import static java.lang.Math.abs;
 
 public class HashTable {
     //songtitel = key, value = songobject
-    private Object[] values;
+    private Value[] values;
     private final int DEFAULT_SIZE = 10;
     private Probing probing;
     private int numberOfCollisions = 0;  // statistics counter for collisions
@@ -19,29 +19,29 @@ public class HashTable {
 
     public HashTable () { // hash table with default size = 10, default probing = linear
         //default size = 10
-        this.values = new Object[this.DEFAULT_SIZE];
+        this.values = new Value[this.DEFAULT_SIZE];
         this.probing = new LinearProbing();
 
     }
 
     public HashTable(int size){
-        this.values = new Object[size];
+        this.values = new Value[size];
         this.probing = new LinearProbing();
     }
 
     public HashTable(int size, Probing probing){
-        this.values = new Object[size];
+        this.values = new Value[size];
         this.probing = probing;
     }
 
     public void clear() { // clear hash table
-        for(Object o : this.values)
-            o = null;
+        for(Value v : this.values)
+            v = null;
     }
 
     public boolean isEmpty() {
-        for(Object o : this.values)
-            if(o != null)
+        for(Value v : this.values)
+            if(v != null)
                 return true;
         return false;
     }
@@ -51,8 +51,8 @@ public class HashTable {
 
     public int size() {
         int count = 0;
-        for(Object o : this.values)
-            if(o != null)
+        for(Value v : this.values)
+            if(v != null)
                 count++;
         return count;
     }
@@ -70,7 +70,7 @@ public class HashTable {
         do {
             println("Hashindex" + index);
             if (this.values[index] == null) { //value can be inserted => no collision
-                this.values[index] = value;
+                this.values[index] = new Value(value);
                 valueIsInserted = true;
             } else {
                 //collision happened
@@ -83,6 +83,10 @@ public class HashTable {
     }
 
     public boolean remove(Object key) {
+        if(!this.contains(key))
+            return false;
+        int index = modulo(key.hashCode(), this.values.length);
+
        return true;
     }
 
