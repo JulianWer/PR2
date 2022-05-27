@@ -7,7 +7,7 @@ import uebung03.HashTable.SongParser;
 public class HashTableTestClass {
 
     public static void main(String args[]){
-        HashTable h = new HashTable(20, new LinearProbing());
+        HashTable h = new HashTable(20, new LinearesSondierenExtended(2, false));
         SongImpl s[] = SongParser.parseSongs("E:\\localGitRepos\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
 
         h.put(s[0].getSongName(), s[0]);
