@@ -61,6 +61,8 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
+        if(this.containsKey(key))
+            return null;
         println();
         println("put function: ");
         //key = songname
@@ -70,11 +72,11 @@ public class HashTable {
         do {
             println("Hashindex" + index);
             if (this.values[index] ==  null) { //value can be inserted => no collision
-                this.values[index] = new Value(value);
+                this.values[index] = new Value(value, key);
                 valueIsInserted = true;
             } else if(this.values[index].overwrite) {
                 //overwrite
-                this.values[index] = new Value(value);
+                this.values[index] = new Value(value, key);
                 valueIsInserted = true;
             }else {
                 //collision happened
@@ -92,7 +94,16 @@ public class HashTable {
 
         this.probing.startProbing();
         int index = modulo(key.hashCode(), this.values.length);
-        this.values[index].overwrite = true;
+        boolean removeFlag = false;
+        do{
+            if(this.values[index].key.equals(key)){
+                this.values[index].overwrite = true;
+            }else{
+                index = this.modulo(index + this.probing.nextNum(), this.values.length);
+            }
+
+        }while(!removeFlag);
+
 
 
         return true;
