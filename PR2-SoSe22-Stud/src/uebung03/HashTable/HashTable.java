@@ -71,11 +71,7 @@ public class HashTable {
         this.probing.startProbing();
         do {
             println("Hashindex" + index);
-            if (this.values[index] ==  null) { //value can be inserted => no collision
-                this.values[index] = new Value(value, key);
-                valueIsInserted = true;
-            } else if(this.values[index].overwrite) {
-                //overwrite
+            if (this.values[index] ==  null || this.values[index].overwrite) { //value can be inserted => no collision
                 this.values[index] = new Value(value, key);
                 valueIsInserted = true;
             }else {

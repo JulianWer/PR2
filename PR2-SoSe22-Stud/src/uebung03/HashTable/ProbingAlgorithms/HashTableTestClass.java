@@ -24,5 +24,8 @@ public class HashTableTestClass {
         println();
         h.printToConsole();
 
+        println();
+        h.put(s[1].getSongName(), s[1]);
+        h.printToConsole();
     }
 }
