@@ -1,7 +1,6 @@
 package uebung03.HashTable;
 
 public interface Song extends Comparable {
-
 	/**
 	 * Liefert den Namen des Songs
 	 */
