@@ -69,10 +69,14 @@ public class HashTable {
         this.probing.startProbing();
         do {
             println("Hashindex" + index);
-            if (this.values[index] == null) { //value can be inserted => no collision
+            if (this.values[index] ==  null) { //value can be inserted => no collision
                 this.values[index] = new Value(value);
                 valueIsInserted = true;
-            } else {
+            } else if(this.values[index].overwrite) {
+                //overwrite
+                this.values[index] = new Value(value);
+                valueIsInserted = true;
+            }else {
                 //collision happened
                 this.numberOfCollisions++;
                 index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
@@ -85,9 +89,13 @@ public class HashTable {
     public boolean remove(Object key) {
         if(!this.contains(key))
             return false;
-        int index = modulo(key.hashCode(), this.values.length);
 
-       return true;
+        this.probing.startProbing();
+        int index = modulo(key.hashCode(), this.values.length);
+        this.values[index].overwrite = true;
+
+
+        return true;
     }
 
     public Object get(Object key) {
@@ -122,5 +130,13 @@ public class HashTable {
 
     private int modulo(int n, int m){
         return (n < 0) ? (m - (abs(n) % m) ) %m : (n % m);
+    }
+
+    public void printToConsole(){
+        for(int i = 0; i < this.values.length; i++){
+            if(this.values[i] == null)
+                continue;
+            println(i + "=> " + ((SongImpl)this.values[i].value).toString());
+        }
     }
 }
