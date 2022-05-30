@@ -74,27 +74,32 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
-        if (this.containsKey(key))
-            return null;
-        println();
-        println("put function: ");
-        //key = songname
-        boolean valueIsInserted = false;
-        int index = this.hashFunction(key);
-        this.probing.startProbing();
-        do {
-            println("Hashindex" + index);
-            if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
-                this.values[index] = new Value(value, key);
-                valueIsInserted = true;
-            } else {
-                //collision happened
-                this.numberOfCollisions++;
-                index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
-            }
-        } while (!valueIsInserted);
+        if (this.containsKey(key)) {
+            Object tempValue = this.get(key);
+            this.values[this.hashFunction(key)].overwrite = false;
+            this.values[this.hashFunction(key)] = (Value) value;
+            return tempValue;
+        } else {
+            println();
+            println("put function: ");
+            //key = songname
+            boolean valueIsInserted = false;
+            int index = this.hashFunction(key);
+            this.probing.startProbing();
+            do {
+                println("Hashindex" + index);
+                if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
+                    this.values[index] = new Value(value, key);
+                    valueIsInserted = true;
+                } else {
+                    //collision happened
+                    this.numberOfCollisions++;
+                    index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
+                }
+            } while (!valueIsInserted);
 
-        return null;
+            return null;
+        }
     }
 
     public boolean remove(Object key) {
