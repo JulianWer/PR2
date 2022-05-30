@@ -48,7 +48,11 @@ public class HashTable {
     }
 
     public void printHT() { // prints out the HashTable
-
+        for (int i = 0; i < this.values.length; i++) {
+            if (this.values[i] == null)
+                continue;
+            println(i + "=> " + ((SongImpl) this.values[i].value).toString() + "      //  " + this.values[i].overwrite);
+        }
     }
 
     public int size() {
@@ -152,11 +156,5 @@ public class HashTable {
         return (n < 0) ? (m - (abs(n) % m)) % m : (n % m);
     }
 
-    public void printToConsole() {
-        for (int i = 0; i < this.values.length; i++) {
-            if (this.values[i] == null)
-                continue;
-            println(i + "=> " + ((SongImpl) this.values[i].value).toString() + "      //  " + this.values[i].overwrite);
-        }
-    }
+
 }
