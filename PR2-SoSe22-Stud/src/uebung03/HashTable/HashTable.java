@@ -60,16 +60,13 @@ public class HashTable {
     }
 
     public void reHash() { // only for reason of test to enforce rehashing
-        Value[] vals = new Value[this.size()];
-        for (int i = 0; i < this.size(); i++) {
-            vals[i] = this.values[i];
-        }
-        this.clear(); // TODO 2* size
+        Value[] vals = this.values;
+        this.values = new Value[this.values.length * 2];
         for (Value v : vals) {
-            if (!v.overwrite)
+            if (v != null && !v.overwrite) {
                 this.put(v.key, v.value);
+            }
         }
-
     }
 
     public Object put(Object key, Object value) {
