@@ -13,55 +13,67 @@ public class HashTable {
     private Probing probing;
     private int numberOfCollisions = 0;  // statistics counter for collisions
 
-    public int getStat () {
+
+    public int getStat() {
         return numberOfCollisions;
     }
 
-    public HashTable () { // hash table with default size = 10, default probing = linear
+    public HashTable() { // hash table with default size = 10, default probing = linear
         //default size = 10
         this.values = new Value[this.DEFAULT_SIZE];
         this.probing = new LinearProbing();
 
     }
 
-    public HashTable(int size){
+    public HashTable(int size) {
         this.values = new Value[size];
         this.probing = new LinearProbing();
     }
 
-    public HashTable(int size, Probing probing){
+    public HashTable(int size, Probing probing) {
         this.values = new Value[size];
         this.probing = probing;
     }
 
     public void clear() { // clear hash table
-        for(Value v : this.values)
+        for (Value v : this.values)
             v = null;
     }
 
     public boolean isEmpty() {
-        for(Value v : this.values)
-            if(v != null)
+        for (Value v : this.values)
+            if (v != null)
                 return true;
         return false;
     }
 
-    public void printHT() {
+    public void printHT() { // prints out the HashTable
+
     }
 
     public int size() {
         int count = 0;
-        for(Value v : this.values)
-            if(v != null)
+        for (Value v : this.values)
+            if (v != null)
                 count++;
         return count;
     }
 
     public void reHash() { // only for reason of test to enforce rehashing
+        Value[] vals = new Value[this.size()];
+        for (int i = 0; i < this.size(); i++) {
+            vals[i] = this.values[i];
+        }
+        this.clear(); // TODO 2* size
+        for (Value v : vals) {
+            if (!v.overwrite)
+                this.put(v.key, v.value);
+        }
+
     }
 
     public Object put(Object key, Object value) {
-        if(this.containsKey(key))
+        if (this.containsKey(key))
             return null;
         println();
         println("put function: ");
@@ -71,36 +83,36 @@ public class HashTable {
         this.probing.startProbing();
         do {
             println("Hashindex" + index);
-            if (this.values[index] ==  null || this.values[index].overwrite) { //value can be inserted => no collision
+            if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
                 this.values[index] = new Value(value, key);
                 valueIsInserted = true;
-            }else {
+            } else {
                 //collision happened
                 this.numberOfCollisions++;
                 index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
             }
-        }while(!valueIsInserted);
+        } while (!valueIsInserted);
 
         return null;
     }
 
     public boolean remove(Object key) {
-        if(!this.containsKey(key))
+        if (!this.containsKey(key))
             return false;
 
 
         this.probing.startProbing();
         int index = modulo(key.hashCode(), this.values.length);
         boolean removeFlag = false;
-        do{
-            if(this.values[index].key.equals(key)){
+        do {
+            if (this.values[index].key.equals(key)) {
                 this.values[index].overwrite = true;
                 removeFlag = true;
-            }else{
+            } else {
                 index = this.modulo(index + this.probing.nextNum(), this.values.length);
             }
 
-        }while(!removeFlag);
+        } while (!removeFlag);
 
         return true;
     }
@@ -114,9 +126,9 @@ public class HashTable {
     }
 
     public boolean contains(Object value) {
-        for(Value v : this.values){
-            if(v != null && v.value != null){
-                if(v.value.equals(value))
+        for (Value v : this.values) {
+            if (v != null && v.value != null) {
+                if (v.value.equals(value))
                     return true;
             }
         }
@@ -125,11 +137,11 @@ public class HashTable {
     }
 
     //Hashfunktion aus String verwenden
-    private int hashFunction(Object key){
+    private int hashFunction(Object key) {
         int value = 0;
-        if(key instanceof String){
-           // for(int i = 0; i < ((String) key).length(); i++){   //calculates the value of a string by adding all chars together
-             //   value += ((String)key).charAt(i);
+        if (key instanceof String) {
+            // for(int i = 0; i < ((String) key).length(); i++){   //calculates the value of a string by adding all chars together
+            //   value += ((String)key).charAt(i);
             //}
             int n = key.hashCode();
             int m = this.values.length;
@@ -139,15 +151,15 @@ public class HashTable {
         return 0;
     }
 
-    private int modulo(int n, int m){
-        return (n < 0) ? (m - (abs(n) % m) ) %m : (n % m);
+    private int modulo(int n, int m) {
+        return (n < 0) ? (m - (abs(n) % m)) % m : (n % m);
     }
 
-    public void printToConsole(){
-        for(int i = 0; i < this.values.length; i++){
-            if(this.values[i] == null)
+    public void printToConsole() {
+        for (int i = 0; i < this.values.length; i++) {
+            if (this.values[i] == null)
                 continue;
-            println(i + "=> " + ((SongImpl)this.values[i].value).toString() + "      //  " + this.values[i].overwrite);
+            println(i + "=> " + ((SongImpl) this.values[i].value).toString() + "      //  " + this.values[i].overwrite);
         }
     }
 }
