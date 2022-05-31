@@ -21,7 +21,6 @@ public class SongImplementation implements Song {
                 str += ", " + interpret;
             }
         }
-
         return str;
     }
 

@@ -95,7 +95,6 @@ public class UI {
                     print(((Element) array[i]).getKey() + " ");
             }
         }
-
     }
 
     public Comparable<?>[] readFromFile(String filename, String type) {

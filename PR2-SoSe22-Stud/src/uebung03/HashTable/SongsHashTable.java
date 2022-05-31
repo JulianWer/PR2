@@ -13,7 +13,6 @@ public class SongsHashTable {
         while (!isEndOfInputFile(file)) {
             String line = readLine(file);
             songs.add(line);
-
         }
         closeInputFile(file);
         return (songs.toArray(new String[songs.size()]));

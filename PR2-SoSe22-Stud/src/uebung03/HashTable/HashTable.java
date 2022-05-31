@@ -13,7 +13,6 @@ public class HashTable {
     private Probing probing; // init probing
     private int numberOfCollisions = 0;  // statistics counter for collisions
 
-
     public int getStat() {
         return numberOfCollisions;
     }  // gets the collisions

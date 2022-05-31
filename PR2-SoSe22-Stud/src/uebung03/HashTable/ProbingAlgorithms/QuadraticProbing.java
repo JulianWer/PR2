@@ -23,6 +23,6 @@ public class QuadraticProbing implements Probing {
     @Override
     public void startProbing() {// start probing
         sign = true;
-        counter = 0;
+        counter = 0; // counter to 0
     }
 }

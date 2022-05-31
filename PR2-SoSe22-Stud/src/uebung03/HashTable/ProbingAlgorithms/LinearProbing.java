@@ -28,6 +28,7 @@ public class LinearProbing implements Probing {
                 sign = !sign;
                 return ((-1) * counter);
             }
+
         } else {
             return counter; // if not alternierend return counter
         }

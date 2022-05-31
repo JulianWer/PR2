@@ -1,8 +1,8 @@
 package uebung03.HashTable;
 
 public class ElementOfHashTable {
-    Object value; // init value and key
-    Object key;
+    Object value; // init value
+    Object key;// init key
     boolean overwrite = false; // flag if the element can be overwritten
 
     public ElementOfHashTable(Object value, Object key) {
