@@ -81,44 +81,49 @@ public class HashTable {
         }
     }
 
+//    public Object put(Object key, Object value) {
+//        if (this.containsKey(key)) {
+//            Object tempValue = this.get2(key);
+//
+//            this.values[this.hashFunction(key)].overwrite = false;
+//            this.values[this.hashFunction(key)].setValue(value);
+//            if (((Value) tempValue).overwrite) {
+//                return null;
+//            }
+//            return ((Value) tempValue).getValue();
+//        } else {
+//            println();
+//            println("put function: ");
+//            //key = songname
+//            boolean valueIsInserted = false;
+//            int index = this.hashFunction(key);
+//            this.probing.startProbing();
+//            do {
+//                println("Hashindex" + index);
+//                if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
+//                    this.values[index] = new Value(value, key);
+//                    valueIsInserted = true;
+//                } else {
+//                    //collision happened
+//                    this.numberOfCollisions++;
+//                    index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
+//                }
+//            } while (!valueIsInserted);
+//
+//            return null;
+//        }
+//    }
+
     public Object put(Object key, Object value) {
-        if (this.containsKey(key)) {
-            Object tempValue = this.get(key);
-            this.values[this.hashFunction(key)].overwrite = false;
-            this.values[this.hashFunction(key)].setValue(value);
-            return value;
-        } else {
-            println();
-            println("put function: ");
-            //key = songname
-            boolean valueIsInserted = false;
-            int index = this.hashFunction(key);
-            this.probing.startProbing();
-            do {
-                println("Hashindex" + index);
-                if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
-                    this.values[index] = new Value(value, key);
-                    valueIsInserted = true;
-                } else {
-                    //collision happened
-                    this.numberOfCollisions++;
-                    index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
-                }
-            } while (!valueIsInserted);
-
-            return null;
-        }
-    }
-
-    public Object put2(Object key, Object value) {
-        int index = hashFunction(key);;
-        for(;;){
-            index = hashFunction(key);
-            if(this.values[index] == null || this.values[index].overwrite){
+        int index = hashFunction(key);
+        this.probing.startProbing();
+        for (; ; ) {
+            //index = hashFunction(key);
+            if (this.values[index] == null || this.values[index].overwrite) {
                 this.values[index] = new Value(key, value);
                 return null;
             }
-            if(this.values[index].key == key){
+            if (this.values[index].key.equals(key)) {
                 return this.values[index].value;
             }
 
@@ -155,9 +160,9 @@ public class HashTable {
         return this.values[this.hashFunction(key)].getValue();
     }
 
-    public Object get2(Object key){
+    public Object get2(Object key) {
         int index = modulo(key.hashCode(), this.values.length);
-        for(;;) {
+        for (; ; ) {
             if (this.values[index].key.equals(key)) {
                 return this.values[index];
             } else {
