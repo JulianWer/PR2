@@ -139,6 +139,18 @@ public class HashTable {
         return this.values[this.hashFunction(key)].getValue();
     }
 
+    public Object get2(Object key){
+        int index = modulo(key.hashCode(), this.values.length);
+        for(;;) {
+            if (this.values[index].key.equals(key)) {
+                return this.values[index];
+            } else {
+                index = this.modulo(index + this.probing.nextNum(), this.values.length);
+            }
+
+        }
+    }
+
     public boolean containsKey(Object key) {
         return this.values[hashFunction(key)] != null;
     }
