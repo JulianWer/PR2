@@ -1,7 +1,7 @@
 package uebung03.HashTable;
 
-import uebung03.HashTable.ProbingAlgorithms.LinearesSondierenExtended;
-import uebung03.HashTable.ProbingAlgorithms.quadaratischesSondieren;
+import uebung03.HashTable.ProbingAlgorithms.LinearProbing;
+import uebung03.HashTable.ProbingAlgorithms.QuadraticProbing;
 
 import static gdi.MakeItSimple.*;
 
@@ -26,9 +26,9 @@ public class UI {
                 print(" Which probing do you want to use? \n [1] alternated linear \n [2] alternated squared");
                 switch (readInt()) {
                     case 1:
-                        return new HashTable(size, new LinearesSondierenExtended(1, true));
+                        return new HashTable(size, new LinearProbing(1, -1));
                     case 2:
-                        return new HashTable(size, new quadaratischesSondieren(1));
+                        return new HashTable(size, new QuadraticProbing());
                 }
             case "n":
         }

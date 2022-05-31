@@ -9,21 +9,12 @@ import static pr.MakeItSimple.println;
 
 public class Intersort implements SortInterface {
 
-
-    public static void main(String args[]){
-        //uebung02.BinaryTree.IntElement array[] = {new uebung02.BinaryTree.IntElement(10), new uebung02.BinaryTree.IntElement(7), new uebung02.BinaryTree.IntElement(1), new uebung02.BinaryTree.IntElement(97), new uebung02.BinaryTree.IntElement(14), new uebung02.BinaryTree.IntElement(2), new uebung02.BinaryTree.IntElement(1),new uebung02.BinaryTree.IntElement(100) };
-        Comparable array[] = {new StringElement("Aaaa"), new StringElement("Aaaca"), new StringElement("fdgfd"), new StringElement("gahtaa"), new StringElement("Bfgd"), new StringElement("000")};
-        SortInterface.sortArray(array, new Intersort());
-        print("\n");
-        for(Comparable t : array)
-            print(" " + (String)((StringElement)t).getKey());
-    }
     @Override
     public void sort(Comparable[] array, int u, int o) {
         for (int i = 1; i < array.length; i++) {
             int j = i;
             Comparable m = array[i];
-            while (j > 0 && array[j - 1].compareTo(m) < 0 ) {
+            while (j > 0 && array[j - 1].compareTo(m) < 0) {
                 array[j] = array[j - 1];
                 j--;
             }

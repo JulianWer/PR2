@@ -5,8 +5,6 @@ import uebung03.Elements.Element;
 import uebung03.Elements.IntElement;
 import uebung03.Elements.StringElement;
 
-import java.util.Arrays;
-
 import static gdi.MakeItSimple.*;
 import static pr.MakeItSimple.readIntegerArray;
 import static pr.MakeItSimple.readStringArray;
@@ -33,24 +31,24 @@ public class UI {
 
 
         String check;
-        int indexcnt = 0;
+        int cnt = 0;
         print("Do you want to read from a file ? y/n ");
         String answerFileRead = readLine();
         if (answerFileRead.equals("y")) {
             print("Please enter the file Path: ");
-            cArray = readFromFile(readLine(), type);
+            //cArray = readFromFile(readLine(), type);
         } else {
             cArray = new Comparable[1];
             do {
-                dynamic(indexcnt);
+                dynamic(cnt);
                 if (type.equals("str")) {
                     print("Please type your word here: ");
-                    cArray[indexcnt] = new StringElement(readLine());
+                    cArray[cnt] = new StringElement(readLine());
 
 
                 } else if (type.equals("int")) {
                     print("Please type your Number here: ");
-                    cArray[indexcnt] = new IntElement(readInt());
+                    cArray[cnt] = new IntElement(readInt());
                     for (Comparable<?> t : cArray)
                         println(((IntElement) t).getKey() + " ");
                 }
@@ -58,7 +56,7 @@ public class UI {
                 do {
                     check = readLine();
                 } while (check.isBlank() || check.isEmpty());
-                indexcnt++;
+                cnt++;
             } while (check.equals("y"));
         }
         println("Array to sort: ");
@@ -106,18 +104,21 @@ public class UI {
             return new Comparable[]{};
         }
         if (type.equals("int")) {
-            int[] newarray = readIntegerArray(filename);// reads the file into an array (elements)
-            Comparable<?>[] comp = new Comparable[newarray.length];
-            for (int i = 0; i < newarray.length; i++) {
-                comp[i] = new IntElement(newarray[i]);
+            int[] tempArray = readIntegerArray(filename);// reads the file into an array (elements)
+            Comparable<?>[] comp = new Comparable[tempArray.length];
+            for (int i = 0; i < tempArray.length; i++) {
+                comp[i] = new IntElement(tempArray[i]);
             }
             return comp;
         }
         if (type.equals("str")) {
-            String[] newarray = readStringArray(filename);// reads the file into an array (elements)
-            Comparable<?>[] comp = new Comparable[newarray.length];
-            for (int i = 0; i < newarray.length; i++) {
-                comp[i] = new StringElement(newarray[i]);
+            String[] tempArray = readStringArray(filename);// reads the file into an array (elements)
+            String[] words;
+
+
+            Comparable<?>[] comp = new Comparable[tempArray.length];
+            for (int i = 0; i < tempArray.length; i++) {
+                comp[i] = new StringElement(tempArray[i]);
             }
             return comp;
         } else
@@ -125,6 +126,5 @@ public class UI {
 
         return new Comparable[0];
     }
-
 
 }
