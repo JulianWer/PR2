@@ -68,7 +68,7 @@ public class UI {
                 int key = readInt();
                 print("Enter value: ");
                 int value = readInt();
-                println("The element on this field was" + ((Value) (hs.put(key, value))).value);
+                println("The element on this field was" + ((ElementOfHashTable) (hs.put(key, value))).value);
             case 8:
                 print("Enter key: ");
                 key = readInt();
@@ -76,7 +76,7 @@ public class UI {
             case 9:
                 print("Enter key: ");
                 key = readInt();
-                println(((Value) (hs.get(key))).key + " : " + ((Value) (hs.get(key))).value);
+                println(((ElementOfHashTable) (hs.get(key))).key + " : " + ((ElementOfHashTable) (hs.get(key))).value);
             case 10:
                 print("Enter key: ");
                 key = readInt();
@@ -86,7 +86,7 @@ public class UI {
                 key = readInt();
                 print("Enter value: ");
                 value = readInt();
-                println(hs.contains(new Value(key, value)));
+                println(hs.contains(new ElementOfHashTable(key, value)));
 
         }
     }
