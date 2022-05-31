@@ -72,7 +72,7 @@ public class HashTable {
     }
 
     public void reHash() { // only for reason of test to enforce rehashing
-        Value[] vals = this.values;
+        Value[] vals = this.values.clone();
         this.values = new Value[this.values.length * 2];
         for (Value v : vals) {
             if (v != null && !v.overwrite) {
@@ -81,53 +81,24 @@ public class HashTable {
         }
     }
 
-//    public Object put(Object key, Object value) {
-//        if (this.containsKey(key)) {
-//            Object tempValue = this.get2(key);
-//
-//            this.values[this.hashFunction(key)].overwrite = false;
-//            this.values[this.hashFunction(key)].setValue(value);
-//            if (((Value) tempValue).overwrite) {
-//                return null;
-//            }
-//            return ((Value) tempValue).getValue();
-//        } else {
-//            println();
-//            println("put function: ");
-//            //key = songname
-//            boolean valueIsInserted = false;
-//            int index = this.hashFunction(key);
-//            this.probing.startProbing();
-//            do {
-//                println("Hashindex" + index);
-//                if (this.values[index] == null || this.values[index].overwrite) { //value can be inserted => no collision
-//                    this.values[index] = new Value(value, key);
-//                    valueIsInserted = true;
-//                } else {
-//                    //collision happened
-//                    this.numberOfCollisions++;
-//                    index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
-//                }
-//            } while (!valueIsInserted);
-//
-//            return null;
-//        }
-//    }
-
     public Object put(Object key, Object value) {
         int index = hashFunction(key);
         this.probing.startProbing();
         for (; ; ) {
             //index = hashFunction(key);
             if (this.values[index] == null || this.values[index].overwrite) {
-                this.values[index] = new Value(key, value);
+                this.values[index] = new Value(value, key);
+                this.values[index].overwrite = false;
                 return null;
             }
             if (this.values[index].key.equals(key)) {
-                return this.values[index].value;
+                Object val = this.values[index].value;
+                this.values[index] = new Value(value, key);
+                return val;
             }
 
             index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
+            println(size());
         }
     }
 
@@ -142,7 +113,7 @@ public class HashTable {
 
         do {
             if (this.values[index].key.equals(key)) {
-                if (this.values[index].overwrite == true) {
+                if (this.values[index].overwrite) {
                     return false;
                 }
                 this.values[index].overwrite = true;
@@ -173,6 +144,9 @@ public class HashTable {
     }
 
     public boolean containsKey(Object key) {
+//        for (int i = 0; i < this.values.length; i++) {
+//            if(this.)
+//        }
         return this.values[hashFunction(key)] != null;
     }
 

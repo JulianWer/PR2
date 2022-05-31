@@ -19,7 +19,7 @@ public class LinearProbing implements Probing {
 
     @Override
     public int nextNum() {  //returns an offset
-        counter = counter + distance;
+        counter = counter + this.distance;
         if (alternierend < 0) {
             if (sign) {
                 sign = !sign;
