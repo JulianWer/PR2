@@ -60,7 +60,7 @@ public class UI {
             } while (check.equals("y"));
         }
         println("Array to sort: ");
-        printArray(cArray, "n");
+        //printArray(cArray, "n");
         println();
         SortInterface.sortArray(cArray, this.sortAlgorithm);
         print("In which direction should the go? \nn-normal(left to right\nr-reverse(right to left)\nPlease type in here: ");
@@ -112,15 +112,23 @@ public class UI {
             return comp;
         }
         if (type.equals("str")) {
-            String[] tempArray = readStringArray(filename);// reads the file into an array (elements)
-            String[] words;
-
-
-            Comparable<?>[] comp = new Comparable[tempArray.length];
-            for (int i = 0; i < tempArray.length; i++) {
-                comp[i] = new StringElement(tempArray[i]);
+            if (!isFilePresent(filename)) {
+                println(" File not found. Returned a new Comparable-Array.");
+                return new Comparable[]{new StringElement("Empty")};
             }
-            return comp;
+
+            StringBuilder readString = new StringBuilder();
+            Object inputFile = openInputFile(filename);
+            while (!isEndOfInputFile(inputFile))
+                readString.append(readLine(inputFile));
+            closeInputFile(inputFile);
+
+            String[] elements = readString.toString().split(" +"); // one or more spaces --> new string
+            Comparable[] stringElements = new Comparable[elements.length];
+            for (int i = 0; i < stringElements.length; i++)
+                stringElements[i] = new StringElement(elements[i]);
+            return stringElements;
+
         } else
             println(" File not found."); // if the file is not present / wrong path
 

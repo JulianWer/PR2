@@ -1,6 +1,7 @@
 package uebung03.HashTable;
 
 import uebung03.HashTable.ProbingAlgorithms.LinearProbing;
+import uebung03.HashTable.ProbingAlgorithms.QuadraticProbing;
 
 import static gdi.MakeItSimple.print;
 import static gdi.MakeItSimple.println;
@@ -12,7 +13,6 @@ public class HashTable {
     private final int DEFAULT_SIZE = 10;
     private Probing probing;
     private int numberOfCollisions = 0;  // statistics counter for collisions
-    private int sizeOfHashTable;
 
 
     public int getStat() {
@@ -22,20 +22,17 @@ public class HashTable {
     public HashTable() { // hash table with default size = 10, default probing = linear
         //default size = 10
         this.values = new Value[this.DEFAULT_SIZE];
-        this.sizeOfHashTable = this.DEFAULT_SIZE;
         this.probing = new LinearProbing();
 
     }
 
     public HashTable(int size) {
         this.values = new Value[size];
-        this.sizeOfHashTable = size;
         this.probing = new LinearProbing();
     }
 
     public HashTable(int size, Probing probing) {
         this.values = new Value[size];
-        this.sizeOfHashTable = size;
         this.probing = probing;
     }
 
@@ -82,10 +79,16 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
+
+
         //rehash
         double dbl = ((double) this.size() / (double) this.sizeOfHashTable());
         if (dbl >= 0.75)
             this.reHash();
+
+        if (this.probing instanceof QuadraticProbing)
+            if (dbl >= 0.5)
+                this.reHash();
         int index = hashFunction(key);
         this.probing.startProbing();
         for (; ; ) {
@@ -93,6 +96,7 @@ public class HashTable {
             if (this.values[index] == null || this.values[index].overwrite) {
                 this.values[index] = new Value(value, key);
                 this.values[index].overwrite = false;
+
                 return null;
             }
             if (this.values[index].key.equals(key)) {
@@ -102,7 +106,7 @@ public class HashTable {
             }
 
             index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
-            //println(size());
+            this.numberOfCollisions++;
         }
     }
 
@@ -148,9 +152,6 @@ public class HashTable {
     }
 
     public boolean containsKey(Object key) {
-//        for (int i = 0; i < this.values.length; i++) {
-//            if(this.)
-//        }
         return this.values[hashFunction(key)] != null;
     }
 
