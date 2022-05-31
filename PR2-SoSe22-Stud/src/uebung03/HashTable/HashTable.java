@@ -83,8 +83,8 @@ public class HashTable {
 
     public Object put(Object key, Object value) {
         //rehash
-        double dbl = ((double)this.size() / (double)this.sizeOfHashTable());
-        if(dbl >= 0.75)
+        double dbl = ((double) this.size() / (double) this.sizeOfHashTable());
+        if (dbl >= 0.75)
             this.reHash();
         int index = hashFunction(key);
         this.probing.startProbing();
@@ -102,7 +102,7 @@ public class HashTable {
             }
 
             index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
-            println(size());
+            //println(size());
         }
     }
 

@@ -11,6 +11,7 @@ import uebung03.HashTable.ProbingAlgorithms.LinearProbing;
 import uebung03.HashTable.ProbingAlgorithms.QuadraticProbing;
 import uebung03.HashTable.Song;
 import uebung03.HashTable.SongImplementation;
+import uebung03.HashTable.SongsHashTable;
 
 public class HashingSongs1stTests {
 
@@ -173,27 +174,27 @@ public class HashingSongs1stTests {
         assertEquals(16, ht.sizeOfHashTable());
     }
 
-//	@Test
-//	public void testAllSongs () { // all Songs from file in hash table
-//		
-//		HashTable ht = new HashTable(3, new QuadraticProbing());
-//
-//	    String[] songs = SongsHashTable.getAllSongsFromFile ("songs.txt");
-//	    	    
-//		for (String songString : songs) {
-//			String[] parts = SongsHashTable.split(songString, ';');
-//			String[] artists = new String[parts.length - 2];
-//			for (int i = 2; i < parts.length; i++)
-//				artists[i - 2] = parts[i];
-//			
-//			Song song = new SongImplementation(parts[0], parts[1], artists);
-//			
-//            ht.put(parts[0], song);
-//		}
-//		
-//		assertEquals (2810, ht.size());
-//		assertEquals (6144, ht.sizeOfHashTable());
-//		assertEquals (4675, ht.getStat());		
-//	}
+    @Test
+    public void testAllSongs() { // all Songs from file in hash table
+
+        HashTable ht = new HashTable(3, new QuadraticProbing());
+
+        String[] songs = SongsHashTable.getAllSongsFromFile("C:\\Users\\julia\\IdeaProjects\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
+
+        for (String songString : songs) {
+            String[] parts = SongsHashTable.split(songString, ';');
+            String[] artists = new String[parts.length - 2];
+            for (int i = 2; i < parts.length; i++)
+                artists[i - 2] = parts[i];
+
+            Song song = new SongImplementation(parts[0], parts[1], artists);
+
+            ht.put(parts[0], song);
+        }
+
+        assertEquals(2810, ht.size());
+        assertEquals(6144, ht.sizeOfHashTable());
+        assertEquals(4675, ht.getStat());
+    }
 }
 	
