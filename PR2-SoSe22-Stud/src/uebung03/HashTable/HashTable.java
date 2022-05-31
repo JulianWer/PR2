@@ -82,7 +82,9 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
-        if((double)(this.size() / this.values.length) >= 0.75)
+        println((this.size() + "  " + this.sizeOfHashTable()));
+        double dbl = ((double)this.size() / (double)this.sizeOfHashTable());
+        if(dbl >= 0.75)
             this.reHash();
         int index = hashFunction(key);
         this.probing.startProbing();
