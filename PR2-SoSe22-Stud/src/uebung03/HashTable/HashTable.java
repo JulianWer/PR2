@@ -66,7 +66,7 @@ public class HashTable {
     public int size() {
         int count = 0;
         for (Value v : this.values)
-            if (v != null)
+            if (v != null && !v.overwrite)
                 count++;
         return count;
     }
@@ -85,8 +85,8 @@ public class HashTable {
         if (this.containsKey(key)) {
             Object tempValue = this.get(key);
             this.values[this.hashFunction(key)].overwrite = false;
-            this.values[this.hashFunction(key)] = (Value) value;
-            return tempValue;
+            this.values[this.hashFunction(key)].setValue(value);
+            return value;
         } else {
             println();
             println("put function: ");
@@ -118,8 +118,12 @@ public class HashTable {
         this.probing.startProbing();
         int index = modulo(key.hashCode(), this.values.length);
         boolean removeFlag = false;
+
         do {
             if (this.values[index].key.equals(key)) {
+                if (this.values[index].overwrite == true) {
+                    return false;
+                }
                 this.values[index].overwrite = true;
                 removeFlag = true;
             } else {
@@ -132,7 +136,7 @@ public class HashTable {
     }
 
     public Object get(Object key) {
-        return this.values[this.hashFunction(key)];
+        return this.values[this.hashFunction(key)].getValue();
     }
 
     public boolean containsKey(Object key) {

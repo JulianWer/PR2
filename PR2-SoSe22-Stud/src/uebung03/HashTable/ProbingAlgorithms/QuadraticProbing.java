@@ -4,12 +4,9 @@ import uebung03.HashTable.Probing;
 
 public class QuadraticProbing implements Probing {
     private int counter = 0;
-    private int distance = 1;
+    private final int distance = 1;
     private boolean sign = true;
 
-    public QuadraticProbing(int distance) {
-        this.distance = distance;
-    }
 
     @Override
     public int nextNum() {
