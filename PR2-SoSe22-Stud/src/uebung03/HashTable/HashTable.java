@@ -82,6 +82,7 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
+        //rehash
         double dbl = ((double)this.size() / (double)this.sizeOfHashTable());
         if(dbl >= 0.75)
             this.reHash();
