@@ -40,7 +40,7 @@ public class HashTable {
     }
 
     public int sizeOfHashTable() {
-        return sizeOfHashTable;
+        return this.values.length;
     }
 
     public void clear() { // clear hash table
@@ -82,7 +82,7 @@ public class HashTable {
     }
 
     public Object put(Object key, Object value) {
-        if(this.size() / this.values.length >= 0.75)
+        if((double)(this.size() / this.values.length) >= 0.75)
             this.reHash();
         int index = hashFunction(key);
         this.probing.startProbing();
