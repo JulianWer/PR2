@@ -110,6 +110,22 @@ public class HashTable {
         }
     }
 
+    public Object put2(Object key, Object value) {
+        int index = hashFunction(key);;
+        for(;;){
+            index = hashFunction(key);
+            if(this.values[index] == null || this.values[index].overwrite){
+                this.values[index] = new Value(key, value);
+                return null;
+            }
+            if(this.values[index].key == key){
+                return this.values[index].value;
+            }
+
+            index = this.modulo(index + this.probing.nextNum(), this.values.length);    //calculate the next index
+        }
+    }
+
     public boolean remove(Object key) {
         if (!this.containsKey(key))
             return false;
