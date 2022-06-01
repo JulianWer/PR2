@@ -4,12 +4,11 @@ import uebung02.QickSort.StatObject;
 
 public interface SortInterface {
 
-    public void sort(Comparable[] F , int u, int o);
-    public void sort(Comparable[] F , StatObject so);
-    public int split(Comparable[] F , int u, int o);
-    public void swap(Comparable[] F ,int i1 , int i2);
+    public void sort(Comparable A[], StatObject so);   // Sortierverfahren mit 2. Objekt zum Sammeln von Statistikdaten
 
-    static void sortArray(Comparable[] array, uebung03.SortInterface s){
+    public void sort(Comparable A[], StatObject so, int direction);
+
+    static void sortArray(Comparable[] array, uebung03.SortInterface s) {
         s.sort(array, new StatObject());
     }
 }
