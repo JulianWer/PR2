@@ -180,7 +180,7 @@ public class HashingSongs1stTestsNew {
 
         HashTable ht = new HashTable(3, new QuadraticProbing());
 
-        String[] songs = SongsHashTable.getAllSongsFromFile ("C:\\Users\\Johannes\\IdeaProjects\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
+        String[] songs = SongsHashTable.getAllSongsFromFile ("E:\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
 
         for (String songString : songs) {
             String[] parts = SongsHashTable.split(songString, ';');
@@ -200,5 +200,15 @@ public class HashingSongs1stTestsNew {
 
 
 
+    }
+
+    @Test
+    public void testown(){
+        HashTable ht = new HashTable(3, new QuadraticProbing());
+        ht.put("123", 890);
+        ht.put("124", 890);
+        ht.put("125", 890);
+        ht.put("126", 890);
+        assertEquals (4, ht.size());
     }
 }

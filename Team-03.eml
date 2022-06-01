@@ -22,4 +22,7 @@
 	<lib name="util.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/PR2-SoSe22-Stud/lib/util.jar!/"/>
 	</lib>
+	<levels>
+		<level name="gdi16" value="project"/>
+	</levels>
 </component>
