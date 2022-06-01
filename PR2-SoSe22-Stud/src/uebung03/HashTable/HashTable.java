@@ -221,12 +221,12 @@ public class HashTable {
         return 0;
     }
 
-    private int modulo(int n, int m) {
-        return (n < 0) ? (m - (abs(n) % m)) % m : (n % m); // own modulo operator for the absolut modulo
-        //return modulo2(n, m);
-    }
 
-    private int modulo2(int n, int m){
-        return (n - ((int) n / m)*m);
+
+    private int modulo(int n, int m){
+        int i = n % m;
+        if (i<0) i += m;
+        return i;
+
     }
 }
