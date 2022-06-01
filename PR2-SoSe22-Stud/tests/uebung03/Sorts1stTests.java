@@ -25,6 +25,7 @@ public class Sorts1stTests {
                 new StringElement("abh"),
                 new StringElement("abi")
         };
+        
 
         sort(iea, new QuickSortV3(), -1);
     }

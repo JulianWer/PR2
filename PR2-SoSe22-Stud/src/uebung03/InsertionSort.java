@@ -10,15 +10,15 @@ public class InsertionSort implements SortInterface {
 
     @Override
     public void sort(Comparable[] F, StatObject so) {
-        this.sort(F, 0, F.length - 1, 1);
+        this.sort(F, 0, F.length - 1, 1, so);
     }
 
     @Override
     public void sort(Comparable[] A, StatObject so, int direction) {
-        this.sort(A, 0, A.length - 1, direction);
+        this.sort(A, 0, A.length - 1, direction, so);
     }
 
-    public void sort(Comparable[] array, int u, int o, int direction) {
+    public void sort(Comparable[] array, int u, int o, int direction, StatObject so) {
         for (int i = 1; i < array.length; i++) {
             int j = i;
             Comparable m = array[i];
