@@ -25,6 +25,7 @@ public class UI2 {
             case "y":
                 print(" Which probing do you want to use? \n [1] alternated linear \n [2] alternated squared");
                 switch (readInt()) {
+                    // init Hashtables
                     case 1:
                         return new HashTable(size, new LinearProbing(1, -1));
                     case 2:
@@ -36,7 +37,7 @@ public class UI2 {
     }
 
     public void activities(HashTable hs) {
-        print(" What do you want to do? " +
+        print(" What do you want to do? " + // options to choose
                 "\n [1] clear HashTable " +
                 "\n [2] check if empty " +
                 "\n [3] getStat " +
@@ -49,7 +50,7 @@ public class UI2 {
                 "\n [10] check if contains key " +
                 "\n [11] check if contains the Object " +
                 "\n Please enter here: ");
-        switch (readInt()) {
+        switch (readInt()) { // switch for options
             case 1:
                 hs.clear();
             case 2:
