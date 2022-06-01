@@ -90,4 +90,13 @@ public class UI {
 
         }
     }
+
+    private int readInt(){  //method is overwritten to prevent a bug caused by the library
+        String input = "";
+        do{
+            input = readLine();
+        }while(input.isEmpty() || input.isBlank());
+
+        return (Integer.parseInt(input));
+    }
 }

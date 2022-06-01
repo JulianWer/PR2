@@ -1,5 +1,6 @@
 package uebung03.HashTable.ProbingAlgorithms;
 
+import uebung03.HashTable.HashTable;
 import uebung03.HashTable.Probing;
 
 public class LinearProbing implements Probing {
@@ -16,7 +17,11 @@ public class LinearProbing implements Probing {
         this.alternierend = alternierend;
         this.distance = distance;
     }
-
+    @Override
+    public int nextNum(HashTable t){
+        t.numberOfCollisions++;
+        return this.nextNum();
+    }
     @Override
     public int nextNum() {  //returns an offset
         counter = counter + distance; // adds to the distance to the counter
