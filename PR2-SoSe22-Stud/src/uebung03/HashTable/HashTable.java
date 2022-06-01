@@ -256,5 +256,4 @@ public class HashTable {
         return (n < 0) ? (m - (abs(n) % m)) % m : (n % m); // own modulo operator for the absolut modulo
     }
 
-
 }
