@@ -6,22 +6,24 @@ public class StringElement implements Element, Cloneable {
     private String key;
 
     public StringElement(String key) {
-        this.key = key;
+        this.key = key; //set this.key to the param key
     }
 
     @Override
     public Object clone() {
-        return new StringElement(this.key);
+        return new StringElement(this.key);//clones the object
     }
 
     @Override
     public Object getKey() {
-        return this.key;
+        return this.key;// return the key
     }
 
     @Override
     public int compareTo(Object o) {
         String comparisonString = (String) ((StringElement) o).getKey();
+
+        // compare to method with charAt, loops through and compares the elements
 
         for (int i = 0; (i < this.key.length() && i < comparisonString.length()); i++) {
             if (this.key.charAt(i) == comparisonString.charAt(i))

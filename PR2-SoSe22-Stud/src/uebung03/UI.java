@@ -19,6 +19,7 @@ public class UI {
 
         print("Welches Sortierverfahren wollen Sie verwinden? \nq-QickSortV3 \ni-InterSort \nPlease type in here: ");
         String sortCase = readLine();
+        // set the Algorithms
         if (sortCase.equalsIgnoreCase("q")) {
             this.sortAlgorithm = new QuickSortV3();
         }
@@ -37,9 +38,9 @@ public class UI {
             print("Please enter the file Path: ");
             cArray = readFromFile(readLine(), type);
         } else {
-            cArray = new Comparable[1];
+            cArray = new Comparable[1]; // to size of 1 because of the dynamic
             do {
-                dynamic(cnt);
+                dynamic(cnt); // call the dynamic
                 if (type.equals("str")) {
                     print("Please type your word here: ");
                     cArray[cnt] = new StringElement(readLine());
@@ -55,20 +56,20 @@ public class UI {
                 do {
                     check = readLine();
                 } while (check.isBlank() || check.isEmpty());
-                cnt++;
+                cnt++; // counts for the loop break
             } while (check.equals("y"));
         }
         println("Array to sort: ");
-        printArray(cArray);
+        printArray(cArray); // print array
         println();
         print("In which direction should the go? \n1-normal(left to right\n-1-reverse(right to left)\nPlease type in here: ");
         int direction = readInt();
-        SortInterface.sortArray(cArray, this.sortAlgorithm, direction);
+        SortInterface.sortArray(cArray, this.sortAlgorithm, direction); // begin to sort
         println("Sorted Array: ");
         printArray(cArray);
     }
 
-    private void dynamic(int index) {
+    private void dynamic(int index) { // sets the cArray dynamic
         if (index >= cArray.length) {
             Comparable<?>[] newArray = new Comparable[index + 1];
             System.arraycopy(cArray, 0, newArray, 0, cArray.length); // copies cArray to newArray
@@ -77,7 +78,7 @@ public class UI {
     }
 
     private void printArray(Comparable<?>[] array) {
-
+        // print the entire Array
         for (Comparable<?> i : array) {
             if (i instanceof IntElement) {
                 print(((Element) i).getKey() + " ");
@@ -102,16 +103,16 @@ public class UI {
             return comp;
         }
         if (type.equals("str")) {
-            if (!isFilePresent(filename)) {
+            if (!isFilePresent(filename)) {// check if present
                 println(" File not found. Returned a new Comparable-Array.");
                 return new Comparable[]{new StringElement("Empty")};
             }
 
-            StringBuilder readString = new StringBuilder();
+            StringBuilder readString = new StringBuilder(); // calls stringbuilder
             Object inputFile = openInputFile(filename);
             while (!isEndOfInputFile(inputFile))
-                readString.append(readLine(inputFile));
-            closeInputFile(inputFile);
+                readString.append(readLine(inputFile)); // add to stringbuilder
+            closeInputFile(inputFile); // close file
 
             String[] elements = readString.toString().split(" +"); // one or more spaces --> new string
             Comparable[] stringElements = new Comparable[elements.length];
@@ -122,7 +123,7 @@ public class UI {
         } else
             println(" File not found."); // if the file is not present / wrong path
 
-        return new Comparable[0];
+        return new Comparable[0]; // return empty comparible if something went wrong
     }
 
 }
