@@ -5,7 +5,7 @@ import uebung03.HashTable.ProbingAlgorithms.QuadraticProbing;
 
 import static gdi.MakeItSimple.*;
 
-public class UI {
+public class UI2 {
     private HashTable hashTable;
 
     public void ui() {
@@ -91,11 +91,11 @@ public class UI {
         }
     }
 
-    private int readInt(){  //method is overwritten to prevent a bug caused by the library
+    private int readInt() {  //method is overwritten to prevent a bug caused by the library
         String input = "";
-        do{
+        do {
             input = readLine();
-        }while(input.isEmpty() || input.isBlank());
+        } while (input.isEmpty() || input.isBlank());
 
         return (Integer.parseInt(input));
     }
