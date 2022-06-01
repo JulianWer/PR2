@@ -11,7 +11,7 @@ public class HashTable {
     private ElementOfHashTable[] elementsOfHashTables; // init Elements Array
     private final int DEFAULT_SIZE = 10; // init default size of Array to 10
     private Probing probing; // init probing
-    private int numberOfCollisions = 0;  // statistics counter for collisions
+    public int numberOfCollisions = 0;  // statistics counter for collisions
 
     public int getStat() {
         return numberOfCollisions;
@@ -75,32 +75,41 @@ public class HashTable {
         }
     }
 
-    public Object put(Object key, Object value) {
-        //rehash
+    private void checkForRehash(){
         double dbl = ((double) this.size() / (double) this.sizeOfHashTable()); // get the percentage of the array
         if (dbl >= 0.75) // 75% filled
             this.reHash(); // rehashes the table
-
         if (this.probing instanceof QuadraticProbing) // if probing is an instance of the squared probing
             if (dbl >= 0.5) // 50% filled
                 this.reHash();
+    }
+
+    public Object put(Object key, Object value) {
+        //rehash
+
+
         int index = hashFunction(key); // declair index with the hashfunction of the key
         this.probing.startProbing(); // start probing
+        Object returnValue = null;
         for (; ; ) { // endless for loop
             if (this.elementsOfHashTables[index] == null || this.elementsOfHashTables[index].overwrite) { // when the element is null or the overwrite flag is true
                 this.elementsOfHashTables[index] = new ElementOfHashTable(value, key); //  set to this element a new Element with the value and key
                 this.elementsOfHashTables[index].overwrite = false; // set the overwrite flag to false
-                return null;
+                checkForRehash();
+                returnValue = null;
+                break;
             }
             if (this.elementsOfHashTables[index].key.equals(key)) { // if there is an element, return the old element and overwrite it
                 Object val = this.elementsOfHashTables[index].value;
                 this.elementsOfHashTables[index] = new ElementOfHashTable(value, key);
-                return val;
+                returnValue = val;
+                checkForRehash();
+                break;
             }
+            index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length);    //calculate the next index
 
-            index = this.modulo(index + this.probing.nextNum(), this.elementsOfHashTables.length);    //calculate the next index
-            this.numberOfCollisions++; // collisions counter one up
         }
+        return returnValue;
     }
 
     public boolean remove(Object key) {
@@ -119,7 +128,7 @@ public class HashTable {
                 this.elementsOfHashTables[index].overwrite = true; // set the overwrite flag true
                 removeFlag = true; // and set the removeFlag true to break the loop
             } else {
-                index = this.modulo(index + this.probing.nextNum(), this.elementsOfHashTables.length); // get new index
+                index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length); // get new index
             }
         } while (!removeFlag);
 
@@ -127,11 +136,30 @@ public class HashTable {
     }
 
     public Object get(Object key) {
-        return this.elementsOfHashTables[this.hashFunction(key)].getValue(); // gets the element of the key
+        //return this.elementsOfHashTables[this.hashFunction(key)].getValue(); // gets the element of the key
+        int index = this.hashFunction(key);
+        this.probing.startProbing();
+        for(;;){
+            if(elementsOfHashTables[index].key.equals(key))
+                return elementsOfHashTables[index].getValue();
+            else
+                index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length);
+        }
     }
 
     public boolean containsKey(Object key) {
-        return this.elementsOfHashTables[hashFunction(key)] != null;
+        //return this.elementsOfHashTables[hashFunction(key)] != null;
+        int index = this.hashFunction(key);
+        this.probing.startProbing();
+        int limit = this.elementsOfHashTables.length;
+        for(int i = 0; i < limit; i++){
+            if(elementsOfHashTables[index].key.equals(key))
+                return true;
+            else
+                index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length);
+
+        }
+        return false;
     } // check if the table contains the key and the key is not null
 
     public boolean contains(Object value) { // check if the table contains the value

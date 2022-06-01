@@ -36,7 +36,8 @@ public class UI {
         String answerFileRead = readLine();
         if (answerFileRead.equals("y")) {
             print("Please enter the file Path: ");
-            //cArray = readFromFile(readLine(), type);
+            String filepath = readLine();
+            cArray = readFromFile(filepath, type);
         } else {
             cArray = new Comparable[1];
             do {

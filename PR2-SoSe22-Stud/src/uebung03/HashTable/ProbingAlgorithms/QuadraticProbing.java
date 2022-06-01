@@ -1,11 +1,18 @@
 package uebung03.HashTable.ProbingAlgorithms;
 
+import uebung03.HashTable.HashTable;
 import uebung03.HashTable.Probing;
 
 public class QuadraticProbing implements Probing {
     private int counter = 0;
     private final int distance = 1; // default
     private boolean sign = true;
+
+    @Override
+    public int nextNum(HashTable t){
+        t.numberOfCollisions++;
+        return this.nextNum();
+    }
 
     // is always alternating
     @Override
