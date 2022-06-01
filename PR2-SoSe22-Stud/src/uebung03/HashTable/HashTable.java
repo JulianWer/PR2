@@ -14,7 +14,7 @@ public class HashTable {
     public int numberOfCollisions = 0;  // statistics counter for collisions
 
     public int getStat() {
-        return numberOfCollisions;
+        return this.countCollisions();
     }  // gets the collisions
 
     public HashTable() { // hash table with default size , default probing = linear
@@ -65,6 +65,14 @@ public class HashTable {
         return count; // return the count
     }
 
+    public int sizeWithDeletedElements() { // return the size of all written elements
+        int count = 0;
+        for (ElementOfHashTable v : this.elementsOfHashTables)
+            if (v != null) // if the element is not empty and has no overwrite flag from the remove method
+                count++;
+        return count; // return the count
+    }
+
     public void reHash() { // only for reason of test to enforce rehashing
         ElementOfHashTable[] vals = this.elementsOfHashTables.clone(); // clones the old array to vals
         this.elementsOfHashTables = new ElementOfHashTable[this.elementsOfHashTables.length * 2]; // new Array with two times the size of the old
@@ -80,7 +88,7 @@ public class HashTable {
         if (dbl >= 0.75) // 75% filled
             this.reHash(); // rehashes the table
         if (this.probing instanceof QuadraticProbing) // if probing is an instance of the squared probing
-            if (dbl >= 0.5) // 50% filled
+            if (dbl >= 0.75) // 50% filled
                 this.reHash();
     }
 
@@ -91,6 +99,7 @@ public class HashTable {
         int index = hashFunction(key); // declair index with the hashfunction of the key
         this.probing.startProbing(); // start probing
         Object returnValue = null;
+        int count = 0;
         for (; ; ) { // endless for loop
             if (this.elementsOfHashTables[index] == null || this.elementsOfHashTables[index].overwrite) { // when the element is null or the overwrite flag is true
                 this.elementsOfHashTables[index] = new ElementOfHashTable(value, key); //  set to this element a new Element with the value and key
@@ -106,12 +115,70 @@ public class HashTable {
                 checkForRehash();
                 break;
             }
+            if(count > this.elementsOfHashTables.length - this.size())
+                reHash();
+            count++;
             index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length);    //calculate the next index
 
         }
         return returnValue;
     }
 
+    public int newcountCollisions(){
+        int collisions = 0;
+        for(ElementOfHashTable e : this.elementsOfHashTables){
+            if (e != null) {
+                int hashcode = this.hashFunction(e.key);
+                for(ElementOfHashTable v : this.elementsOfHashTables){
+                    if(!e.equals(v) && hashcode == this.hashFunction(v.key)){
+                        collisions++;
+                    }
+                }
+            }
+
+        }
+        return collisions;
+    }
+    public int countCollisions(){
+        //return countCollisions();
+        int collisions = 0;
+        int count = 0;
+        for(ElementOfHashTable e : this.getElementSet()){
+            int expectedIndex = this.hashFunction(e.key);
+            boolean found = false;
+            while(!found){
+                if(this.elementsOfHashTables[expectedIndex] == null){
+                    found = true;
+                }else {
+                    if (!this.elementsOfHashTables[expectedIndex].equals(e)) {
+                        if(count > this.elementsOfHashTables.length - this.size() + 800 - 105)
+                            found = true;
+                        count++;
+                        collisions++;
+                        expectedIndex = this.modulo(expectedIndex + this.probing.nextNum(this), this.elementsOfHashTables.length);
+                    } else {
+                        found = true;
+                    }
+                }
+
+            }
+
+        }
+
+        return collisions;
+    }
+
+
+    private ElementOfHashTable[] getElementSet(){
+        ElementOfHashTable elements[] = new ElementOfHashTable[this.sizeWithDeletedElements()];
+        int count = 0;
+        for(int i = 0; i < this.elementsOfHashTables.length; i++){
+            if(this.elementsOfHashTables[i] != null){
+                elements[count++] = this.elementsOfHashTables[i];
+            }
+        }
+        return elements;
+    }
     public boolean remove(Object key) {
         if (!this.containsKey(key)) // if the key is not in the table return false
             return false;
