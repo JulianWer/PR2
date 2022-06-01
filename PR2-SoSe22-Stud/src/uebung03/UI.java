@@ -24,7 +24,7 @@ public class UI {
             this.sortAlgorithm = new QuickSortV3();
         }
         if (sortCase.equalsIgnoreCase("i")) {
-            this.sortAlgorithm = new Intersort();
+            this.sortAlgorithm = new InsertionSort();
         }
         print("What kind of element do you want to read in? int/str ");
         String type = readLine();
@@ -61,13 +61,14 @@ public class UI {
             } while (check.equals("y"));
         }
         println("Array to sort: ");
-        //printArray(cArray, "n");
+        printArray(cArray);
         println();
-        SortInterface.sortArray(cArray, this.sortAlgorithm);
-        print("In which direction should the go? \nn-normal(left to right\nr-reverse(right to left)\nPlease type in here: ");
-        String direction = readLine();
+
+        print("In which direction should the go? \n1-normal(left to right\n-1-reverse(right to left)\nPlease type in here: ");
+        int direction = readInt();
+        SortInterface.sortArray(cArray, this.sortAlgorithm, direction);
         println("Sorted Array: ");
-        printArray(cArray, direction);
+        printArray(cArray);
     }
 
     private void dynamic(int index) {
@@ -78,24 +79,15 @@ public class UI {
         }
     }
 
-    private void printArray(Comparable<?>[] array, String direction) {
-        if (direction.equals("n")) {
-            for (Comparable<?> i : array) {
-                if (i instanceof IntElement) {
-                    print(((Element) i).getKey() + " ");
-                }
-                if (i instanceof StringElement)
-                    print(((Element) i).getKey() + " ");
+    private void printArray(Comparable<?>[] array) {
+        for (Comparable<?> i : array) {
+            if (i instanceof IntElement) {
+                print(((Element) i).getKey() + " ");
             }
-        } else if (direction.equals("r")) {
-            for (int i = array.length - 1; i >= 0; i--) {
-                if (array[i] instanceof IntElement) {
-                    print(((Element) array[i]).getKey() + " ");
-                }
-                if (array[i] instanceof StringElement)
-                    print(((Element) array[i]).getKey() + " ");
-            }
+            if (i instanceof StringElement)
+                print(((Element) i).getKey() + " ");
         }
+
     }
 
     public Comparable<?>[] readFromFile(String filename, String type) {
