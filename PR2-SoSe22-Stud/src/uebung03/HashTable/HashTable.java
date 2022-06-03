@@ -15,7 +15,7 @@ public class HashTable {
     containskey linear (1 pkt)
 
     */
-
+    private int size = 0;
 
     private ElementOfHashTable[] elementsOfHashTables; // init Elements Array
     private final int DEFAULT_SIZE = 10; // init default size of Array to 10
@@ -67,11 +67,12 @@ public class HashTable {
     }
 
     public int size() { // return the size of all written elements
-        int count = 0;
-        for (ElementOfHashTable v : this.elementsOfHashTables)
-            if (v != null && !v.overwrite) // if the element is not empty and has no overwrite flag from the remove method
-                count++;
-        return count; // return the count
+//        int count = 0;
+//        for (ElementOfHashTable v : this.elementsOfHashTables)
+//            if (v != null && !v.overwrite) // if the element is not empty and has no overwrite flag from the remove method
+//                count++;
+//        return count; // return the count
+        return size;
     }
 
     public int sizeWithDeletedElements() { // return the size of all written elements
@@ -83,6 +84,7 @@ public class HashTable {
     }
 
     public void reHash() { // only for reason of test to enforce rehashing
+        size = 0;
         ElementOfHashTable[] vals = this.elementsOfHashTables.clone(); // clones the old array to vals
         this.elementsOfHashTables = new ElementOfHashTable[this.elementsOfHashTables.length * 2]; // new Array with two times the size of the old
         for (ElementOfHashTable v : vals) {
@@ -111,6 +113,7 @@ public class HashTable {
         for (; ; ) { // endless for loop
             if (this.elementsOfHashTables[index] == null || this.elementsOfHashTables[index].overwrite) { // when the element is null or the overwrite flag is true
                 this.elementsOfHashTables[index] = new ElementOfHashTable(value, key); //  set to this element a new Element with the value and key
+                size++;
                 this.elementsOfHashTables[index].overwrite = false; // set the overwrite flag to false
                 return null;
             } else {
@@ -169,6 +172,7 @@ public class HashTable {
                     return false; // if overwrite ture, return false
                 }
                 this.elementsOfHashTables[index].overwrite = true; // set the overwrite flag true
+                size--;
                 removeFlag = true; // and set the removeFlag true to break the loop
             } else {
                 index = this.modulo(index + this.probing.nextNum(this), this.elementsOfHashTables.length); // get new index
