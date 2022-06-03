@@ -24,6 +24,7 @@ public class SongImplementation implements Song {
         return str;
     }
 
+
     @Override
     public String getSongName() {
         return this.songName;

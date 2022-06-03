@@ -180,7 +180,7 @@ public class HashingSongs1stTestsNew {
 
         HashTable ht = new HashTable(3, new QuadraticProbing());
 
-        String[] songs = SongsHashTable.getAllSongsFromFile("C:\\Users\\julia\\IdeaProjects\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
+        String[] songs = SongsHashTable.getAllSongsFromFile("E:\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt");
 
         for (String songString : songs) {
             String[] parts = SongsHashTable.split(songString, ';');

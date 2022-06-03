@@ -7,6 +7,9 @@ import static pr.MakeItSimple.println;
 
 public class InsertionSort implements SortInterface {
 
+    public static void sortArray(Comparable[] array, uebung03.SortInterface s, int direction) {
+        s.sort(array, new StatObject(), direction);
+    }
 
     @Override
     public void sort(Comparable[] F, StatObject so) {

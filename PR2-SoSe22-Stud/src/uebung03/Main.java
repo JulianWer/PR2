@@ -14,9 +14,11 @@ public class Main {
             case 1:
                 UI ui = new UI();
                 ui.menu();
+                break;
             case 2:
                 UI2 ui2 = new UI2();
                 ui2.ui();
+                break;
 
         }
 

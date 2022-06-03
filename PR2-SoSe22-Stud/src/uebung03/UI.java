@@ -66,7 +66,10 @@ public class UI {
 
         print("In which direction should the go? \n1-normal(left to right\n-1-reverse(right to left)\nPlease type in here: ");
         int direction = readInt();
-        SortInterface.sortArray(cArray, this.sortAlgorithm, direction);
+        if(this.sortAlgorithm instanceof QuickSortV3)
+            ((QuickSortV3)this.sortAlgorithm).sortArray(cArray, this.sortAlgorithm, direction);
+        if(this.sortAlgorithm instanceof InsertionSort)
+            ((InsertionSort)this.sortAlgorithm).sortArray(cArray, this.sortAlgorithm, direction);
         println("Sorted Array: ");
         printArray(cArray);
     }

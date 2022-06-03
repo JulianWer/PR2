@@ -8,6 +8,15 @@ import static gdi.MakeItSimple.println;
 import static java.lang.Math.abs;
 
 public class HashTable {
+
+    /*aufgabe 1 compareto string
+    UI Hashtable breaks / nullcheck / distance
+    Int / Songelemente 0 hashing
+    containskey linear (1 pkt)
+
+    */
+
+
     private ElementOfHashTable[] elementsOfHashTables; // init Elements Array
     private final int DEFAULT_SIZE = 10; // init default size of Array to 10
     private Probing probing; // init probing
@@ -44,9 +53,9 @@ public class HashTable {
 
     public boolean isEmpty() { // checks if the table is empty
         for (ElementOfHashTable v : this.elementsOfHashTables)
-            if (v == null)
-                return true; // returns true if all elements are null
-        return false;
+            if (v != null)
+                return false; // returns true if all elements are null
+        return true;
     }
 
     public void printHT() { // prints out the HashTable
@@ -105,8 +114,7 @@ public class HashTable {
                 this.elementsOfHashTables[index].overwrite = false; // set the overwrite flag to false
                 return null;
             } else {
-                //if (this.elementsOfHashTables[index].key.equals(key)) { // if there is an element, return the old element and overwrite it
-                if (this.elementsOfHashTables[index].value.equals(value)) {
+                if (this.elementsOfHashTables[index].key.equals(key)) {  // if there is an element, return the old element and overwrite it
                     Object val = this.elementsOfHashTables[index].value;
                     this.elementsOfHashTables[index] = new ElementOfHashTable(value, key);
                     return val;
@@ -147,14 +155,15 @@ public class HashTable {
     }
 
     public boolean remove(Object key) {
-        if (!this.containsKey(key)) // if the key is not in the table return false
-            return false;
+
 
         this.probing.startProbing(); // start probing
         int index = modulo(key.hashCode(), this.elementsOfHashTables.length); // calculate the index of the element
         boolean removeFlag = false; // flag for the do while loop
 
         do {
+            if(this.elementsOfHashTables[index] == null || this.elementsOfHashTables[index].overwrite)
+                return false;
             if (this.elementsOfHashTables[index].key.equals(key)) { // checks if equals and checks the overwrite flag
                 if (this.elementsOfHashTables[index].overwrite) {
                     return false; // if overwrite ture, return false
@@ -187,7 +196,8 @@ public class HashTable {
         this.probing.startProbing();
         int iterations = 0;
         for (; ; ) {
-            if (iterations > this.elementsOfHashTables.length)   //prevent endless loop
+
+            if (this.elementsOfHashTables[index] == null)   //prevent endless loop
                 return false;
             if (this.elementsOfHashTables[index] != null) {
                 if (this.elementsOfHashTables[index].key.equals(key)) {

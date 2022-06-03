@@ -35,9 +35,9 @@ public class StringElement implements Element, Cloneable {
         }
         //at this point both string are equal but one of them is longer
         if (this.key.length() < comparisonString.length())
-            return -1;
-        if (this.key.length() > comparisonString.length())
             return 1;
+        if (this.key.length() > comparisonString.length())
+            return -1;
         return 0;   //equal strings
     }
 }

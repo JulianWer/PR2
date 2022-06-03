@@ -12,6 +12,10 @@ import static gdi.MakeItSimple.*;
 public class QuickSortV3 implements SortInterface {
     StatObject so;
 
+    public static void sortArray(Comparable[] array, uebung03.SortInterface s, int direction) {
+        s.sort(array, new StatObject(), direction);
+    }
+
     @Override
     public void sort(Comparable[] F, StatObject so) { // overload method sort for testing
         this.so = so;
