@@ -193,7 +193,7 @@ public class HashingSongs1stTestsNew {
             ht.put(parts[0], song);
         }
 
-        //assertEquals(2810, ht.size());
+        assertEquals(2810, ht.size());
         assertEquals(6144, ht.sizeOfHashTable());
         assertEquals(4625, ht.getStat());
 
