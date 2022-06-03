@@ -15,12 +15,6 @@ public class QuadraticProbing implements Probing {
         return this.nextNum();
     }
 
-    public static void main(String args[]){
-        QuadraticProbing p = new QuadraticProbing();
-        p.startProbing();
-        for(int i = 0; i < 10; i++)
-            System.out.println(p.nextNum());
-    }
 
     // is always alternating
     @Override
