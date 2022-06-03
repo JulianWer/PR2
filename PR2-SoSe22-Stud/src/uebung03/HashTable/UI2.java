@@ -23,13 +23,13 @@ public class UI2 {
         String answer = readLine();
         switch (answer) {
             case "y":
-                print(" Which probing do you want to use? \n [1] alternated linear \n [2] alternated squared");
+                print(" Which probing do you want to use? \n [1] linear \n [2] squared\n");
                 switch (readInt()) {
                     // init Hashtables
                     case 1:
                         print("distance: ");
                         int distance = readInt();
-                        print("alternierend (-1 alternierend / 1 linear");
+                        print("alternierend (-1 alternierend / 1 linear)");
                         int alt = Integer.parseInt(readLine());
 
                         return new HashTable(size, new LinearProbing(distance, alt));
