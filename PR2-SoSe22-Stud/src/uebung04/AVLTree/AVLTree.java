@@ -1,6 +1,7 @@
 package uebung04.AVLTree;
 
 import uebung04.BinaryTree.BinaryTree;
+import uebung04.BinaryTree.IntElement;
 import uebung04.BinaryTree.TreeNode;
 
 import static pr.MakeItSimple.print;
@@ -56,6 +57,32 @@ public class  AVLTree extends BinaryTree {
         this.printPostorder(this.root);
 
     }
+    @Override
+    public void printInorder() {
+        this.printInorder(this.root); // calls private method
+
+    }
+    public void printPreorder() {
+        this.printPreorder(this.root);// calls method
+    }
+
+    private void printPreorder(TreeNode n) { // recursive
+        if (n != null) {// tree not empty
+            int balance = ((AVLTreeNode)n).calculateBalance();
+            print( n.getKey() + "(" + balance + ") "); // prints out
+            printPreorder(n.getLeft());
+            printPreorder(n.getRight());
+        }
+    }
+
+    private void printInorder(TreeNode n) {
+        if (n != null) {
+            printInorder(n.getLeft()); // recursive call
+            int balance = ((AVLTreeNode)n).calculateBalance();
+            print( n.getKey() + "(" + balance + ") "); // prints out
+            printInorder(n.getRight());
+        }
+    }
 
     private void printPostorder(TreeNode n){
         if (n != null) {
@@ -93,7 +120,7 @@ public class  AVLTree extends BinaryTree {
         }
 
         //right-heavy
-        if(balance < 1){
+        if(balance < -1){
             if(((AVLTreeNode)currentNode.getRight()).calculateBalance() > 0)
                 currentNode.setRight(rotateRight((AVLTreeNode) currentNode.getRight()));
             return rotateLeft(currentNode);

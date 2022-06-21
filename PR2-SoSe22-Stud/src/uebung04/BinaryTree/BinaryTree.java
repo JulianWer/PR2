@@ -111,7 +111,6 @@ public class BinaryTree implements Tree {
         if (isFilePresent(filename)) {
             int[] elements = readIntegerArray(filename); // reads the file into an array (elements)
             for (int element : elements) { // for each loop for elements
-                print(element);
                 if (this.insert(Integer.valueOf(element))) // if the element is added correctly
                     insertedElement = true; // set insertedElement to true
             }

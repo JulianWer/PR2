@@ -42,6 +42,22 @@ public class SongImplementation implements Song {
 
     @Override
     public int compareTo(Object o) {
-        return 0;
+        //ToDo: kontrollieren
+        String comparisonString = ((SongImplementation)o).getSongName();
+        String key = this.songName;
+        for (int i = 0; (i < key.length() && i < comparisonString.length()); i++) {
+            if (key.charAt(i) == comparisonString.charAt(i))
+                continue;
+            if (key.charAt(i) < comparisonString.charAt(i))
+                return 1;
+            if (key.charAt(i) > comparisonString.charAt(i))
+                return -1;
+        }
+        //at this point both string are equal but one of them is longer
+        if (key.length() < comparisonString.length())
+            return 1;
+        if (key.length() > comparisonString.length())
+            return -1;
+        return 0;   //equal strings
     } // set compare to to 0
 }

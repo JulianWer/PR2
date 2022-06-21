@@ -54,6 +54,8 @@ public class TreeNode implements VisualizableOneKeyNode { // Node of a binary tr
 
 	@Override
 	public Object getKey() {
+		if(this.value instanceof IntElement)
+			return ((IntElement)this.value).getKey();
 		return value;
 	}
 

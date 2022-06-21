@@ -10,10 +10,8 @@ public class Debug {
         AVLTree t = new AVLTree();
         t.insert(10);
         t.insert(7);
-        t.insert(13);
         t.insert(5);
-        t.insert(9);
-        t.insert(2);
+
 
         t.printPostorder();
 

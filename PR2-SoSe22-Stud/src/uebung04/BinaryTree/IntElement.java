@@ -12,27 +12,31 @@ public class IntElement implements Element, Cloneable {
 		this.key = i;
 	}
 
+//	@Override
+//	public int compareTo(Object arg0) {
+//		// TODO Auto-generated method stub
+//		IntElement element;
+//		if(arg0 instanceof IntElement) {
+//			element = (IntElement) arg0;
+//			if(element.getValue() == this.key)
+//				return 0;	//identical
+//			else if(element.getValue() > this.key)
+//				return 1;	//arg0 is greater
+//			else if(element.getValue() < this.key)
+//				return -1;	//arg0 is smaller
+//
+//
+//		}
+//		/**
+//		 * @return 0 for identical
+//		 * @return 1 if arg0 > this
+//		 * @return -1 if arg0 < this
+//		 * */
+//		return -1;
+//	}
 	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		IntElement element;
-		if(arg0 instanceof IntElement) {
-			element = (IntElement) arg0;
-			if(element.getValue() == this.key)
-				return 0;	//identical
-			else if(element.getValue() > this.key)
-				return 1;	//arg0 is greater
-			else if(element.getValue() < this.key)
-				return -1;	//arg0 is smaller
-			
-			
-		}
-		/**
-		 * @return 0 for identical
-		 * @return 1 if arg0 > this
-		 * @return -1 if arg0 < this
-		 * */
-		return -1;
+	public int compareTo(Object arg0){
+		return this.key.compareTo((Integer) ((IntElement)arg0).getKey());
 	}
 
 	@Override
