@@ -8,10 +8,13 @@ import java.io.PrintStream;
 import java.lang.invoke.MethodHandles;
 
 import static pr.MakeItSimple.*;
-import uebung03.SongImplementation;
-import uebung03.Song;
 
-import uebung02.IntElement;
+
+import uebung03.HashTable.Song;
+import uebung03.HashTable.SongImplementation;
+import uebung04.AVLTree.AVLTree;
+import uebung04.BinaryTree.IntElement;
+import uebung04.BinaryTree.Tree;
 
 
 public class AVLTreeTest {
