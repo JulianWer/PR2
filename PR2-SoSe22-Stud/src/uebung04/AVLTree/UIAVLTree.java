@@ -1,23 +1,21 @@
 package uebung04.AVLTree;
 
-import uebung04.AVLTree.AVLTree;
-
 import java.util.ArrayList;
 
 import static gdi.MakeItSimple.*;
 import static gdi.MakeItSimple.println;
 
-public class UI {
+public class UIAVLTree {
 
     private ArrayList<AVLTree> trees;
 
 
-    public UI(){
+    public UIAVLTree(){
         this.trees = new ArrayList<>();
     }
 
     public static void main(String args[]){
-        new uebung04.AVLTree.UI().runUI();
+        new UIAVLTree().runUI();
     }
 
     public void runUI(){
