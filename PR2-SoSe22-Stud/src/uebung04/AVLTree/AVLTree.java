@@ -10,14 +10,16 @@ import static pr.MakeItSimple.print;
 import static pr.MakeItSimple.println;
 
 public class  AVLTree extends BinaryTree {
+
     public AVLTree(){
         super();
     }
 
     @Override
     public boolean insert(Comparable elem){
+        AVLTreeNode rootnode = (AVLTreeNode) this.root;
         try {
-            this.root = insertR((AVLTreeNode) this.root, new AVLTreeNode(elem));
+            this.root = insertR(rootnode, new AVLTreeNode(elem));
         }catch(Exception e){
             return false;
         }
@@ -27,11 +29,11 @@ public class  AVLTree extends BinaryTree {
     private AVLTreeNode insertR(AVLTreeNode node, AVLTreeNode dataToInsert) throws Exception {
         if(node == null)
             return dataToInsert;
-        else if(dataToInsert.getElement().compareTo(node.getElement()) < 0)
+        else if(dataToInsert.getElement().compareTo(node.getElement()) < 0)     //if the node we want to insert is smaller than the current node, it will be inserted on the left side
             node.setLeft(insertR((AVLTreeNode) node.getLeft(), dataToInsert));
-        else if(dataToInsert.getElement().compareTo(node.getElement()) > 0)
+        else if(dataToInsert.getElement().compareTo(node.getElement()) > 0)     //if the node we want to insert is greater than the current node, it will be inserted on the right side
             node.setRight(insertR((AVLTreeNode) node.getRight(), dataToInsert));
-        else if(dataToInsert.getElement().compareTo(node.getElement()) == 0)
+        else if(dataToInsert.getElement().compareTo(node.getElement()) == 0)    //if the element is already contained in the tree, an exception will be thrown
             throw new Exception("Element already inserted");
         return checkForRotation(node);
     }
@@ -39,20 +41,22 @@ public class  AVLTree extends BinaryTree {
     private AVLTreeNode checkForRotation(AVLTreeNode currentNode){
         //calculate balance
         int balance = currentNode.calculateBalance();
+        AVLTreeNode leftNode = (AVLTreeNode) currentNode.getLeft();
+        AVLTreeNode rightNode = (AVLTreeNode) currentNode.getRight();
 
         //left-heavy
         if(balance > 1){
             //do rightrotation
-            if(((AVLTreeNode)currentNode.getLeft()).calculateBalance() < 0) // doppelte rotation
-                currentNode.setLeft(rotateLeft((AVLTreeNode) currentNode.getLeft()));
+            if(leftNode.calculateBalance() < 0) // doppelte rotation
+                currentNode.setLeft(rotateLeft(leftNode));
 
             return rotateRight(currentNode);
         }
 
         //right-heavy
         if(balance < -1){
-            if(((AVLTreeNode)currentNode.getRight()).calculateBalance() > 0)
-                currentNode.setRight(rotateRight((AVLTreeNode) currentNode.getRight()));
+            if(rightNode.calculateBalance() > 0)
+                currentNode.setRight(rotateRight(rightNode));
             return rotateLeft(currentNode);
         }
 
