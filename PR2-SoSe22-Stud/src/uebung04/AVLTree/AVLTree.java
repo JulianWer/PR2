@@ -2,12 +2,10 @@ package uebung04.AVLTree;
 
 import pr2.util.QueueImpl;
 import uebung04.BinaryTree.BinaryTree;
-import uebung04.BinaryTree.IntElement;
 import uebung04.BinaryTree.Tree;
 import uebung04.BinaryTree.TreeNode;
 
 import static pr.MakeItSimple.print;
-import static pr.MakeItSimple.println;
 
 public class  AVLTree extends BinaryTree {
     public AVLTree(){
@@ -185,5 +183,29 @@ public class  AVLTree extends BinaryTree {
                 addAll((AVLTreeNode)n.getRight(), b);// recursive call for the right side of each element
         }
 
+    }
+
+    @Override
+    public Tree clone() {
+        AVLTree treeClone = new AVLTree();
+        treeClone.root = clone((AVLTreeNode)this.root); // calls the private method with clone(this.root)
+        return treeClone;
+    }
+
+    private AVLTreeNode clone(AVLTreeNode root) {
+        if (root == null) { // if root is null then return null
+            return null;
+        }
+        AVLTreeNode nodeClone = new AVLTreeNode((Comparable) root.getKey()); // gets each element from root
+        //TreeNode nodeClone = new TreeNode(this.root.getElement());
+        nodeClone.left = clone((AVLTreeNode)root.getLeft());
+        nodeClone.right = clone((AVLTreeNode)root.getRight()); // recursive call for both sides
+        return nodeClone; // returns the cloned root
+    }
+
+
+    @Override
+    public Tree createTree() {
+        return new AVLTree();
     }
 }

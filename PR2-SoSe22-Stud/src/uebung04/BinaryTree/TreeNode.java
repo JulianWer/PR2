@@ -7,8 +7,8 @@ public class TreeNode implements VisualizableOneKeyNode { // Node of a binary tr
 
 ////////////////////////class TreeNode     //////////////////////////////////
 	Comparable value; // all kinds of Element can be stored in tree
-	TreeNode left;
-	TreeNode right;
+	public TreeNode left;
+	public TreeNode right;
 
 	public TreeNode(Comparable i) {
 		value = i;
