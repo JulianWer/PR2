@@ -2,12 +2,10 @@ package uebung04.AVLTree;
 
 import pr2.util.QueueImpl;
 import uebung04.BinaryTree.BinaryTree;
-import uebung04.BinaryTree.IntElement;
 import uebung04.BinaryTree.Tree;
 import uebung04.BinaryTree.TreeNode;
 
 import static pr.MakeItSimple.print;
-import static pr.MakeItSimple.println;
 
 public class  AVLTree extends BinaryTree {
 
@@ -189,5 +187,11 @@ public class  AVLTree extends BinaryTree {
                 addAll((AVLTreeNode)n.getRight(), b);// recursive call for the right side of each element
         }
 
+    }
+
+
+    @Override
+    public Tree createTree() {
+        return new AVLTree();
     }
 }

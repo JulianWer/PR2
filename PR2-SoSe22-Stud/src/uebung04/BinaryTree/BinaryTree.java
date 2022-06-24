@@ -2,6 +2,7 @@ package uebung04.BinaryTree;
 
 import graphvisualizer.TreeVisualizer;
 import pr2.util.QueueImpl;
+import uebung04.AVLTree.AVLTree;
 
 import static gdi.MakeItSimple.isFilePresent;
 import static gdi.MakeItSimple.println;
@@ -406,6 +407,8 @@ public class BinaryTree implements Tree {
             return false;
         if (!(other instanceof BinaryTree))
             return false;
+        if (!(other instanceof AVLTree))
+            return false;
         QueueImpl queueTree1 = new QueueImpl();
         QueueImpl queueTree2 = new QueueImpl();
         queueTree1.enter(this.root); // enter root to queue 1
@@ -435,6 +438,8 @@ public class BinaryTree implements Tree {
     @Override
     public boolean equal(Tree otherTree) { // compares the values
         if (!(otherTree instanceof BinaryTree))
+            return false;
+        if (!(otherTree instanceof AVLTree))
             return false;
         Comparable currentTreeElements[] = this.convertTreeToArray(this); // convert the current tree to an array
         Comparable otherTreeElements[] = ((BinaryTree) otherTree).convertTreeToArray(otherTree); // convert the otherTree to an array
