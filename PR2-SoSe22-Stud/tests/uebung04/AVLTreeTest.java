@@ -363,7 +363,7 @@ public class AVLTreeTest {
     public void testsOnSongFile() throws Exception {
 
         //String filename = MethodHandles.lookup().lookupClass().getResource("songs.txt").getPath();
-        String filename = "C:\\Users\\Johannes\\Desktop\\LocalRepos\\Team-03GitHSMannheim\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt";
+        String filename = "C:\\Users\\School\\IdeaProjects\\Team-03\\PR2-SoSe22-Stud\\src\\uebung03\\HashTable\\songs.txt";
         String[] songs = readStringArray(filename);
 
         for (String songString : songs) {
