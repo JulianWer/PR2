@@ -17,7 +17,6 @@ public class CaesarWriter extends FilterWriter {
 
     public void write(int c) throws IOException {
         c = calcNextLetter(c);
-        System.out.println((char)c);
         super.write(c);
     }
 
