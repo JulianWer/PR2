@@ -58,8 +58,8 @@ public class CaesarWriter extends FilterWriter {
         for (int i = 0; i < alphabet.length; i++) {
             if (alphabet[i] == c) {
                 if (i + verscheibungen >= alphabet.length) {
-                    int tamp = verscheibungen- (alphabet.length-i);
-                    return alphabet[tamp];
+                    int offset = (verscheibungen+i) %alphabet.length ;
+                    return alphabet[offset];
                 }
                 else
                     return alphabet[i+verscheibungen];
