@@ -55,7 +55,6 @@ public class CaesarWriter extends FilterWriter {
     }
 
     private int calcNextLetter(int c){
-        if (c == ' ') return ' ';
         for (int i = 0; i < alphabet.length; i++) {
             if (alphabet[i] == c) {
                 if (i + verscheibungen >= alphabet.length) {
@@ -67,7 +66,7 @@ public class CaesarWriter extends FilterWriter {
 
             }
         }
-     return 0;
+     return c;
     }
 
 
