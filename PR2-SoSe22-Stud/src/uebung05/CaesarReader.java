@@ -41,11 +41,12 @@ public class CaesarReader extends FilterReader {
     }
 
     private int calcNextLetter(int c){
-        if (c == ' ') return ' ';
         for (int i = 0; i < alphabet.length; i++) {
             if (alphabet[i] == c) {
                 if (i - verscheibungen < 0) {
-                    int tamp = alphabet.length-(verscheibungen-i);
+                    int tamp =(i-verscheibungen)% alphabet.length;
+                    if(tamp <0)
+                        return alphabet[alphabet.length + tamp];
                     return alphabet[tamp];
                 }
                 else
@@ -53,6 +54,6 @@ public class CaesarReader extends FilterReader {
 
             }
         }
-        return 0;
+        return c;
     }
 }

@@ -6,12 +6,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CaesarWriter w = new CaesarWriter(new FileWriter("hallo.txt"),5);
 
-        w.write("Hallo ich bins");
+        w.write("HÖrt");
         w.close();
-        Reader r = new CaesarReader(new FileReader("C:\\Users\\School\\IdeaProjects\\PR2\\hallo.txt"),5);
-        System.out.println((char)r.read());
-        System.out.println((char)r.read());
+        Reader r ;
+        int c;
+//        while((c = r.read()) != -1){
+//            System.out.println((char)c);
+//        }
+        try {
+            r= new CaesarReader(new FileReader("C:\\Users\\School\\IdeaProjects\\PR2\\hallo.txt"),5);
+            while ((c = r.read()) != -1) { System.out.print((char)c); }
+            r.close();
+        } catch (IOException e) {
+            System.out.println("Fehler beim Lesen der Datei");
+        }
 
-        r.close();
     }
 }
